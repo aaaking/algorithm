@@ -1,3 +1,5 @@
+import datastructor.TreeNode;
+
 public class Fs {
 
     public static void printTree(TreeNode head) {
