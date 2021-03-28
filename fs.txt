@@ -1,0 +1,27 @@
+func atMostK(A []int, K int) int { // A是值传递
+ans, i := 0, 0
+          // cnt := make(map[int]int, 0)
+cnt := [20005]int{}
+for j, v := range A {
+if cnt[v] == 0 {
+    K--
+}
+cnt[v]++
+
+for K < 0 {
+            cnt[A[i]]-- //
+    if cnt[A[i]] == 0 {
+K++
+}
+i++
+}
+
+ans += j - i + 1
+}
+
+return ans
+}
+
+func subarraysWithKDistinct(A []int, K int) int {
+return atMostK(A, K) - atMostK(A, K-1)
+}
