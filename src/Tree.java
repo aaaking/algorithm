@@ -11,7 +11,6 @@ class BinTreeNode<T> {
     T value;
     BinTreeNode left;
     BinTreeNode right;
-    BinTreeNode parent;
 
     BinTreeNode(T v) {
         value = v;
