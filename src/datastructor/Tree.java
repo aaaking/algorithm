@@ -167,6 +167,7 @@ public class Tree {
         }
     }
 
+    //--------深度遍历-------DFS-------------------------------------------------------
     public static void DFS(TreeNode root) {
         Stack<TreeNode> stack = new Stack<>();
         stack.add(root);
