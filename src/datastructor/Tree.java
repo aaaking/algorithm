@@ -35,17 +35,18 @@ public class Tree {
         travIn_I(root);
         System.out.println("\n中序2");
         travIn_I2(root);
-        System.out.println("----后序遍历----");
+        System.out.println("\n----后序遍历----");
         System.out.println("\n后序stack");
         posOrderTraverse(root);
         System.out.println("\n后序list");
         postorderTraversal(root);
-        System.out.println("\nlevel-BFS'");
+        System.out.println("\n----level-BFS-------");
         travLevel(root);
-        System.out.println("\n'DFS'");
+        System.out.println("\n------DFS-----");
         DFS(root);
     }
 
+    //--------pre--------------------------------------------------------------
     //先序遍历，迭代方法
     public static void travPreNormal(TreeNode root) {
         Stack<TreeNode> s = new Stack();
@@ -60,9 +61,9 @@ public class Tree {
                 s.push(root.left);
             }
         }
+        System.out.println();
     }
 
-    //--------pre--------------------------------------------------------------
     static void visitAlongLeftBranch(TreeNode x, Stack<TreeNode> s) {
         while (x != null) {
             System.out.print(x.toString());
