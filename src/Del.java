@@ -1,3 +1,6 @@
+import java.io.FileReader;
+import java.security.AccessController;
+import java.security.PrivilegedAction;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,14 +10,23 @@ import java.util.Map;
 public class Del {
 
     public static void main(String[] args) {
-        Map<Person, Integer> map = new HashMap<Person, Integer>();
-        Person p = new Person("zhangsan", 12);
-
-        map.put(p, 1);
-        p.setName("lisi"); // 因为p.name参与了hash值的计算，修改了之后hash值发生了变化，所以下面删除不掉
-        Object fs = map.remove(p);
-
-        System.out.println(map + " " + fs);
+        System.out.println("start");
+        AccessController.doPrivileged((PrivilegedAction<Void>) () -> {
+            System.out.println("do privilege");
+            try {
+                String jarWholePath = Del.class.getProtectionDomain().getCodeSource().getLocation().getFile();
+                System.out.println("jarWholePath=" + jarWholePath);
+                FileReader fileReader = new FileReader(jarWholePath + "./Del.class");
+                fileReader.read();
+            } catch (Exception e) {
+                System.out.println("e=" + e);
+            }
+            System.out.println("do privilege 2");
+            return null;
+        });
+        System.out.println("end");
     }
+
+    /**/
 
 }
