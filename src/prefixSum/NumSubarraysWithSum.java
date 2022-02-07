@@ -1,6 +1,8 @@
 package prefixSum;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /*
 * 930. 和相同的二元子数组
@@ -37,9 +39,9 @@ public class NumSubarraysWithSum {
         int[] a1 = new int[]{1, 0, 1, 0, 1};
         int[] a2 = new int[]{0, 0, 0, 0, 0};
         int[] a3 = new int[]{0, 1, 1, 1, 1};
-        System.out.println(demo.numSubarraysWithSum(a1, 2)); // 4
-        System.out.println(demo.numSubarraysWithSum(a2, 0)); // 15
-        System.out.println(demo.numSubarraysWithSum(a3, 3)); // 3
+        System.out.println(demo.numSubarraysWithSum2(a1, 2)); // 4
+        System.out.println(demo.numSubarraysWithSum2(a2, 0)); // 15
+        System.out.println(demo.numSubarraysWithSum2(a3, 3)); // 3
     }
 
     public int numSubarraysWithSum(int[] nums, int goal) {
@@ -68,6 +70,28 @@ public class NumSubarraysWithSum {
 //            if (sum - preSum[i] == goal) {
 //                hitTimes++;
 //            }
+        }
+
+        return hitTimes;
+    }
+
+    public int numSubarraysWithSum2(int[] nums, int goal) {
+        System.out.println("-------------");
+        Map<Integer, Integer> map = new HashMap();
+        map.put(0, 1);
+        int hitTimes = 0;
+        int len = nums.length;
+        int[] preSum = new int[len + 1];
+        for (int i = 0; i < len; i++) {
+            preSum[i + 1] = preSum[i] + nums[i];
+            if (map.containsKey(preSum[i + 1] - goal)) { // {0=2, 1=1, 2=1, 3=1, 4=1}
+                hitTimes += map.get(preSum[i + 1] - goal);
+            }
+//            if (map.containsKey(goal-preSum[i + 1])) { // {0=1, 1=2, 2=2, 3=1}
+//                hitTimes += map.get(goal-preSum[i + 1]);
+//            }
+            map.put(preSum[i + 1], map.getOrDefault(preSum[i + 1], 0) + 1);
+            System.out.println(map);
         }
 
         return hitTimes;
