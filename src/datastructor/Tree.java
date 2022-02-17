@@ -44,6 +44,8 @@ public class Tree {
         travLevel(root);
         System.out.println("\n------DFS-----");
         DFS(root);
+        System.out.println();
+        dfsTraverse(root);
     }
 
     //--------pre--------------------------------------------------------------
@@ -183,6 +185,16 @@ public class Tree {
                 stack.add(tempNode.left);
 
         }
+    }
+
+    //--------深度遍历-------递归-------------------------------------------------------
+    public static void dfsTraverse(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        System.out.print(root);
+        dfsTraverse(root.left);
+        dfsTraverse(root.right);
     }
 
 }
