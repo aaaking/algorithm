@@ -2,7 +2,7 @@ package ufs;
 
 import datastructor.Ufs;
 
-public class OKSolution {
+public class UfsSolution {
 
     private int rows;
     private int cols;
