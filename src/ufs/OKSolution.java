@@ -1,5 +1,7 @@
 package ufs;
 
+import datastructor.Ufs;
+
 public class OKSolution {
 
     private int rows;
@@ -14,7 +16,7 @@ public class OKSolution {
 
         // 空地的数量
         int spaces = 0;
-        UnionFind unionFind = new UnionFind(rows * cols);
+        Ufs unionFind = new Ufs(rows * cols);
         int[][] directions = {{1, 0}, {0, 1}};
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
@@ -40,42 +42,4 @@ public class OKSolution {
         return i * cols + j;
     }
 
-    private class UnionFind {
-        /**
-         * 连通分量的个数
-         */
-        private int count;
-        private int[] parent;
-
-        public int getCount() {
-            return count;
-        }
-
-        public UnionFind(int n) {
-            this.count = n;
-            parent = new int[n];
-            for (int i = 0; i < n; i++) {
-                parent[i] = i;
-            }
-        }
-
-        private int find(int x) {
-            while (x != parent[x]) {
-                parent[x] = parent[parent[x]];
-                x = parent[x];
-            }
-            return x;
-        }
-
-        public void union(int x, int y) {
-            int xRoot = find(x);
-            int yRoot = find(y);
-            if (xRoot == yRoot) {
-                return;
-            }
-
-            parent[xRoot] = yRoot;
-            count--;
-        }
-    }
 }
