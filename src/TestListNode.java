@@ -1,11 +1,9 @@
 import datastructor.ListNode;
 
-import java.util.*;
-
-public class Main {
+public class TestListNode {
 
     public static void main(String[] args) {
-        Main test = new Main();
+        TestListNode test = new TestListNode();
 //        Scanner sc = new Scanner(System.in);
 //        String n = sc.next();
         ListNode a1 = new ListNode(1);
