@@ -1,29 +1,8 @@
+import datastructor.ListNode;
+
 import java.util.*;
 
 public class Main {
-
-    public static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-
-        @Override
-        public String toString() {
-            StringBuilder sb = new StringBuilder(val + "");
-            ListNode haha = next;
-            while (true) {
-                if (haha == null) {
-                    break;
-                }
-                sb.append("->" + String.valueOf(haha.val));
-                haha = haha.next;
-            }
-            return sb.toString();
-        }
-    }
 
     public static void main(String[] args) {
         Main test = new Main();
