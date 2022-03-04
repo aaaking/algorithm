@@ -57,7 +57,9 @@ public class Main {
                 int b = Integer.parseInt(stack.pop());
                 int value = calculate(a, b, s);
                 temp.push(String.valueOf(value));
-            } else if (!"(".equals(s)) {
+            } else if ("(".equals(s)) {
+                break;
+            } else {
                 temp.push(s);
             }
         }
