@@ -30,6 +30,7 @@ public class Main2 {
             // 转换成字符数组
             char[] chars = str.toCharArray();
             int n = str.length();
+            // ((99+51)*14+26)*24      (7+5*4*3+6)    5-3+9*6*(6-10-2)
             for (int i = 0; i < n; i++) {
                 if (chars[i] == '(') {
                     ops.push(chars[i]);
