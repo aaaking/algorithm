@@ -4,7 +4,63 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        HJ54();
+        HJ61();
+    }
+
+    public static void HJ61() {
+
+    }
+
+    public static void HJ60() {
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNext()) {
+            int even = scanner.nextInt();
+            int diff = Integer.MAX_VALUE;
+            int minI = 0;
+            for (int i = even / 2; i >= 2; i--) {
+                int remain = even - i;
+                if (isPrime(i) && isPrime(remain)) {
+                    System.out.println(i);
+                    System.out.println(remain);
+                    break;
+                }
+            }
+//            System.out.println(minI);
+//            System.out.println(even - minI);
+        }
+    }
+
+    public static boolean isPrime(int num) {
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void HJ56() {
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNext()) {
+            int n = scanner.nextInt();
+            int cnt = 0;
+            for (int i = 6; i < n; i++) {
+                int sum = 0;
+                // check
+                for (int j = 1; j < i; j++) {
+                    if (i % j == 0) {
+                        sum += j;
+                    }
+                    if (sum > i) {
+                        break;
+                    }
+                }
+                if (sum == i) {
+                    cnt++;
+                }
+            }
+            System.out.println(cnt);
+        }
     }
 
     public static void HJ54() {
