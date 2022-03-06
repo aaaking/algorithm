@@ -2,7 +2,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Stack;
 
-public class Main3 {
+public class Eval {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         HashMap<Character, Integer> maps = new HashMap<>();
