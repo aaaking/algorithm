@@ -18,6 +18,8 @@ public class Main {
     }
 
     public static int place(int apples, int plates) {
+        if (apples < 0 || plates <= 0)
+            return 0;
         if (apples <= 1 || plates <= 1) {
             return 1;
         }
