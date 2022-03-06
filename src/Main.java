@@ -8,7 +8,24 @@ public class Main {
     }
 
     public static void HJ61() {
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNext()) {
+            int apples = scanner.nextInt();
+            int plates = scanner.nextInt();
+            System.out.println(place(apples, plates));
+        }
 
+    }
+
+
+    public static int place(int apples, int plates) {
+        if (apples <= 1 || plates <= 1) {
+            return 1;
+        }
+        if (apples == 2) {
+            return 2;
+        }
+        return place(apples - plates, plates) + place(apples, plates - 1);
     }
 
     public static void HJ60() {
