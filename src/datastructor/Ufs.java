@@ -14,6 +14,7 @@ public class Ufs {
     private int count;
     private int[] parent;
     private int[] rank;
+    public int maxRank = 1;
 
     public int getCount() {
         return count;
@@ -43,15 +44,19 @@ public class Ufs {
         if (xRoot == yRoot) {
             return;
         }
-
-        if (rank[xRoot] <= rank[yRoot]) {
+        
+        int rankX = rank[xRoot];
+        int rankY = rank[yRoot];
+        if (rankX <= rankY) {
             parent[xRoot] = yRoot;
+            rank[yRoot]+=rankX;
+            maxRank = Math.max(maxRank, rank[yRoot]);
         } else {
             parent[yRoot] = xRoot;
+            rank[xRoot]+=rankY;
+            maxRank = Math.max(maxRank, rank[xRoot]);
         }
-        if (rank[xRoot] == rank[yRoot]) {
-            rank[yRoot]++;
-        }
+        
         count--;
     }
 }
