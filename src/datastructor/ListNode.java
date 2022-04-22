@@ -21,4 +21,13 @@ public class ListNode {
         }
         return sb.toString();
     }
+
+    public static void main(String[] args) {
+
+    }
+
+    // 19. 删除链表的倒数第 N 个结点 , https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+
+    }
 }
