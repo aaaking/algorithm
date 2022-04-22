@@ -11,6 +11,11 @@ public class ListNode {
         val = x;
     }
 
+    public ListNode(int x, ListNode next) {
+        val = x;
+        this.next = next;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder(val + "");
@@ -31,20 +36,18 @@ public class ListNode {
 
     // 19. 删除链表的倒数第 N 个结点 , https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/
     public ListNode removeNthFromEnd(ListNode head, int n) {
-        List<ListNode> list = new ArrayList<>();
-        ListNode cur = head;
-        while (cur != null) {
-            list.add(cur);
-            cur = cur.next;
+        ListNode dummy = new ListNode(0, head);
+        ListNode first = head;
+        ListNode second = dummy;
+        for (int i = 0; i < n; ++i) {
+            first = first.next;
         }
-        if (list.size() - 1 - n >= 0) {
-            ListNode pre = list.get(list.size() - 1 - n);
-            pre.next = pre.next.next;
-        } else {
-            if (list.size() - 1 - n + 1 >= 0) {
-                return list.get(list.size() - 1 - n + 1).next;
-            }
+        while (first != null) {
+            first = first.next;
+            second = second.next;
         }
-        return head;
+        second.next = second.next.next;
+        ListNode ans = dummy.next;
+        return ans;
     }
 }
