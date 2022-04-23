@@ -12,6 +12,7 @@ import java.util.*;
  * */
 public class Tree {
     public static void main(String[] args) {
+        Tree tree=new Tree();
         TreeNode four = new TreeNode(4);
         TreeNode five = new TreeNode(5);
         TreeNode six = new TreeNode(6);
@@ -37,7 +38,7 @@ public class Tree {
         System.out.println("\n后序stack");
         posOrderTraverse(root);
         System.out.println("\n后序list");
-        postorderTraversal(root);
+        tree.postorderTraversal(root);
         System.out.println("\n----level-BFS-------");
         travLevel(root);
         System.out.println("\n------DFS-----");
