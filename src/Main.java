@@ -4,7 +4,178 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNext()) {
+            int a = scanner.nextInt();
+            int b = scanner.nextInt();
+            System.out.println(a+b);
+        }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    private static boolean isIp(String s, int[] ipFlags, boolean checkMask) {
+        int dotCnt = 0;
+        boolean ok = true;
+        boolean maskValid = true;
+        long num1 = -1;
+        long num2 = -1;
+        long num3 = -1;
+        long num4 = -1;
+        out:
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (Character.isDigit(c)) {
+                int num = c - '0';
+                int j = i + 1;
+                while (j < s.length() && Character.isDigit(s.charAt(j))) {
+                    if (num == 0) {
+                        ok = false;
+                        break out;
+                    }
+                    num = 10 * num + s.charAt(j) - '0';
+                    j++;
+                }
+                i = j - 1;
+                if (num < 0 || num > 255) {
+                    ok = false;
+                    break;
+                }
+                if (dotCnt == 0) {
+                    num1 = num;
+                } else if (dotCnt == 1) {
+                    num2 = num;
+                } else if (dotCnt == 2) {
+                    num3 = num;
+                } else if (dotCnt == 3) {
+                    num4 = num;
+                }
+            } else {
+                if (i == s.length() - 1 || i == 0 || c != '.' || !Character.isDigit(s.charAt(i - 1)) || !Character.isDigit(s.charAt(i + 1))) {
+                    ok = false;
+                    break;
+                }
+                dotCnt++;
+                if (dotCnt > 3) {
+                    ok = false;
+                    break;
+                }
+            }
+        }
+        if (dotCnt != 3) {
+            ok = false;
+        }
+        // 判断A、B、C、D、E、非法、私网 七种情况
+        if (ok) {
+            if (checkMask) {
+                long maskNum = (num1<<24) + (num2<<16) + (num3 << 8) + num4;
+                String maskStr = Long.toBinaryString(maskNum);
+                maskValid = maskStr.contains("1") && maskStr.contains("0") && !maskStr.contains("01");
+                if (!maskValid) {
+                    maskValid = false;
+                    ipFlags[5]++;
+                }
+            } else {
+                if (num1 >= 1 && num1 <= 126) {
+                    ipFlags[0]++; // A
+                } else if (num1 >= 128 && num1 <= 191) {
+                    ipFlags[1]++; // B
+                } else if (num1 >= 192 && num1 <= 223) {
+                    ipFlags[2]++; // C
+                } else if (num1 >= 224 && num1 <= 239) {
+                    ipFlags[3]++; // D
+                } else if (num1 >= 240 && num1 <= 255) {
+                    ipFlags[4]++; // E
+                }
+                // 私有ip
+                if (num1 == 10 || (num1 == 172 && num2 >= 16 && num2 <= 31) || (num1 == 192 && num2 == 168)) {
+                    ipFlags[6]++;
+                }
+            }
+        } else {
+            ipFlags[5]++;
+        }
+        return checkMask ? maskValid : ok;
+    }
+
+    public void HJ24(int[] arr) {
+        int n = arr.length;
+        int[] left = new int[n]; //存储每个数左边小于其的数的个数
+        int[] right = new int[n];//存储每个数右边小于其的数的个数
+        left[0] = 1;            //最左边的数设为1
+        right[n - 1] = 1;        //最右边的数设为1
+        //计算每个位置左侧的最长递增
+        for (int i = 0; i < n; i++) {
+            left[i] = 1;
+            for (int j = 0; j < i; j++) {
+                if (arr[i] > arr[j]) {   //动态规划
+                    left[i] = Math.max(left[j] + 1, left[i]);
+                }
+            }
+        }
+        //计算每个位置右侧的最长递减
+        for (int i = n - 1; i >= 0; i--) {
+            right[i] = 1;
+            for (int j = n - 1; j > i; j--) {
+                if (arr[i] > arr[j]) {   //动态规划
+                    right[i] = Math.max(right[i], right[j] + 1);
+                }
+            }
+        }
+        // 记录每个位置的值
+        int[] result = new int[n];
+        for (int i = 0; i < n; i++) {
+            //位置 i计算了两次 所以需要－1
+            result[i] = left[i] + right[i] - 1; //两个都包含本身
+        }
+
+        //找到最大的满足要求的值
+        int max = 1;
+        for (int i = 0; i < n; i++) {
+            max = Math.max(result[i],max);
+        }
+        System.out.println(n - max);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public static void HJ60() {
         Scanner scanner = new Scanner(System.in);
