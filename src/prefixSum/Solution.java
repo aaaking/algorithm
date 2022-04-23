@@ -81,7 +81,7 @@ public class Solution {
         return cnt;
     }
 
-    // 523. 连续的子数组和 https://leetcode-cn.com/problems/continuous-subarray-sum/
+    // 523. 连续的子数组和是k的倍数最小长度=2 https://leetcode-cn.com/problems/continuous-subarray-sum/
     public boolean checkSubarraySum(int[] nums, int k) {
         Map<Integer, Integer> map = new HashMap<>();
         map.put(0, -1);
