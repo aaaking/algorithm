@@ -1,7 +1,6 @@
 package bfs;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 // https://mp.weixin.qq.com/s/WH_XGm1-w5882PnenymZ7g
 public class Solution {
@@ -71,4 +70,46 @@ public class Solution {
         }
         return new String(chars);
     }
+
+    // 322. 零钱兑换 https://leetcode-cn.com/problems/coin-change/
+    public int coinChange(int[] coins, int amount) {
+        if (amount == 0)
+            return 0;
+        Arrays.sort(coins);
+        Deque<Integer> queue = new LinkedList<>();
+        queue.add(amount);
+        Set<Integer> visited = new HashSet<>();
+        int ans = 0;
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                int res = queue.pollFirst();
+                int startIndex = findMax(coins, res);
+                for (int j = startIndex; j >= 0; j--) {
+                    int remain = res - coins[j];
+                    if (remain == 0) {
+                        return ++ans;
+                    }
+                    if (remain > 0 && !visited.contains(remain)) {
+                        visited.add(remain);
+                        queue.addLast(remain);
+
+                    }
+                }
+            }
+
+            ++ans;
+        }
+        return -1;
+    }
+
+    private int findMax(int[] coins, int amount) {
+        for (int i = coins.length - 1; i >= 0; i--) {
+            if (coins[i] <= amount) {
+                return i;
+            }
+        }
+        return 0;
+    }
+
 }
