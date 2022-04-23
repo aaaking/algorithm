@@ -80,4 +80,20 @@ public class Solution {
         }
         return cnt;
     }
+
+    // 523. 连续的子数组和 https://leetcode-cn.com/problems/continuous-subarray-sum/
+    public boolean checkSubarraySum(int[] nums, int k) {
+        Map<Integer, Integer> map = new HashMap<>();
+        map.put(0, -1);
+        int preSum = 0;
+        for (int i = 0; i < nums.length; i++) {
+            preSum += nums[i];
+            int key = k == 0 ? preSum : preSum % k;
+            if (map.containsKey(key) && i - map.get(key) >= 2) {
+                return true;
+            }
+            map.put(key, i);
+        }
+        return false;
+    }
 }
