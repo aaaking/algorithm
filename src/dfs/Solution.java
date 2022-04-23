@@ -100,23 +100,7 @@ public class Solution {
         }
     }
 
-    /**
-     * 3
-     * 2       3
-     * 3        1
-     * <p>
-     * 3
-     * 4       5
-     * 1   3        1
-     * <p>
-     * 4
-     * 1
-     * 2
-     * 3
-     *
-     * @param root
-     * @return
-     */
+    // 337. 打家劫舍 III https://leetcode-cn.com/problems/house-robber-iii/
     public int rob(TreeNode root) {
         if (root == null) return 0;
         Deque<Integer> track = new ArrayDeque<Integer>();
