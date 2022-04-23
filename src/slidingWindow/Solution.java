@@ -1,5 +1,7 @@
 package slidingWindow;
 
+import datastructor.ListNode;
+
 import java.util.ArrayDeque;
 import java.util.Deque;
 
@@ -14,6 +16,23 @@ public class Solution {
             }
         }
         return j;
+    }
+
+    // 141. 环形链表 https://leetcode-cn.com/problems/linked-list-cycle/
+    public boolean hasCycle(ListNode head) {
+        if (head == null) {
+            return false;
+        }
+        ListNode slow = head;
+        ListNode fast = head.next;
+        while (slow != null && fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast) {
+                return true;
+            }
+        }
+        return false;
     }
 
     // 209. 长度最小的子数组 https://leetcode-cn.com/problems/minimum-size-subarray-sum/
