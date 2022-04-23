@@ -87,6 +87,25 @@ public class Tree {
     }
 
     //--------in----------------------------------------------------------------
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> list = new ArrayList<>();
+        inorderTraversal(root, list);
+        return list;
+    }
+
+    public void inorderTraversal(TreeNode root, List<Integer> list) {
+        if (root == null) {
+            return;
+        }
+        if (root.left != null) {
+            inorderTraversal(root.left, list);
+        }
+        list.add(root.val);
+        if (root.right != null) {
+            inorderTraversal(root.right, list);
+        }
+    }
+
     static void goAlongLeftBranch(TreeNode x, Stack<TreeNode> s) {
         while (x != null) {
             s.push(x);

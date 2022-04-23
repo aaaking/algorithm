@@ -5,13 +5,38 @@ import datastructor.TreeNode;
 import java.util.*;
 
 // https://blog.csdn.net/weixin_44052055/article/details/120986127  Java实现回溯算法入门（排列+组合+子集）
-// https://blog.csdn.net/qq_43709922/article/details/109999024
 public class Solution {
     int mVal = 0;
     int mSum = 0;
 
     public static void main(String[] args) {
         Solution solution = new Solution();
+        System.out.println(solution.subsetsWithDup(new int[]{2, 2, 2}));
+    }
+
+    // 90. 子集 II https://leetcode-cn.com/problems/subsets-ii/
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        Arrays.sort(nums);
+        List<List<Integer>> ans = new ArrayList<>();
+        for (int i = 0; i <= nums.length; i++) {
+            dfs(nums, new ArrayList<>(), ans, 0, i);
+        }
+        return ans;
+    }
+
+    private void dfs(int[] nums, List<Integer> path, List<List<Integer>> ans, int start, int k) {
+        if (path.size() == k) {
+            ans.add(new ArrayList<>(path));
+            return;
+        }
+        for (int i = start; i < nums.length; i++) {
+            if (i > start && nums[i - 1] == nums[i]) {
+                continue;
+            }
+            path.add(nums[i]);
+            dfs(nums, path, ans, i + 1, k);
+            path.remove(path.size() - 1);
+        }
     }
 
     // 剑指 Offer 34. 二叉树中和为某一值的路径 https://leetcode-cn.com/problems/er-cha-shu-zhong-he-wei-mou-yi-zhi-de-lu-jing-lcof/
