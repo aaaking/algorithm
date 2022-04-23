@@ -81,4 +81,34 @@ public class PivotIndex {
         }
         return cnt;
     }
+
+    // 930. 和相同的二元子数组 https://leetcode-cn.com/problems/binary-subarrays-with-sum/
+    public int numSubarraysWithSum(int[] nums, int goal) {
+        int cnt = 0;
+        Map<Integer, Integer> map = new HashMap<>();
+        map.put(0, 1);
+        int preSum = 0;
+        for (int x : nums) {
+            preSum += x;
+            cnt += map.getOrDefault(preSum - goal, 0);
+            map.put(preSum, map.getOrDefault(preSum, 0) + 1);
+        }
+        return cnt;
+    }
+
+    // 1248. 统计「优美子数组」 https://leetcode-cn.com/problems/count-number-of-nice-subarrays/
+    public int numberOfSubarrays(int[] nums, int k) {
+        int cnt = 0;
+        Map<Integer, Integer> map = new HashMap<>();
+        map.put(0, 1);
+        int preSum = 0;
+        for (int x : nums) {
+            if (x % 2 != 0) {
+                preSum++;
+            }
+            cnt += map.getOrDefault(preSum - k, 0);
+            map.put(preSum, map.getOrDefault(preSum, 0) + 1);
+        }
+        return cnt;
+    }
 }
