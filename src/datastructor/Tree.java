@@ -64,6 +64,24 @@ public class Tree {
         System.out.println();
     }
 
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> list = new ArrayList<>();
+        preorderTraversal(root, list);
+        return list;
+    }
+    public void preorderTraversal(TreeNode root, List<Integer> list) {
+        if (root == null) {
+            return;
+        }
+        list.add(root.val);
+        if (root.left != null) {
+            preorderTraversal(root.left, list);
+        }
+        if (root.right != null) {
+            preorderTraversal(root.right, list);
+        }
+    }
+
     static void visitAlongLeftBranch(TreeNode x, Stack<TreeNode> s) {
         while (x != null) {
             System.out.print(x.toString());
@@ -159,7 +177,7 @@ public class Tree {
         }
     }
 
-    static void postorderTraversal(TreeNode root) {
+    static List<Integer> postorderTraversal(TreeNode root) {
         List<Object> result = new ArrayList<Object>();
         Stack<TreeNode> stack = new Stack<TreeNode>();
         stack.push(root);   //首先将根节点压栈
@@ -172,7 +190,7 @@ public class Tree {
             }
             result.add(0, ele.val); //因为出栈顺序为“根右左”，所以需要每次将元素插入list开头
         }
-        System.out.println(result);
+        return result;
     }
 
     //--------层次遍历-------BFS-------------------------------------------------------
