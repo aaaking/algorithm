@@ -102,63 +102,23 @@ public class Solution {
 
     // 337. 打家劫舍 III https://leetcode-cn.com/problems/house-robber-iii/
     public int rob(TreeNode root) {
-        if (root == null) return 0;
-        Deque<Integer> track = new ArrayDeque<Integer>();
-        track.add(root.val);
-        mSum += root.val;
-        backTraverse(root, track);
-        mVal = Math.max(mVal, mSum);
-        mSum = 0;
-        if (root.left != null) {
-            track.clear();
-            track.add(root.left.val);
-            mSum += root.left.val;
-            backTraverse(root.left, track);
-            mVal = Math.max(mVal, mSum);
-        }
-        if (root.right != null) {
-            track.clear();
-            track.add(root.right.val);
-            mSum += root.right.val;
-            backTraverse(root.right, track);
-            mVal = Math.max(mVal, mSum);
-        }
-        return mVal;
+        Map<TreeNode, Integer> selected = new HashMap<>();
+        Map<TreeNode, Integer> unSelected = new HashMap<>();
+        traverse(root, selected, unSelected);
+        return Math.max(selected.getOrDefault(root, 0), unSelected.getOrDefault(root, 0));
     }
 
-    private void backTraverse(TreeNode node, Deque<Integer> track) {
-        if (node.left == null && node.right == null) {
-//            mVal = Math.max(mVal, mSum);
+    private void traverse(TreeNode node, Map<TreeNode, Integer> selected, Map<TreeNode, Integer> unSelected) {
+        if (node == null) {
             return;
         }
-        if (node.left != null && node.left.left != null) {
-            track.add(node.left.left.val);
-            mSum += node.left.left.val;
-            backTraverse(node.left.left, track);
-            track.pollLast();
-//            mSum -= node.left.left.val;
-        }
-        if (node.left != null && node.left.right != null) {
-            track.add(node.left.right.val);
-            mSum += node.left.right.val;
-            backTraverse(node.left.right, track);
-            track.pollLast();
-//            mSum -= node.left.right.val;
-        }
-        if (node.right != null && node.right.right != null) {
-            track.add(node.right.right.val);
-            mSum += node.right.right.val;
-            backTraverse(node.right.right, track);
-            track.pollLast();
-//            mSum -= node.right.right.val;
-        }
-        if (node.right != null && node.right.left != null) {
-            track.add(node.right.left.val);
-            mSum += node.right.left.val;
-            backTraverse(node.right.left, track);
-            track.pollLast();
-//            mSum -= node.right.left.val;
-        }
+        traverse(node.left, selected, unSelected);
+        traverse(node.right, selected, unSelected);
+        selected.put(node, node.val + unSelected.getOrDefault(node.left, 0) + unSelected.getOrDefault(node.right, 0));
+
+        int left = Math.max(selected.getOrDefault(node.left, 0), unSelected.getOrDefault(node.left, 0));
+        int right = Math.max(selected.getOrDefault(node.right, 0), unSelected.getOrDefault(node.right, 0));
+        unSelected.put(node, (left + right));
     }
 
     // 17. 电话号码的字母组合 https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/
