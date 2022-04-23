@@ -35,6 +35,36 @@ public class Solution {
         return false;
     }
 
+    // 160. 相交链表 https://leetcode-cn.com/problems/intersection-of-two-linked-lists/
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        ListNode tmpA = headA;
+        ListNode tmpB = headB;
+        while (tmpA != tmpB) {
+            tmpA = tmpA == null ? headB : tmpA.next;
+            tmpB = tmpB == null ? headA : tmpB.next;
+        }
+        return tmpB; //or tmpA
+    }
+
+    // 328. 奇偶链表 https://leetcode-cn.com/problems/odd-even-linked-list/
+    // 给定单链表的头节点 head ，将所有索引为奇数的节点和索引为偶数的节点分别组合在一起，然后返回重新排序的列表。
+    public ListNode oddEvenList(ListNode head) {
+        if (head == null) return head;
+        ListNode l = head, r = head.next, evenHead = head.next;
+        while (l != null) {
+            l.next = r == null ? null : r.next;
+            if (r == null || r.next == null) {
+                l.next = evenHead;
+            }
+            l = r == null ? null : r.next;
+            if (r != null) {
+                r.next = r.next == null ? null : r.next.next;
+            }
+            r = l == null ? null : l.next;
+        }
+        return head;
+    }
+
     // 209. 长度最小的子数组 https://leetcode-cn.com/problems/minimum-size-subarray-sum/
     public int minSubArrayLen(int target, int[] nums) {
         int l = 0, r = 0;
