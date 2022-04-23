@@ -44,23 +44,6 @@ public class Solution {
         return j;
     }
 
-    // 141. 环形链表 https://leetcode-cn.com/problems/linked-list-cycle/
-    public boolean hasCycle(ListNode head) {
-        if (head == null) {
-            return false;
-        }
-        ListNode slow = head;
-        ListNode fast = head.next;
-        while (slow != null && fast != null && fast.next != null) {
-            slow = slow.next;
-            fast = fast.next.next;
-            if (slow == fast) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     // 160. 相交链表 https://leetcode-cn.com/problems/intersection-of-two-linked-lists/
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
         ListNode tmpA = headA;
