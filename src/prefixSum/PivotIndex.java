@@ -1,8 +1,6 @@
 package prefixSum;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
+import java.util.*;
 
 /*
 * 724. 寻找数组的中心下标
@@ -68,5 +66,19 @@ public class PivotIndex {
             }
         }
         return -1;
+    }
+
+    // 560. 和为 K 的子数组 https://leetcode-cn.com/problems/subarray-sum-equals-k/
+    public int subarraySum(int[] nums, int k) {
+        int cnt = 0;
+        Map<Integer, Integer> map = new HashMap<>();
+        map.put(0, 1);
+        int presum = 0;
+        for (int x : nums) {
+            presum += x;
+            cnt += map.getOrDefault(presum - k, 0);
+            map.put(presum, map.getOrDefault(presum, 0) + 1);
+        }
+        return cnt;
     }
 }
