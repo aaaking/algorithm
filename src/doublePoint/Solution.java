@@ -17,10 +17,19 @@ public class Solution {
         return j;
     }
 
+    // 26. 删除有序数组中的重复项 https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/
+    // 使每个元素 只出现一次
+    public int removeDuplicatesIndividual(int[] nums) {
+        return removeDuplicatesCommon(nums, 1);
+    }
+
     // 80. 删除有序数组中的重复项 II https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array-ii/
     // 使每个元素 最多出现两次
     public int removeDuplicates(int[] nums) {
-        int k=2;
+        return removeDuplicatesCommon(nums, 2);
+    }
+
+    private int removeDuplicatesCommon(int[] nums, int k) {
         int j=0;
         for (int i = 0; i < nums.length; i++) {
             if (j < k) {
