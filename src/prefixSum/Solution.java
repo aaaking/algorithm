@@ -89,8 +89,11 @@ public class Solution {
         for (int i = 0; i < nums.length; i++) {
             preSum += nums[i];
             int key = k == 0 ? preSum : preSum % k;
-            if (map.containsKey(key) && i - map.get(key) >= 2) {
-                return true;
+            if (map.containsKey(key)) {
+                if (i - map.get(key) >= 2) {
+                    return true;
+                }
+                continue;
             }
             map.put(key, i);
         }
