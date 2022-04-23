@@ -88,4 +88,37 @@ public class UfsSolution {
         return ret;
     }
 
+    // 695. 岛屿的最大面积 https://leetcode-cn.com/problems/max-area-of-island/
+    public int maxAreaOfIsland(int[][] grid) { // todo review
+        int m = grid.length;
+        int n = grid[0].length;
+        Ufs ufs = new Ufs(m*n);
+        boolean hasIsland = false;
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] == 1) {
+                    hasIsland = true;
+                    int index = i*n + j;
+                    //up
+                    if (i-1 >=0 && i-1<m && grid[i-1][j] == 1) {
+                        ufs.union(index, index-n);
+                    }
+                    //left
+                    if (j-1 >=0 && j-1<n && grid[i][j-1] == 1) {
+                        ufs.union(index, index-1);
+                    }
+                    //down
+                    if (i+1 >=0 && i+1<m && grid[i+1][j] == 1) {
+                        ufs.union(index, index+n);
+                    }
+                    //right
+                    if (j+1 >=0 && j+1<n && grid[i][j+1] == 1) {
+                        ufs.union(index, index+1);
+                    }
+                }
+            }
+        }
+        return hasIsland ? ufs.maxRank : 0;
+    }
+
 }
