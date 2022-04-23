@@ -1,9 +1,6 @@
 package datastructor;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 // https://blog.csdn.net/stay_foolish12/article/details/89065550
 // https://blog.csdn.net/sdr_zd/article/details/82812823
@@ -179,15 +176,27 @@ public class Tree {
     }
 
     //--------层次遍历-------BFS-------------------------------------------------------
-    static void travLevel(TreeNode root) {
-        LinkedList<TreeNode> q = new LinkedList<TreeNode>();
-        q.add(root);
-        while (!q.isEmpty()) {
-            TreeNode x = q.pollFirst();
-            System.out.print(x);
-            if (x.left != null) q.add(x.left);
-            if (x.right != null) q.add(x.right);
+    static List<List<Integer>> travLevel(TreeNode root) {
+        List<List<Integer>> temp = new LinkedList<>();
+        if (root == null) return temp;
+        Deque<TreeNode> queue = new LinkedList<>();
+        queue.addFirst(root);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            List<Integer> levelList = new ArrayList<>();
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.pollFirst();
+                levelList.add(node.val);
+                if (node.left != null) {
+                    queue.addLast(node.left);
+                }
+                if (node.right != null) {
+                    queue.addLast(node.right);
+                }
+            }
+            temp.add(0, levelList);
         }
+        return temp;
     }
 
     //--------深度遍历-------DFS-------------------------------------------------------
