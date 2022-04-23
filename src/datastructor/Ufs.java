@@ -59,4 +59,8 @@ public class Ufs {
         
         count--;
     }
+
+    public boolean isUnion(int x, int y) {
+        return find(x) == find(y);
+    }
 }

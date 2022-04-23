@@ -2,9 +2,7 @@ package ufs;
 
 import datastructor.Ufs;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class UfsSolution {
 
@@ -119,6 +117,39 @@ public class UfsSolution {
             }
         }
         return hasIsland ? ufs.maxRank : 0;
+    }
+
+    // 886. 可能的二分法 https://leetcode-cn.com/problems/possible-bipartition/
+    public boolean possibleBipartition(int n, int[][] dislikes) { // todo review
+        int edgeCnt = dislikes.length;
+        if (edgeCnt <= 0) {
+            return true;
+        }
+        int cnt = 0;
+        Map<Integer, List<Integer>> map = new HashMap<>();
+        Ufs ufs = new Ufs(n+1);
+        for (int i = 0; i < edgeCnt; i++) {
+            int[] dislike = dislikes[i];
+            List<Integer> dislikeA = map.getOrDefault(dislike[0], new ArrayList<>());
+            dislikeA.add(dislike[1]);
+            map.put(dislike[0], dislikeA);
+            List<Integer> dislikeB = map.getOrDefault(dislike[1], new ArrayList<>());
+            dislikeB.add(dislike[0]);
+            map.put(dislike[1], dislikeB);
+        }
+        Iterator<Map.Entry<Integer, List<Integer>>> iterator = map.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<Integer, List<Integer>> entry = iterator.next();
+            int v = entry.getKey();
+            List<Integer> myDislikes = entry.getValue();
+            for (int x : myDislikes) {
+                if (ufs.isUnion(v, x)) {
+                    return false;
+                }
+                ufs.union(x, myDislikes.get(0));
+            }
+        }
+        return true;
     }
 
 }
