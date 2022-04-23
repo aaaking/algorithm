@@ -194,6 +194,24 @@ public class Tree {
         return result;
     }
 
+    public List<Integer> postorderTraversal2(TreeNode root) {
+        List<Integer> list = new ArrayList<>();
+        postorderTraversal(root, list);
+        return list;
+    }
+    public void postorderTraversal(TreeNode root, List<Integer> list) {
+        if (root == null) {
+            return;
+        }
+        if (root.left != null) {
+            postorderTraversal(root.left, list);
+        }
+        if (root.right != null) {
+            postorderTraversal(root.right, list);
+        }
+        list.add(root.val);
+    }
+
     //--------层次遍历-------BFS-------------------------------------------------------
     static List<List<Integer>> travLevel(TreeNode root) {
         List<List<Integer>> temp = new LinkedList<>();
