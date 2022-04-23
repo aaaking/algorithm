@@ -16,6 +16,23 @@ public class Solution {
         return j;
     }
 
+    // 209. 长度最小的子数组 https://leetcode-cn.com/problems/minimum-size-subarray-sum/
+    public int minSubArrayLen(int target, int[] nums) {
+        int l = 0, r = 0;
+        int minL = Integer.MAX_VALUE;
+        int sums = 0;
+        int n = nums.length;
+        for (r = 0; r < n; r++) {
+            sums += nums[r];
+            while (sums >= target) {
+                minL = Math.min(r - l + 1, minL);
+                sums -= nums[l];
+                l++;
+            }
+        }
+        return minL == Integer.MAX_VALUE ? 0 : minL;
+    }
+
     // 1208. 尽可能使字符串相等 https://leetcode-cn.com/problems/get-equal-substrings-within-budget/
     public int equalSubstring(String s, String t, int maxCost) {
         int left = 0, right = 0;
@@ -78,6 +95,6 @@ public class Solution {
     }
 
     private int isVowel(char s) {
-        return s=='a' || s=='e' ||s=='i' ||s=='o' ||s=='u' ? 1:0;
+        return s == 'a' || s == 'e' || s == 'i' || s == 'o' || s == 'u' ? 1 : 0;
     }
 }
