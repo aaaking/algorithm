@@ -1,11 +1,9 @@
-package DFS;
+package dfs;
 
 import datastructor.TreeNode;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.List;
+import java.util.*;
+
 // https://blog.csdn.net/weixin_44052055/article/details/120986127  Java实现回溯算法入门（排列+组合+子集）
 // https://blog.csdn.net/qq_43709922/article/details/109999024
 public class Solution {
@@ -54,18 +52,19 @@ public class Solution {
     }
 
     /**
-     *         3
-     *     2       3
-     *        3        1
+     * 3
+     * 2       3
+     * 3        1
+     * <p>
+     * 3
+     * 4       5
+     * 1   3        1
+     * <p>
+     * 4
+     * 1
+     * 2
+     * 3
      *
-     *            3
-     *        4       5
-     *     1   3        1
-     *
-     *            4
-     *         1
-     *           2
-     *             3
      * @param root
      * @return
      */
@@ -120,12 +119,39 @@ public class Solution {
             track.pollLast();
 //            mSum -= node.right.right.val;
         }
-        if (node.right != null && node.right.left!= null) {
+        if (node.right != null && node.right.left != null) {
             track.add(node.right.left.val);
             mSum += node.right.left.val;
             backTraverse(node.right.left, track);
             track.pollLast();
 //            mSum -= node.right.left.val;
         }
+    }
+
+    public int minDepth(TreeNode root) {
+        if (root == null) return 0;
+        Queue<TreeNode> q = new LinkedList<>();
+        q.offer(root);
+        // root 本身就是一层，depth 初始化为 1
+        int depth = 1;
+
+        while (!q.isEmpty()) {
+            int sz = q.size();
+            /* 将当前队列中的所有节点向四周扩散 */
+            for (int i = 0; i < sz; i++) {
+                TreeNode cur = q.poll();
+                /* 判断是否到达终点 */
+                if (cur.left == null && cur.right == null)
+                    return depth;
+                /* 将 cur 的相邻节点加入队列 */
+                if (cur.left != null)
+                    q.offer(cur.left);
+                if (cur.right != null)
+                    q.offer(cur.right);
+            }
+            /* 这里增加步数 */
+            depth++;
+        }
+        return depth;
     }
 }
