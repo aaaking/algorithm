@@ -130,6 +130,24 @@ public class Solution {
         return max;
     }
 
+    // 424. 替换后的最长重复字符 https://leetcode-cn.com/problems/longest-repeating-character-replacement/
+    public int characterReplacement(String s, int k) { // todo 看不懂
+        int[] map = new int[26];
+        int left = 0, right = 0;
+        int max = 0;
+        while (right < s.length()) {
+            int index = s.charAt(right) - 'A';
+            map[index]++;
+            max = Math.max(max, map[index]);
+            if (right - left + 1 - max > k) {
+                map[s.charAt(left) - 'A']--;
+                left++;
+            }
+            right++;
+        }
+        return right - left;
+    }
+
     // 239. 滑动窗口最大值 https://leetcode-cn.com/problems/sliding-window-maximum/
     public int[] maxSlidingWindow(int[] nums, int k) {
         int n = nums.length - k + 1;
