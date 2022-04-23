@@ -65,4 +65,19 @@ public class Solution {
         }
         return cnt;
     }
+
+    // 974. 和可被 K 整除的子数组 https://leetcode-cn.com/problems/subarray-sums-divisible-by-k/
+    public int subarraysDivByK(int[] nums, int k) {
+        int cnt = 0;
+        Map<Integer, Integer> map = new HashMap<>();
+        map.put(0, 1);
+        int preSum = 0;
+        for (int x : nums) {
+            preSum += x;
+            int key = (preSum % k + k) % k;
+            cnt += map.getOrDefault(key, 0);
+            map.put(key, map.getOrDefault(key, 0) + 1);
+        }
+        return cnt;
+    }
 }
