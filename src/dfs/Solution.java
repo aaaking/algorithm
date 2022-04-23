@@ -128,30 +128,47 @@ public class Solution {
         }
     }
 
-    public int minDepth(TreeNode root) {
-        if (root == null) return 0;
-        Queue<TreeNode> q = new LinkedList<>();
-        q.offer(root);
-        // root 本身就是一层，depth 初始化为 1
-        int depth = 1;
-
-        while (!q.isEmpty()) {
-            int sz = q.size();
-            /* 将当前队列中的所有节点向四周扩散 */
-            for (int i = 0; i < sz; i++) {
-                TreeNode cur = q.poll();
-                /* 判断是否到达终点 */
-                if (cur.left == null && cur.right == null)
-                    return depth;
-                /* 将 cur 的相邻节点加入队列 */
-                if (cur.left != null)
-                    q.offer(cur.left);
-                if (cur.right != null)
-                    q.offer(cur.right);
-            }
-            /* 这里增加步数 */
-            depth++;
+    // 17. 电话号码的字母组合 https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/
+    public List<String> letterCombinations(String digits) {
+        List<String> ans = new ArrayList<>();
+        if (digits.length() <= 0) {
+            return ans;
         }
-        return depth;
+        dfs17(digits, new StringBuilder(), ans, 0);
+        return ans;
+    }
+
+    private void dfs17(String digits, StringBuilder path, List<String> ans, int start) {
+        if (path.length() == digits.length()) {
+            ans.add(String.valueOf(path));
+        } else {
+            char[] chars = getChars(digits.charAt(start));
+            for (int i = 0; i < chars.length; i++) {
+                path.append(chars[i]);
+                dfs17(digits, path, ans, start + 1);
+                path.deleteCharAt(path.length() - 1);
+            }
+        }
+    }
+
+    private char[] getChars(char c) {
+        if (c == '2') {
+            return new char[]{'a', 'b', 'c'};
+        } else if (c == '3') {
+            return new char[]{'d', 'e', 'f'};
+        } else if (c == '4') {
+            return new char[]{'g', 'h', 'i'};
+        } else if (c == '5') {
+            return new char[]{'j', 'k', 'l'};
+        } else if (c == '6') {
+            return new char[]{'m', 'n', 'o'};
+        } else if (c == '7') {
+            return new char[]{'p', 'q', 'r', 's'};
+        } else if (c == '8') {
+            return new char[]{'t', 'u', 'v'};
+        } else if (c == '9') {
+            return new char[]{'w', 'x', 'y', 'z'};
+        }
+        return null;
     }
 }
