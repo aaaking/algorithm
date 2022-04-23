@@ -2,6 +2,10 @@ package ufs;
 
 import datastructor.Ufs;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class UfsSolution {
 
     private int rows;
@@ -40,6 +44,48 @@ public class UfsSolution {
 
     private int getIndex(int i, int j) {
         return i * cols + j;
+    }
+
+    // 399. 除法求值 https://leetcode-cn.com/problems/evaluate-division/ todo ufs不太一样
+    public double[] calcEquation(List<List<String>> equations, double[] values, List<List<String>> queries) {
+        Ufs ufs = new Ufs(equations.size() * 2);
+        int id = 0;
+        Map<String, Integer> hashMap = new HashMap<>(2 * equations.size());
+        for (int i = 0; i < equations.size(); i++) {
+            List<String> strPair = equations.get(i);
+            double times = values[i];
+            String aStr = strPair.get(0);
+            String bStr = strPair.get(1);
+            int aId = 0;
+            int bId = 0;
+            if (!hashMap.containsKey(aStr)) {
+                aId = id++;
+                hashMap.put(aStr, aId);
+            } else {
+                aId = hashMap.get(aStr);
+            }
+            if (!hashMap.containsKey(bStr)) {
+                bId = id++;
+                hashMap.put(bStr, bId);
+            } else {
+                bId = hashMap.get(bStr);
+            }
+//            ufs.union(aId, bId, times);
+        }
+
+        double[] ret = new double[queries.size()];
+        for (int i = 0; i < queries.size(); i++) {
+            List<String> strPair = queries.get(i);
+            String aStr = strPair.get(0);
+            String bStr = strPair.get(1);
+            if (!hashMap.containsKey(aStr) || !hashMap.containsKey(bStr)) {
+                ret[i] = -1;
+                continue;
+            }
+            double times = 0; // ufs.calc(hashMap.get(aStr), hashMap.get(bStr));
+            ret[i] = times;
+        }
+        return ret;
     }
 
 }
