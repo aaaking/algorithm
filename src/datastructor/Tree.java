@@ -177,8 +177,8 @@ public class Tree {
         }
     }
 
-    static List<Integer> postorderTraversal(TreeNode root) {
-        List<Object> result = new ArrayList<Object>();
+    public List<Integer> postorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<Integer>();
         Stack<TreeNode> stack = new Stack<TreeNode>();
         stack.push(root);   //首先将根节点压栈
         while (!stack.isEmpty()) {
