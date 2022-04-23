@@ -17,6 +17,24 @@ public class Solution {
         return j;
     }
 
+    // 80. 删除有序数组中的重复项 II https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array-ii/
+    // 使每个元素 最多出现两次
+    public int removeDuplicates(int[] nums) {
+        int k=2;
+        int j=0;
+        for (int i = 0; i < nums.length; i++) {
+            if (j < k) {
+                j++;
+            } else {
+                if (nums[i] != nums[j-k]) {
+                    nums[j] = nums[i];
+                    j++;
+                }
+            }
+        }
+        return j;
+    }
+
     // 141. 环形链表 https://leetcode-cn.com/problems/linked-list-cycle/
     public boolean hasCycle(ListNode head) {
         if (head == null) {
