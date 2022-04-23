@@ -53,31 +53,17 @@ import java.util.Collections;
 * */
 
 public class PivotIndex {
-    public static void main(String[] args) {
-        PivotIndex pivotIndex = new PivotIndex();
-        int[] a1 = new int[]{1, 7, 3, 6, 5, 6};
-        int[] a2 = new int[]{1, 2, 3};
-        int[] a3 = new int[]{2, 1, -1};
-        int[] a4 = new int[]{1, -1, 2};
-        System.out.println(pivotIndex.pivotIndex(a1)); // 3
-        System.out.println(pivotIndex.pivotIndex(a2)); // -1
-        System.out.println(pivotIndex.pivotIndex(a3)); // 0
-        System.out.println(pivotIndex.pivotIndex(a4)); // 2
-    }
 
+    // 724. 寻找数组的中心下标 https://leetcode-cn.com/problems/find-pivot-index/
     public int pivotIndex(int[] nums) {
-        System.out.println("-------------------------------------------------------");
         int length = nums.length;
         int[] preSum = new int[length + 1];
         for (int i = 0; i < length; i++) {
             preSum[i + 1] = preSum[i] + nums[i];
         }
-        System.out.println(Arrays.toString(preSum));
         int totalSum = preSum[length];
         for (int i = 0; i < length; i++) {
-            int preTotal = (i == 0 ? 0 : preSum[i]);
-            System.out.println("preTotal=" + preTotal + " nowNum=" + nums[i]);
-            if (preTotal * 2 + nums[i] == totalSum) {
+            if (preSum[i] * 2 + nums[i] == totalSum) {
                 return i;
             }
         }
