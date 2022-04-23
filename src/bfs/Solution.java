@@ -93,7 +93,6 @@ public class Solution {
                     if (remain > 0 && !visited.contains(remain)) {
                         visited.add(remain);
                         queue.addLast(remain);
-
                     }
                 }
             }
