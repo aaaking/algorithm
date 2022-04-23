@@ -72,25 +72,6 @@ public class Solution {
         return tmpB; //or tmpA
     }
 
-    // 328. 奇偶链表 https://leetcode-cn.com/problems/odd-even-linked-list/
-    // 给定单链表的头节点 head ，将所有索引为奇数的节点和索引为偶数的节点分别组合在一起，然后返回重新排序的列表。
-    public ListNode oddEvenList(ListNode head) {
-        if (head == null) return head;
-        ListNode l = head, r = head.next, evenHead = head.next;
-        while (l != null) {
-            l.next = r == null ? null : r.next;
-            if (r == null || r.next == null) {
-                l.next = evenHead;
-            }
-            l = r == null ? null : r.next;
-            if (r != null) {
-                r.next = r.next == null ? null : r.next.next;
-            }
-            r = l == null ? null : l.next;
-        }
-        return head;
-    }
-
     // 209. 长度最小的子数组 https://leetcode-cn.com/problems/minimum-size-subarray-sum/
     // 给定一个含有 n 个正整数的数组和一个正整数 target 。找出该数组中满足其和 ≥ target 的长度最小的 连续子数组 [numsl, numsl+1, ..., numsr-1, numsr] ，并返回其长度。如果不存在符合条件的子数组，返回 0 。
     public int minSubArrayLen(int target, int[] nums) {

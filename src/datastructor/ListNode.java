@@ -123,4 +123,23 @@ public class ListNode {
         }
         return dummyNode.next;
     }
+
+    // 328. 奇偶链表 https://leetcode-cn.com/problems/odd-even-linked-list/
+    // 给定单链表的头节点 head ，将所有索引为奇数的节点和索引为偶数的节点分别组合在一起，然后返回重新排序的列表。
+    public ListNode oddEvenList(ListNode head) {
+        if (head == null) return head;
+        ListNode l = head, r = head.next, evenHead = head.next;
+        while (l != null) {
+            l.next = r == null ? null : r.next;
+            if (r == null || r.next == null) {
+                l.next = evenHead;
+            }
+            l = r == null ? null : r.next;
+            if (r != null) {
+                r.next = r.next == null ? null : r.next.next;
+            }
+            r = l == null ? null : l.next;
+        }
+        return head;
+    }
 }
