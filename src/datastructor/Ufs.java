@@ -14,7 +14,7 @@ public class Ufs {
     /**
      * 指向的父结点的权值
      */
-    private double[] weight;
+    public double[] weight;
 
     public int cnt;
 

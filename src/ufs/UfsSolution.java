@@ -31,13 +31,13 @@ public class UfsSolution {
                         int newY = j + direction[1];
                         // 先判断坐标合法，再检查右边一格和下边一格是否是陆地
                         if (newX < rows && newY < cols && grid[newX][newY] == '1') {
-                            unionFind.union(getIndex(i, j), getIndex(newX, newY));
+                            unionFind.merge(getIndex(i, j), getIndex(newX, newY));
                         }
                     }
                 }
             }
         }
-        return unionFind.getCount() - spaces;
+        return unionFind.cnt - spaces;
     }
 
     private int getIndex(int i, int j) {
@@ -99,19 +99,19 @@ public class UfsSolution {
                     int index = i*n + j;
                     //up
                     if (i-1 >=0 && i-1<m && grid[i-1][j] == 1) {
-                        ufs.union(index, index-n);
+                        ufs.merge(index, index-n);
                     }
                     //left
                     if (j-1 >=0 && j-1<n && grid[i][j-1] == 1) {
-                        ufs.union(index, index-1);
+                        ufs.merge(index, index-1);
                     }
                     //down
                     if (i+1 >=0 && i+1<m && grid[i+1][j] == 1) {
-                        ufs.union(index, index+n);
+                        ufs.merge(index, index+n);
                     }
                     //right
                     if (j+1 >=0 && j+1<n && grid[i][j+1] == 1) {
-                        ufs.union(index, index+1);
+                        ufs.merge(index, index+1);
                     }
                 }
             }
@@ -146,7 +146,7 @@ public class UfsSolution {
                 if (ufs.isUnion(v, x)) {
                     return false;
                 }
-                ufs.union(x, myDislikes.get(0));
+                ufs.merge(x, myDislikes.get(0));
             }
         }
         return true;

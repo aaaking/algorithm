@@ -6,35 +6,6 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        String[] mn = scanner.nextLine().split(",");
-        int m = Integer.parseInt(mn[0]);
-        int n = Integer.parseInt(mn[1]);
-        char[][] matrix = new char[m][n];
-        for (int i = 0; i < m; i++) {
-            String[] s = scanner.nextLine().split(",");
-            for (int j = 0; j < n; j++) {
-                matrix[i][j] = s[j].charAt(0);
-            }
-        }
-        int max = 0;
-        // 1 horizontal
-        for (int i = 0; i < m; i++) {
-            max = Math.max(max, findMax(matrix[i]));
-        }
-        // 2 vertial
-        for (int j = 0; j < n; j++) {
-            char[] tmp = new char[m];
-            for (int i = 0; i < m; i++) {
-                tmp[i] = matrix[i][j];
-            }
-            max = Math.max(max, findMax(tmp));
-        }
-        // 3 /
-
-        // 4 fan /
-        System.out.println(max);
-
     }
 
     private static int findMax(char[] chars) {
@@ -49,56 +20,6 @@ public class Main {
         }
         return max;
     }
-
-    private static Rec merge(Rec a, Rec b) {
-        int x1 = 0;
-        int y1 = 0;
-        int x2 = 0;
-        int y2 = 0;
-        if (b.x1 >= a.x2 || b.x2 <= a.x1) {
-            return null;
-        }
-        if (b.y1 <= a.y2 || b.y2 >= a.y1) {
-            return null;
-        }
-        x1 = Math.max(b.x1, a.x1);
-        y1 = Math.min(b.y1, a.y1);
-        x2 = Math.min(b.x2, a.x2);
-        y2 = Math.max(b.y2, a.y2);
-        return new Rec(x1, y1, x2, y2);
-    }
-
-    static class Rec {
-        public int x1;
-        public int y1;
-        public int x2;
-        public int y2;
-
-        public Rec(int x, int y, int x2, int y2) {
-            this.x1 = x;
-            this.y1 = y;
-            this.x2 = x2;
-            this.y2 = y2;
-        }
-
-        public Rec(String s) {
-            String[] array = s.split(" ");
-            x1 = Integer.parseInt(array[0]);
-            y1 = Integer.parseInt(array[1]);
-            x2 = x1 + Integer.parseInt(array[2]);
-            y2 = y1 - Integer.parseInt(array[3]);
-        }
-
-        public int calcS() {
-            return (x2 - x1) * (y1 - y2);
-        }
-
-        @Override
-        public String toString() {
-            return x1 + " " + y1 + " " + x2 + " " + y2;
-        }
-    }
-
 
     private static boolean isIp(String s, int[] ipFlags, boolean checkMask) {
         int dotCnt = 0;
