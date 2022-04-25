@@ -324,32 +324,4 @@ public class Main {
         }
     }
 
-    public static void HJ46(String s, int k) {
-        System.out.println(s.substring(0, k));
-    }
-
-    public static void HJ40(String s) {
-        int alphaCnt = 0;
-        int spaceCnt = 0;
-        int digitCnt = 0;
-        int otherCnt = 0;
-        char[] chars = s.toCharArray();
-        for (int i = 0; i < chars.length; i++) {
-            char c = chars[i];
-            if (c == ' ') {
-                spaceCnt++;
-            } else if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')) {
-                alphaCnt++;
-            } else if (Character.isDigit(c)) {
-                digitCnt++;
-            } else {
-                otherCnt++;
-            }
-        }
-        System.out.println(alphaCnt);
-        System.out.println(spaceCnt);
-        System.out.println(digitCnt);
-        System.out.println(otherCnt);
-    }
-
 }
