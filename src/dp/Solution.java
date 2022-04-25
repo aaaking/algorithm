@@ -1,6 +1,7 @@
 package dp;
 
 public class Solution {
+    // https://blog.csdn.net/a515557595_xzb/article/details/88296989  最长公共子序列与最长公共子串【动态规划】  
     public static void main(String[] args) {
 
     }
