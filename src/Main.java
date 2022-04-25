@@ -8,19 +8,6 @@ public class Main {
     public static void main(String[] args) {
     }
 
-    private static int findMax(char[] chars) {
-        int max = 0;
-        for (int i = 0; i < chars.length; i++) {
-            int j = i;
-            while (j < chars.length && chars[i] == chars[j]) {
-                j++;
-            }
-            max = Math.max(max, j - i);
-            i = j - 1;
-        }
-        return max;
-    }
-
     private static boolean isIp(String s, int[] ipFlags, boolean checkMask) {
         int dotCnt = 0;
         boolean ok = true;
