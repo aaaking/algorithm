@@ -1,4 +1,5 @@
 import datastructor.ListNode;
+import datastructor.TreeNode;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -6,6 +7,66 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
+        Main main = new Main();
+        System.out.println(main.findComplement(5));
+    }
+
+    public int findComplement(int num) {
+        String str = Integer.toBinaryString(num);
+
+        int re = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == '0') {
+                re = re | 1;
+            }
+            System.out.println("1re="+re);
+            re = re << 1;
+            System.out.println("2re="+re);
+        }
+        return re >>> 1;
+    }
+
+    private int leftValue(TreeNode node) {
+        if (node.left == null && node.right == null) {
+            return node.val;
+        }
+        return leftValue(node.left);
+    }
+
+    public int numMatchingSubseq(String S, String[] words) {
+        int ans = 0;
+        ArrayList<Node>[] heads = new ArrayList[26];
+        for (int i = 0; i < 26; ++i)
+            heads[i] = new ArrayList<Node>();
+
+        for (String word : words)
+            heads[word.charAt(0) - 'a'].add(new Node(word, 0));
+
+        for (char c : S.toCharArray()) {
+            ArrayList<Node> old_bucket = heads[c - 'a'];
+            heads[c - 'a'] = new ArrayList<Node>();
+
+            for (Node node : old_bucket) {
+                node.index++;
+                if (node.index == node.word.length()) {
+                    ans++;
+                } else {
+                    heads[node.word.charAt(node.index) - 'a'].add(node);
+                }
+            }
+            old_bucket.clear();
+        }
+        return ans;
+    }
+
+    class Node {
+        String word;
+        int index;
+
+        public Node(String w, int i) {
+            word = w;
+            index = i;
+        }
     }
 
     private static boolean isIp(String s, int[] ipFlags, boolean checkMask) {
