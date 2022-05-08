@@ -8,7 +8,6 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         Main main = new Main();
-        System.out.println(main.findComplement(5));
     }
 
     public int findComplement(int num) {
@@ -19,9 +18,9 @@ public class Main {
             if (str.charAt(i) == '0') {
                 re = re | 1;
             }
-            System.out.println("1re="+re);
+            System.out.println("1re=" + re);
             re = re << 1;
-            System.out.println("2re="+re);
+            System.out.println("2re=" + re);
         }
         return re >>> 1;
     }
