@@ -3,7 +3,7 @@ package doublePoint;
 import datastructor.ListNode;
 
 import java.util.*;
-
+// https://mp.weixin.qq.com/s?__biz=Mzg3Mzc0NjUzMQ==&mid=2247497066&idx=1&sn=1b62c9b5305576a06208b1a2202c9ea7&source=41#wechat_redirect
 public class Solution {
 
     // 27. 移除元素 https://leetcode-cn.com/problems/remove-element/
