@@ -99,4 +99,72 @@ public class Solution {
         }
         return false;
     }
+    
+    // 1893. 检查是否区域内所有整数都被覆盖 https://leetcode.cn/problems/check-if-all-the-integers-in-a-range-are-covered/solution/yi-ti-san-jie-bao-li-you-hua-chai-fen-by-w7xv/
+    public boolean isCovered(int[][] ranges, int left, int right) {
+        int[] diff = new int[52];   // 差分数组
+        for (int[] range : ranges) {
+            ++diff[range[0]];
+            --diff[range[1] + 1];
+        }
+        // 前缀和
+        int curr = 0;
+        for (int i = 1; i <= 50; ++i) {
+            curr += diff[i];
+            if (i >= left && i <= right && curr <= 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // 1310. 子数组异或查询	https://leetcode-cn.com/problems/xor-queries-of-a-subarray/
+    public int[] xorQueries(int[] arr, int[][] queries) {
+        int n = arr.length;
+        int[] xors = new int[n + 1];
+        for (int i = 0; i < n; i++) {
+            xors[i + 1] = xors[i] ^ arr[i];
+        }
+        int m = queries.length;
+        int[] ans = new int[m];
+        for (int i = 0; i < m; i++) {
+            ans[i] = xors[queries[i][0]] ^ xors[queries[i][1] + 1];
+        }
+        return ans;
+    }
+
+    // 1738. 找出第 K 大的异或坐标值	https://leetcode-cn.com/problems/find-kth-largest-xor-coordinate-value/
+    public int kthLargestValue(int[][] matrix, int k) {
+        int m = matrix.length, n = matrix[0].length;
+        int[][] pre = new int[m + 1][n + 1];
+        List<Integer> results = new ArrayList<Integer>();
+        for (int i = 1; i <= m; ++i) {
+            for (int j = 1; j <= n; ++j) {
+                pre[i][j] = pre[i - 1][j] ^ pre[i][j - 1] ^ pre[i - 1][j - 1] ^ matrix[i - 1][j - 1];
+                results.add(pre[i][j]);
+            }
+        }
+
+        Collections.sort(results, new Comparator<Integer>() {
+            public int compare(Integer num1, Integer num2) {
+                return num2 - num1;
+            }
+        });
+        return results.get(k - 1);
+    }
+
+    // 1177. 构建回文串检测	https://leetcode-cn.com/problems/can-make-palindrome-from-substring/
+    public List<Boolean> canMakePaliQueries(String s, int[][] queries) {
+        int[] sum = new int[s.length() + 1];
+        for (int i = 1; i < sum.length; i++) {
+            int index = s.charAt(i - 1) - 'a';
+            sum[i] = sum[i - 1] ^ (1 << index);
+        }
+
+        List<Boolean> ans = new ArrayList<>();
+        for (int i = 0; i < queries.length; i++) {
+            ans.add(Integer.bitCount(sum[queries[i][1] + 1] ^ sum[queries[i][0]]) <= (1 + (queries[i][2] << 1)));
+        }
+        return ans;
+    }
 }
