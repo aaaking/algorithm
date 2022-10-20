@@ -96,4 +96,108 @@ public class Solution {
         }
         return res;
     }
+    
+    // 496. 下一个更大元素 I	https://leetcode-cn.com/problems/next-greater-element-i/
+    public int[] nextGreaterElement(int[] nums1, int[] nums2) {
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+        Deque<Integer> stack = new ArrayDeque<Integer>();
+        for (int i = nums2.length - 1; i >= 0; --i) {
+            int num = nums2[i];
+            while (!stack.isEmpty() && num >= stack.peek()) {
+                stack.pop();
+            }
+            map.put(num, stack.isEmpty() ? -1 : stack.peek());
+            stack.push(num);
+        }
+        int[] res = new int[nums1.length];
+        for (int i = 0; i < nums1.length; ++i) {
+            res[i] = map.get(nums1[i]);
+        }
+        return res;
+    }
+
+    // 1475. 商品折扣后的最终价格	https://leetcode-cn.com/problems/final-prices-with-a-special-discount-in-a-shop/
+    public int[] finalPrices(int[] prices) {
+        int n = prices.length;
+        int[] ans = new int[n];
+        Deque<Integer> stack = new ArrayDeque<Integer>();
+        for (int i = n - 1; i >= 0; i--) {
+            while (!stack.isEmpty() && stack.peek() > prices[i]) {
+                stack.pop();
+            }
+            ans[i] = stack.isEmpty() ? prices[i] : prices[i] - stack.peek();
+            stack.push(prices[i]);
+        }
+        return ans;
+    }
+
+    // 1504. 统计全 1 子矩形	https://leetcode-cn.com/problems/count-submatrices-with-all-ones/
+    // 暴力：
+    public int numSubmat(int[][] mat) {
+        int n = mat.length;
+        int m = mat[0].length;
+        int[][] row = new int[n][m];
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < m; ++j) {
+                if (j == 0) {
+                    row[i][j] = mat[i][j];
+                } else if (mat[i][j] != 0) {
+                    row[i][j] = row[i][j - 1] + 1;
+                } else {
+                    row[i][j] = 0;
+                }
+            }
+        }
+        int ans = 0;
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < m; ++j) {
+                int col = row[i][j];
+                for (int k = i; k >= 0 && col != 0; --k) {
+                    col = Math.min(col, row[k][j]);
+                    ans += col;
+                }
+            }
+        }
+        return ans;
+    }
+
+    // 单调栈
+    public int numSubmat2(int[][] mat) {
+        int n = mat.length;
+        int m = mat[0].length;
+        int[][] row = new int[n][m];
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < m; ++j) {
+                if (j == 0) {
+                    row[i][j] = mat[i][j];
+                } else if (mat[i][j] != 0) {
+                    row[i][j] = row[i][j - 1] + 1;
+                } else {
+                    row[i][j] = 0;
+                }
+            }
+        }
+        int ans = 0;
+        for (int j = 0; j < m; ++j) {
+            int i = 0;
+            Deque<int[]> Q = new LinkedList<int[]>();
+            int sum = 0;
+            while (i <= n - 1) {
+                int height = 1;
+                while (!Q.isEmpty() && Q.peekFirst()[0] > row[i][j]) {
+                    // 弹出的时候要减去多于的答案
+                    sum -= Q.peekFirst()[1] * (Q.peekFirst()[0] - row[i][j]);
+                    height += Q.peekFirst()[1];
+                    Q.pollFirst();
+                }
+                sum += row[i][j];
+                ans += sum;
+                Q.offerFirst(new int[]{row[i][j], height});
+                i++;
+            }
+        }
+        return ans;
+    }
+
+    // 907. 子数组的最小值之和	https://leetcode-cn.com/problems/sum-of-subarray-minimums/
 }
