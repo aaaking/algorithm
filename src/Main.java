@@ -1,35 +1,181 @@
 import datastructor.ListNode;
 import datastructor.TreeNode;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.util.*;
 
 public class Main {
+
+    public String longest(String s) {
+        int len = s.length();
+        if (len < 2) {
+            return s;
+        }
+        int max = 0;
+        int start = 0;
+        for (int i = 0; i < len - 1; i++) {
+            int oddLen = get(s, i, i);
+            int evenLen = get(s, i, i + 1);
+            int curMaxLen = Math.max(oddLen, evenLen);
+            if (curMaxLen > max) {
+                max = curMaxLen;
+                start = i - (max - 1) / 2;
+            }
+            if((len-i-2)*2+1 <max){
+                return s.substring(start, start + max);
+            }
+        }
+        return s.substring(start, start + max);
+    }
+
+    public int get(String s, int i, int j) {
+        char[] chars = s.toCharArray();
+        while (i >= 0 && j < chars.length && chars[i] == chars[j]) {
+            i--;
+            j++;
+        }
+        return j - i - 1;
+    }
+
     public static void main(String[] args) {
         Main main = new Main();
+        int[][] datas = new int[][]{
+                new int[]{1, 2},
+                {1, 2}
+        };
+//        datas[0] = new int[]{1, 4};
+//        datas[1] = new int[]{0, 2};
+//        datas[2] = new int[]{3, 5};
+
+//        datas[0] = new int[]{1, 3};
+//        datas[1] = new int[]{2, 6};
+//        datas[2] = new int[]{8, 10};
+//        datas[3] = new int[]{15, 18};
+
+        datas[0] = new int[]{1, 4};
+        datas[1] = new int[]{2, 3};
+        TreeNode root = new TreeNode(1);
+        TreeNode two = new TreeNode(2);
+        TreeNode three = new TreeNode(3);
+        TreeNode four = new TreeNode(4);
+        TreeNode five = new TreeNode(5);
+        root.left = two;
+//        root.right = three;
+//        two.left = four;
+//        two.right = five;
+        System.out.println(main.diameterOfBinaryTree(root));
+        System.out.println( 1 > 2 ? 0 : 1+9);
     }
 
-    public int findComplement(int num) {
-        String str = Integer.toBinaryString(num);
-
-        int re = 0;
-        for (int i = 0; i < str.length(); i++) {
-            if (str.charAt(i) == '0') {
-                re = re | 1;
+    public int diameterOfBinaryTree(TreeNode root) {
+        int max = 0;
+        Deque<TreeNode> deque = new LinkedList<>();
+        deque.addLast(root);
+        while (!deque.isEmpty()) {
+            int n = deque.size();
+            while ((n--) > 0) {
+                TreeNode node = deque.pollLast();
+                max = Math.max(max, getMax(node));
+                if (node.left != null) {
+                    deque.addLast(node.left);
+                }
+                if (node.right != null) {
+                    deque.addLast(node.right);
+                }
             }
-            System.out.println("1re=" + re);
-            re = re << 1;
-            System.out.println("2re=" + re);
         }
-        return re >>> 1;
+        return max;
     }
 
-    private int leftValue(TreeNode node) {
-        if (node.left == null && node.right == null) {
-            return node.val;
+    private int getMax(TreeNode root) {
+        int left = root == null || root.left == null ? 0 : (1 + dfs(root.left));
+        int right = root == null || (root.right == null) ? 0 : (1 + dfs(root.right));
+        return left + right;
+    }
+
+    private int dfs(TreeNode node) {
+        if (node == null || (node.left == null && node.right == null)) {
+            return 0;
         }
-        return leftValue(node.left);
+        return 1 + Math.max(dfs(node.left), dfs(node.right));
+    }
+
+
+    public int[][] merge(int[][] intervals) {
+        if (intervals == null || intervals.length == 1) {
+            return intervals;
+        }
+        Arrays.sort(intervals, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                return o1[0] - o2[0];
+            }
+        });
+        List<int[]> helperList = new ArrayList<>();
+        int n = intervals.length;
+        int i = 0, j = 1;
+        boolean[] added = new boolean[n];
+        for (; i < n - 1; i++) {
+            j = i + 1;
+            int[] merge = merge2(intervals[i], intervals[j]);
+            if (merge == null) {
+                if (!added[i]) {
+                    added[i] = true;
+                    helperList.add(intervals[i]);
+                }
+                if (i == n - 2) {
+                    helperList.add(intervals[n - 1]);
+                    break;
+                }
+            } else {
+                helperList.remove(intervals[i]);
+                helperList.add(merge);
+                intervals[j] = merge;
+                added[j] = true;
+            }
+            System.out.println("222  i=" + i + " merge=" + Arrays.toString(merge));
+//            if ((i == datas.length-1 && merge == null) || i == datas.length) {
+//                helperList.add(datas[datas.length-1]);
+//                break;
+//            }
+        }
+        //
+        int[][] result = new int[helperList.size()][];
+        for (int k = 0; k < helperList.size(); k++) {
+            result[k] = helperList.get(k);
+        }
+        return result;
+    }
+
+    private int[] merge2(int[] a, int[] b) {
+        if (b[0] > a[1]) {
+            return null;
+        }
+        return new int[]{a[0], Math.max(a[1], b[1])};
+    }
+
+
+    public int getMinimumDifference(TreeNode root) {
+        int minDiff = Integer.MAX_VALUE;
+        List<TreeNode> path = new ArrayList<>();
+        inTravel(root, path);
+        for (int i = 0; i < path.size() - 1; i++) {
+            minDiff = Math.min(minDiff, Math.abs(path.get(i).val - path.get(i + 1).val));
+        }
+        return minDiff;
+    }
+
+    /**
+     * 236
+     * 104       701
+     * 227        991
+     */
+    // [236,104,701,null,227,null,911]
+    private void inTravel(TreeNode node, List<TreeNode> path) {
+        if (node != null) {
+            inTravel(node.left, path);
+            path.add(node);
+            inTravel(node.right, path);
+        }
     }
 
     public int numMatchingSubseq(String S, String[] words) {

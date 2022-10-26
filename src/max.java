@@ -1,9 +1,9 @@
 import datastructor.ListNode;
 
-public class TestListNode {
+public class max {
 
     public static void main(String[] args) {
-        TestListNode test = new TestListNode();
+        max test = new max();
 //        Scanner sc = new Scanner(System.in);
 //        String n = sc.next();
         ListNode a1 = new ListNode(1);

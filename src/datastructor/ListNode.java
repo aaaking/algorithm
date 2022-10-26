@@ -5,8 +5,8 @@ import java.util.List;
 
 public class ListNode {
     public int val;
-    public ListNode next;
 
+    public ListNode next;
     public ListNode(int x) {
         val = x;
     }
@@ -75,7 +75,7 @@ public class ListNode {
         return ans;
     }
     
-    public ListNode swapPairs(ListNode head) {
+    public ListNode swapPairs2(ListNode head) {
         if(head == null || head.next == null){
             return head;
         }
@@ -85,7 +85,7 @@ public class ListNode {
         return next;
     }
     
-    public ListNode swapPairs(ListNode head) {
+    public ListNode swapPairs3(ListNode head) {
         ListNode pre = new ListNode(0);
         pre.next = head;
         ListNode temp = pre;

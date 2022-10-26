@@ -1,9 +1,7 @@
 package monotoneStack;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.Stack;
+import java.util.*;
+
 // https://mp.weixin.qq.com/s/Y2QZZ-coEYZ6ItDRyrdwVw
 public class Solution {
 
