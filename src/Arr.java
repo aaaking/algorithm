@@ -26,7 +26,7 @@ https://www.cnblogs.com/godweiyang/p/12203881.html
         int prefix = 0;
         int result = 0;
         for (int left = 0, right = 0; right < len; ++right) {
-            // 存储右指针的值到缓存数组中，并加1，如果值等于1，表示第一次存储该值，则将计数 +1.
+            // 存储右指针的值到缓存数组中，并加1，如果值等于1，表示第一次存储该值，则将计数 +1
             if (++cacheArr[A[right]] == 1) {
                 ++count;
             }
