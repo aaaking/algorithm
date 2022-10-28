@@ -3,6 +3,7 @@ package doublePoint;
 import datastructor.ListNode;
 
 import java.util.*;
+
 // https://mp.weixin.qq.com/s?__biz=Mzg3Mzc0NjUzMQ==&mid=2247497066&idx=1&sn=1b62c9b5305576a06208b1a2202c9ea7&source=41#wechat_redirect
 public class Solution {
 
@@ -30,12 +31,12 @@ public class Solution {
     }
 
     private int removeDuplicatesCommon(int[] nums, int k) {
-        int j=0;
+        int j = 0;
         for (int i = 0; i < nums.length; i++) {
             if (j < k) {
                 j++;
             } else {
-                if (nums[i] != nums[j-k]) {
+                if (nums[i] != nums[j - k]) {
                     nums[j] = nums[i];
                     j++;
                 }
@@ -80,7 +81,7 @@ public class Solution {
         int max = 0, temp = 0;
         for (int i = 0; i < s.length(); i++) {
             if (i > 0) {
-                ascii[s.charAt(i-1)]=0;
+                ascii[s.charAt(i - 1)] = 0;
             }
             while (r < s.length()) {
                 char c = s.charAt(r);
@@ -176,7 +177,7 @@ public class Solution {
             int third = n - 1;
             int target = -nums[first];
             // 枚举 b
-            for (int second = first + 1; second < n-1; ++second) {
+            for (int second = first + 1; second < n - 1; ++second) {
                 // 需要和上一次枚举的数不相同
                 if (second > first + 1 && nums[second] == nums[second - 1]) {
                     continue;
@@ -298,15 +299,33 @@ public class Solution {
     private int isVowel(char s) {
         return s == 'a' || s == 'e' || s == 'i' || s == 'o' || s == 'u' ? 1 : 0;
     }
-    
+
     // 11. 盛最多水的容器  https://leetcode.cn/problems/container-with-most-water/
     public int maxArea(int[] height) {
         int i = 0, j = height.length - 1, res = 0;
         while (i < j) {
             res = height[i] < height[j] ?
-                Math.max(res, (j - i) * height[i++]) :
-                Math.max(res, (j - i) * height[j--]);
+                    Math.max(res, (j - i) * height[i++]) :
+                    Math.max(res, (j - i) * height[j--]);
         }
         return res;
+    }
+
+    // 88. 合并两个有序数组  https://leetcode.cn/problems/merge-sorted-array/?favorite=ex0k24j
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int p = m + n - 1;
+        int p1 = m - 1;
+        int p2 = n - 1;
+        for (; p >= 0; p--) {
+            int a = p1 < 0 ? Integer.MIN_VALUE : nums1[p1];
+            int b = p2 < 0 ? Integer.MIN_VALUE : nums2[p2];
+            if (a >= b && p1 >= 0) {
+                nums1[p] = a;
+                p1--;
+            } else if (a < b) {
+                nums1[p] = b;
+                p2--;
+            }
+        }
     }
 }
