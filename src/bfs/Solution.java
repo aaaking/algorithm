@@ -141,7 +141,7 @@ public class Solution {
         diameterOfBinaryTree(root.right);
         return diameter;
     }
-
+    // 二叉树的最大深度
     private int maxDepth(TreeNode node) {
         if (node == null) {
             return 0;
