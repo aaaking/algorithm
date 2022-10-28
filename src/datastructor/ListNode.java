@@ -7,6 +7,7 @@ public class ListNode {
     public int val;
 
     public ListNode next;
+
     public ListNode(int x) {
         val = x;
     }
@@ -74,9 +75,9 @@ public class ListNode {
         }
         return ans;
     }
-    
+
     public ListNode swapPairs2(ListNode head) {
-        if(head == null || head.next == null){
+        if (head == null || head.next == null) {
             return head;
         }
         ListNode next = head.next;
@@ -84,12 +85,12 @@ public class ListNode {
         next.next = head;
         return next;
     }
-    
+
     public ListNode swapPairs3(ListNode head) {
         ListNode pre = new ListNode(0);
         pre.next = head;
         ListNode temp = pre;
-        while(temp.next != null && temp.next.next != null) {
+        while (temp.next != null && temp.next.next != null) {
             ListNode start = temp.next;
             ListNode end = temp.next.next;
             temp.next = end;
@@ -134,7 +135,7 @@ public class ListNode {
             if (headA.val <= headB.val) {
                 temp.next = headA;
                 headA = headA.next;
-            } else if (headB.val < headA.val ) {
+            } else if (headB.val < headA.val) {
                 temp.next = headB;
                 headB = headB.next;
             }
@@ -167,7 +168,7 @@ public class ListNode {
         }
         return head;
     }
-    
+
     public ListNode oddEvenList2(ListNode head) {
         if (head == null) {
             return head;
@@ -182,5 +183,22 @@ public class ListNode {
         }
         odd.next = evenHead;
         return head;
+    }
+
+    // 141. 环形链表  https://leetcode.cn/problems/linked-list-cycle/
+    public boolean hasCycle(ListNode head) {
+        if (head == null || head.next == null || head.next.next == null) {
+            return false;
+        }
+        ListNode slow = head.next;
+        ListNode fast = head.next.next;
+        while (slow != null && fast != null) {
+            if (slow == fast) {
+                return true;
+            }
+            slow = slow.next;
+            fast = fast.next == null ? null : fast.next.next;
+        }
+        return false;
     }
 }
