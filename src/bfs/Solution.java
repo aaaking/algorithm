@@ -1,9 +1,24 @@
 package bfs;
 
+import datastructor.TreeNode;
+
 import java.util.*;
 
 // https://mp.weixin.qq.com/s/WH_XGm1-w5882PnenymZ7g
 public class Solution {
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        TreeNode one = new TreeNode(1);
+        TreeNode two = new TreeNode(2);
+        TreeNode three = new TreeNode(3);
+        TreeNode four = new TreeNode(4);
+        TreeNode five = new TreeNode(5);
+        one.left = two;
+        one.right = three;
+        two.left = four;
+        two.right = five;
+        solution.diameterOfBinaryTree(one);
+    }
 
     // 752. 打开转盘锁 https://leetcode-cn.com/problems/open-the-lock/
     public int openLock(String[] deadends, String target) {
@@ -109,6 +124,45 @@ public class Solution {
             }
         }
         return 0;
+    }
+
+    // 543. 二叉树的直径  https://leetcode.cn/problems/diameter-of-binary-tree/
+    int diameter = 0;
+    public int diameterOfBinaryTree(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int left = root.left == null ? 0 : maxDepth(root.left);
+        int right = root.right == null ? 0 : maxDepth(root.right);
+        System.out.println("root=" + root.val + " left=" + left + " right=" + right); // 1 2 3 4 5
+        diameter = Math.max(left + right, diameter);
+
+        diameterOfBinaryTree(root.left);
+        diameterOfBinaryTree(root.right);
+        return diameter;
+    }
+
+    private int maxDepth(TreeNode node) {
+        if (node == null) {
+            return 0;
+        }
+        int depth = 0;
+        Deque<TreeNode> deque = new LinkedList<>();
+        deque.add(node);
+        while (!deque.isEmpty()) {
+            int size = deque.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode item = deque.pollFirst();
+                if (item.left != null) {
+                    deque.add(item.left);
+                }
+                if (item.right != null) {
+                    deque.add(item.right);
+                }
+            }
+            ++depth;
+        }
+        return depth;
     }
 
 }
