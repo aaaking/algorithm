@@ -1,7 +1,9 @@
 package datastructor;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ListNode {
     public int val;
@@ -200,5 +202,33 @@ public class ListNode {
             fast = fast.next == null ? null : fast.next.next;
         }
         return false;
+    }
+
+    // 142. 环形链表 II https://leetcode.cn/problems/linked-list-cycle-ii/
+    public ListNode detectCycle(ListNode head) {
+        Set<ListNode> set = new HashSet<>();
+        while (head != null) {
+            if (set.contains(head)) {
+                return head;
+            }
+            set.add(head);
+            head = head.next;
+        }
+        return null;
+    }
+    public ListNode detectCycle2(ListNode head) { // 双指针法
+        ListNode fast = head, slow = head;
+        while (true) {
+            if (fast == null || fast.next == null) return null;
+            fast = fast.next.next;
+            slow = slow.next;
+            if (fast == slow) break;
+        }
+        fast = head;
+        while (slow != fast) {
+            slow = slow.next;
+            fast = fast.next;
+        }
+        return fast;
     }
 }
