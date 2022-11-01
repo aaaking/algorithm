@@ -142,13 +142,13 @@ public class Solution {
         return diameter;
     }
     // 二叉树的最大深度
-    private int maxDepth(TreeNode node) {
-        if (node == null) {
+    private int maxDepth(TreeNode root) {
+        if (root == null) {
             return 0;
         }
         int depth = 0;
         Deque<TreeNode> deque = new LinkedList<>();
-        deque.add(node);
+        deque.add(root);
         while (!deque.isEmpty()) {
             int size = deque.size();
             for (int i = 0; i < size; i++) {
@@ -163,6 +163,14 @@ public class Solution {
             ++depth;
         }
         return depth;
+        // 2 深度优先搜索
+//        if (root == null) {
+//            return 0;
+//        } else {
+//            int leftHeight = maxDepth(root.left);
+//            int rightHeight = maxDepth(root.right);
+//            return Math.max(leftHeight, rightHeight) + 1;
+//        }
     }
 
 }
