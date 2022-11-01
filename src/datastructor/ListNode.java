@@ -34,7 +34,16 @@ public class ListNode {
     }
 
     public static void main(String[] args) {
-
+        ListNode one = new ListNode(1);
+        ListNode two = new ListNode(2);
+        ListNode three = new ListNode(3);
+        ListNode four = new ListNode(4);
+        ListNode five = new ListNode(5);
+        one.next = two;
+        two.next = three;
+        three.next = four;
+        four.next = five;
+        one.rotateRight(one, 2);
     }
 
     // 19. 删除链表的倒数第 N 个结点 , https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/
@@ -230,5 +239,70 @@ public class ListNode {
             fast = fast.next;
         }
         return fast;
+    }
+
+    // 61. 旋转链表 https://leetcode.cn/problems/rotate-list/ ,
+    // 给你一个链表的头节点 head ，旋转链表，将链表每个节点向右移动 k 个位置。
+    public ListNode rotateRight(ListNode head, int k) {
+        if (head == null) {
+            return head;
+        }
+        int n = 0;
+        ListNode tmp = head;
+        while (tmp != null) {
+            n++;
+            tmp = tmp.next;
+        }
+        System.out.println("n=" + n);
+        while (k >= n) {
+            k = k - n;
+        }
+        if (k == 0) {
+            return head;
+        }
+        tmp = head;
+        int i = 0;
+        ListNode start = null, end = null;
+        while (true) {
+            i++;
+            if (i == n - k) {
+                start = tmp.next;
+                end = tmp;
+                System.out.println("i=" + i + " start=" + start.val);
+            }
+            if (tmp.next == null) {
+                tmp.next = head;
+                break;
+            }
+            tmp = tmp.next;
+        }
+        if (end != null) {
+            end.next = null;
+        }
+        System.out.println("tmp=" + tmp.val);
+        return start;
+    }
+    // 特别地，当链表长度不大于 1，或者 k 为 n 的倍数时，新链表将与原链表相同，我们无需进行任何处理。
+    public ListNode rotateRight2(ListNode head, int k) {
+        if (k == 0 || head == null || head.next == null) {
+            return head;
+        }
+        int n = 1;
+        ListNode iter = head;
+        while (iter.next != null) {
+            iter = iter.next;
+            n++;
+        }
+        int add = n - k % n;
+        if (add == n) {
+            return head;
+        }
+        iter.next = head;
+        while (add-- > 0) {
+            iter = iter.next;
+        }
+        ListNode ret = iter.next;
+        iter.next = null;
+        return ret;
     }
 }
