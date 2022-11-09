@@ -18,8 +18,5 @@ int main() {
    cout << "3=" << (OrderOfFive=3) << endl;
    cout << "4=" << (OrderOfFive=4) << endl;
    cout << "5=" << (OrderOfFive=5) << endl;
-   cout << "5=" << (OrderOfFive=5) << endl;
-   cout << "5=" << (OrderOfFive=5) << endl;
-   cout << "5=" << (OrderOfFive=5) << endl;
    return 0;
 }
