@@ -1,12 +1,9 @@
-#include <iostream>
+
 #include <vector>
-#include <string>
+
+#include "util/util.hpp"
 
 using namespace std;
-
-void func(string &str) {
-    str += "a";
-}
 
 int main() {
     std::vector<std::string> b = {"str", "ghjhk", "2"};

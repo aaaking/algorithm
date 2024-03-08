@@ -11,13 +11,13 @@ set(SRC_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
 message(WARNING "src root path=${SRC_ROOT_PATH}")
 
 # 定义要编译的文件列表变量
-file(GLOB CPP_FILES_IN_UTILS "${SRC_ROOT_PATH}/util/*.cpp")
+file(GLOB CPP_FILES_IN_UTILS "${SRC_ROOT_PATH}/util/*")
 
 # 设置要编译的源文件
 set(
         SOURCE_FILES
         ${CPP_FILES_IN_UTILS}
-        ${SRC_ROOT_PATH}/*.cpp
+        ${SRC_ROOT_PATH}/*
 )
 
 # include 头文件目录
