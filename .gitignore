@@ -2,3 +2,4 @@
 out/
 cppProjects/.idea/
 build
+.vscode
