@@ -17,5 +17,26 @@ int main() {
     Person zhouyu(1);
     cout << "age=" << zhouyu.age << " name=" << zhouyu.name << " dead=" << zhouyu.dead << endl;
 
+    string path = string("/data/data/").append("a");
+    printf("path=%s", path.c_str());
+
+    string path2 = string("/data/data/") + ("b");
+    printf("path2=%s", path2.c_str());
+
+    int a = 0;
+    if (a++ >= 1) {
+        printf("\na=======%d", a);
+    }
+    int c = 0;
+    if (++c >= 1) {
+        printf("\nc=======%d", c);
+    }
+
+    int d = 0;
+    printf("\nd=======%d", d++);
+
+    int e = 0;
+    printf("\ne=======%d", ++e);
+
     return 0;
 }
