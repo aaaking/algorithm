@@ -20,12 +20,13 @@ printYellow() {
 }
 
 task_help() {
-    echo "[help]       ./gen_code.sh cmake              编译"
-    echo "[help]       ./gen_code.sh make               编译"
-    echo "[help]       ./gen_code.sh all               编译"
+    echo "[help]       ./gen_cmake_code.sh cmake              编译"
+    echo "[help]       ./gen_cmake_code.sh make               编译"
+    echo "[help]       ./gen_cmake_code.sh all               编译"
 }
 
 task_cmake() {
+    pushd cmake
     rm -rf build
     mkdir build
 
@@ -33,6 +34,7 @@ task_cmake() {
     # cmake [options] -S <path-to-source> -B <path-to-build> #用于大型工程，有很多CMakeLists.txt所以需要具体指定，避免混乱
 
     cmake -S ./ -B build
+    popd
 
     if [ 0 -ne $? ];then
         echo "Failed to cmake"
@@ -41,7 +43,7 @@ task_cmake() {
 }
 
 task_make() {
-    pushd build
+    pushd cmake/build
     make
     ./hello
     popd

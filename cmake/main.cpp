@@ -23,20 +23,5 @@ int main() {
     string path2 = string("/data/data/") + ("b");
     printf("path2=%s", path2.c_str());
 
-    int a = 0;
-    if (a++ >= 1) {
-        printf("\na=======%d", a);
-    }
-    int c = 0;
-    if (++c >= 1) {
-        printf("\nc=======%d", c);
-    }
-
-    int d = 0;
-    printf("\nd=======%d", d++);
-
-    int e = 0;
-    printf("\ne=======%d", ++e);
-
     return 0;
 }

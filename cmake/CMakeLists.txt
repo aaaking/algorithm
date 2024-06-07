@@ -9,6 +9,7 @@ project (helloworldproject VERSION 1.0)
 # 设置源码根路径，即 cpp 目录
 set(SRC_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
 message(WARNING "src root path=${SRC_ROOT_PATH}")
+message("PROJECT_NAME=====${PROJECT_NAME} CMAKE_PROJECT_NAME=====${CMAKE_PROJECT_NAME}")
 
 # 定义要编译的文件列表变量
 file(GLOB CPP_FILES_IN_UTILS "${SRC_ROOT_PATH}/util/*")
