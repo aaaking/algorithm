@@ -5,6 +5,25 @@
 
 using namespace std;
 
+#define AWESOME_CACHE_ERROR_CODES(X, Y)                                          \
+    X(0,        kResultOK,                      "kResultOK",            "No error at all!") \
+    X(-8000,    kHodorErrorCodeMin,     "kHodorErrorCodeMin",     "目前Hodor相关的error不会小于这个值") \
+    Y("CacheException related, kResultCacheExceptionStart ~ kResultCacheExceptionEnd 都是cache相关的exception") \
+    X(-1101,    kResultFFmpegAdapterInnerError,     "kResultFFmpegAdapterInnerError",       "Hodor 适配层内部错误")
+
+#define AWESOME_CACHE_ERROR_ENUM(ID, NAME, ERR_MSG, ERR_DESC) NAME = ID,
+#define DIVIDER_AND_COMMENT(a)
+
+typedef enum AwesomeCacheErrorCode {
+    AWESOME_CACHE_ERROR_CODES(AWESOME_CACHE_ERROR_ENUM, DIVIDER_AND_COMMENT)
+} AwesomeCacheErrorCode;
+
+enum class Color : char {
+    Red = 'r',
+    Green = 'g',
+    Blue = 'b',
+};
+
 int main() {
     std::vector<std::string> b = {"str"};
     for (int i = 0; i < b.size(); i++) {
@@ -24,3 +43,4 @@ int main() {
 
     return 0;
 }
+
