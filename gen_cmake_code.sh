@@ -22,7 +22,12 @@ printYellow() {
 task_help() {
     echo "[help]       ./gen_cmake_code.sh cmake              编译"
     echo "[help]       ./gen_cmake_code.sh make               编译"
-    echo "[help]       ./gen_cmake_code.sh all               编译"
+    echo "[help]       ./gen_cmake_code.sh all                编译"
+    echo "----------------------------"
+
+    pushd cmake/build
+    ./hello
+    popd
 }
 
 task_cmake() {
