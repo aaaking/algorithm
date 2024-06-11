@@ -28,4 +28,5 @@ include_directories(${SRC_ROOT_PATH}/)
 # add the executable， 告诉 CMake 使用指定的源代码文件创建可执行文件，这里使用 main.cpp 来构建名为 hello 的可执行文件。
 # 如果编译动态库可以用：target_link_libraries
 aux_source_directory(. src_list)
+aux_source_directory(./model src_list)
 add_executable(hello ${src_list})

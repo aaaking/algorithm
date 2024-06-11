@@ -1,6 +1,7 @@
 
 #include <vector>
 #include "model/person.hpp"
+#include "model/dog.h"
 #include "util/util.hpp"
 
 using namespace std;
@@ -24,6 +25,8 @@ enum class Color : char {
     Blue = 'b',
 };
 
+int fs;
+
 int main() {
     std::vector<std::string> b = {"str"};
     for (int i = 0; i < b.size(); i++) {
@@ -40,6 +43,12 @@ int main() {
 
     string path2 = string("/data/data/") + ("b");
     printf("path2=%s\n", path2.c_str());
+
+    printf("fs=%d\n", fs);
+
+    Dog aDog = Dog();
+
+    printf("a dog age=%d\n", aDog.age);
 
     return 0;
 }
