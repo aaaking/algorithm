@@ -27,7 +27,7 @@ public class RxjavaDemo {
             @Override
             public void subscribe(ObservableEmitter<String> emitter) throws Exception {
                 // 2 sub thread
-                System.out.println("subscribe emitter=" + "<warn: you cannot print this emitter object, or will not execute on next> " + " " + Thread.currentThread());
+                System.out.println("subscribe emitter=" + "<warn: you cannot print this emitter object, or will not execute on next> " + " " + Thread.currentThread() + " " + Thread.currentThread().getId());
                 emitter.onNext("baby ,it's time for lunch ");
             }
         }).subscribeOn(Schedulers.computation());
@@ -37,13 +37,14 @@ public class RxjavaDemo {
         return new Observer<String>() {
             @Override
             public void onSubscribe(Disposable d) {
-                System.out.println("on subscribe disposable=" + d + " " + Thread.currentThread()); // 1 mainthread
+                // 1 mainthread
+                System.out.println("on subscribe disposable=" + d + " " + Thread.currentThread() + " " + Thread.currentThread().getId());
             }
 
             @Override
             public void onNext(String str) {
-                //处理传递过来的事件
-                System.out.println("on next str=<" + str + "> " + Thread.currentThread()); // 3 sub thread
+                // 3 sub thread
+                System.out.println("on next str=<" + str + "> " + Thread.currentThread() + " " + Thread.currentThread().getId());
             }
 
             @Override
@@ -53,7 +54,7 @@ public class RxjavaDemo {
 
             @Override
             public void onComplete() {
-                System.out.println("on compleete " + Thread.currentThread());
+                System.out.println("on compleete " + Thread.currentThread() + " " + Thread.currentThread().getId());
             }
         };
     }

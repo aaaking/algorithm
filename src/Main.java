@@ -73,6 +73,13 @@ public class Main {
         p.test();
 
         RxjavaDemo.get().executeText();
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("---------------end---------------------");
     }
 
     public int diameterOfBinaryTree(TreeNode root) {
