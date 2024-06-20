@@ -2,9 +2,10 @@ import datastructor.ListNode;
 import datastructor.TreeNode;
 
 import java.util.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
 
 public class Main {
-
     public String longest(String s) {
         int len = s.length();
         if (len < 2) {
@@ -37,6 +38,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
+
         Main main = new Main();
         int[][] datas = new int[][]{
                 new int[]{1, 2},
@@ -64,6 +66,19 @@ public class Main {
 //        two.right = five;
         System.out.println(main.diameterOfBinaryTree(root));
         System.out.println( 1 > 2 ? 0 : 1+9);
+
+        System.out.println("mainthraed=" + Thread.currentThread());
+        // test counts of threads when use threadPoolExecutor
+        Executors.newFixedThreadPool(5).submit(() -> {
+            System.out.println("sub thread=" + Thread.currentThread());
+        });
+//        while (true) {
+//            try {
+//                Thread.sleep(1000);
+//            } catch (InterruptedException e) {
+//                throw new RuntimeException(e);
+//            }
+//        }
     }
 
     public int diameterOfBinaryTree(TreeNode root) {
