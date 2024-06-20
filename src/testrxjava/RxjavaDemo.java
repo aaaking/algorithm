@@ -19,17 +19,18 @@ public class RxjavaDemo {
     public void executeText() {
         System.out.println("-------------------------------------stat test rxjava " + Thread.currentThread());
         Observable motherCallEat = createMotherCallEatObservable();
-        Observer observer = motherCallEat.subscribeOn(Schedulers.computation()).subscribeWith(createChildObserver());
+        Observer observer = motherCallEat.subscribeWith(createChildObserver());
     }
 
     private Observable createMotherCallEatObservable() {
         return Observable.create(new ObservableOnSubscribe<String>() {
             @Override
             public void subscribe(ObservableEmitter<String> emitter) throws Exception {
-                System.out.println("subscribe emitter=" + emitter + " " + Thread.currentThread()); // 2 sub thread
+                // 2 sub thread
+                System.out.println("subscribe emitter=" + "<warn: you cannot print this emitter object, or will not execute on next> " + " " + Thread.currentThread());
                 emitter.onNext("baby ,it's time for lunch ");
             }
-        });
+        }).subscribeOn(Schedulers.computation());
     }
 
     private Observer createChildObserver() {
