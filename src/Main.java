@@ -1,6 +1,7 @@
 import datastructor.ListNode;
 import datastructor.TreeNode;
 import kotlintest.Person;
+import testrxjava.RxjavaDemo;
 
 import java.util.*;
 import java.util.concurrent.Executors;
@@ -68,10 +69,10 @@ public class Main {
         System.out.println(main.diameterOfBinaryTree(root));
         System.out.println( 1 > 2 ? 0 : 1+9);
 
-        System.out.println("mainthraed=" + Thread.currentThread());
-
         Person p = new Person();
         p.test();
+
+        RxjavaDemo.get().executeText();
     }
 
     public int diameterOfBinaryTree(TreeNode root) {
