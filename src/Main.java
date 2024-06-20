@@ -69,17 +69,6 @@ public class Main {
         System.out.println( 1 > 2 ? 0 : 1+9);
 
         System.out.println("mainthraed=" + Thread.currentThread());
-        // test counts of threads when use threadPoolExecutor
-        Executors.newFixedThreadPool(5).submit(() -> {
-            System.out.println("sub thread=" + Thread.currentThread());
-        });
-//        while (true) {
-//            try {
-//                Thread.sleep(1000);
-//            } catch (InterruptedException e) {
-//                throw new RuntimeException(e);
-//            }
-//        }
 
         Person p = new Person();
         p.test();
