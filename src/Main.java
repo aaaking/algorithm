@@ -1,5 +1,6 @@
 import datastructor.ListNode;
 import datastructor.TreeNode;
+import kotlintest.Person;
 
 import java.util.*;
 import java.util.concurrent.Executors;
@@ -79,6 +80,9 @@ public class Main {
 //                throw new RuntimeException(e);
 //            }
 //        }
+
+        Person p = new Person();
+        p.test();
     }
 
     public int diameterOfBinaryTree(TreeNode root) {
