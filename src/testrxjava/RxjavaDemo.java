@@ -26,7 +26,7 @@ public class RxjavaDemo {
         return Observable.create(new ObservableOnSubscribe<String>() {
             @Override
             public void subscribe(ObservableEmitter<String> emitter) throws Exception {
-                System.out.println("subscribe " + Thread.currentThread());
+                System.out.println("subscribe emitter=" + emitter + " " + Thread.currentThread()); // 2 sub thread
                 emitter.onNext("baby ,it's time for lunch ");
             }
         });
@@ -36,13 +36,13 @@ public class RxjavaDemo {
         return new Observer<String>() {
             @Override
             public void onSubscribe(Disposable d) {
-                System.out.println("on subscribe " + Thread.currentThread());
+                System.out.println("on subscribe disposable=" + d + " " + Thread.currentThread()); // 1 mainthread
             }
 
             @Override
             public void onNext(String str) {
                 //处理传递过来的事件
-                System.out.println("on next str=<" + str + "> " + Thread.currentThread());
+                System.out.println("on next str=<" + str + "> " + Thread.currentThread()); // 3 sub thread
             }
 
             @Override
