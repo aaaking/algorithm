@@ -19,7 +19,7 @@ public class RxjavaDemo {
     public void executeText() {
         System.out.println("-------------------------------------stat test rxjava " + Thread.currentThread());
         Observable motherCallEat = createMotherCallEatObservable();
-        motherCallEat.subscribeOn(Schedulers.computation()).subscribeWith(createChildObserver());
+        Observer observer = motherCallEat.subscribeOn(Schedulers.computation()).subscribeWith(createChildObserver());
     }
 
     private Observable createMotherCallEatObservable() {
