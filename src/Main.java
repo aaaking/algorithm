@@ -77,7 +77,8 @@ public class Main {
         try {
             // 等待rxjava子线程执行完，不然onnext的日志可能偶尔不打印
             Thread.sleep(1000);
-        } catch (InterruptedException e) {
+            int fs = 2;
+        } catch (Exception e) {
             e.printStackTrace();
         }
         System.out.println("---------------end---------------------");
