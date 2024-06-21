@@ -47,8 +47,10 @@ int main() {
     printf("fs=%d\n", fs);
 
     Dog aDog = Dog();
-
     printf("a dog age=%d dead=%d\n", aDog.age, aDog.dead);
+
+    Dog bDog{};
+    printf("b dog age=%d dead=%d\n", bDog.age, bDog.dead);
 
     return 0;
 }
