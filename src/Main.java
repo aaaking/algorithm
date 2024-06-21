@@ -2,7 +2,9 @@ import datastructor.ListNode;
 import datastructor.TreeNode;
 import kotlintest.Person;
 import testrxjava.RxjavaDemo;
+import xmlreader.XmlReader;
 
+import java.io.File;
 import java.util.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -72,6 +74,7 @@ public class Main {
         Person p = new Person();
         p.test();
 
+        XmlReader.get().formatRepeatAttr("");
         RxjavaDemo.get().executeText();
 
         try {

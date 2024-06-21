@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <attr format="color|reference" name="KwaiSeekBarProgressTextColor"/>
+    <attr name="KwaiSeekBarProgressTextColor"/>
+    <declare-styleable name="PrettifyDoubleSeekBar">
+        <attr format="dimension" name="KwaiSeekBarHeight"/>
+        <attr format="dimension" name="KwaiSeekBarProgressTextSize"/>
+        <attr format="dimension" name="KwaiSeekBarProgressTextMargin"/>
+        <attr format="dimension" name="KwaiSeekBarRadius"/>
+        <attr format="dimension" name="KwaiSeekBarPaddingLeft"/>
+        <attr format="dimension" name="KwaiSeekBarPaddingRight"/>
+        <attr format="dimension" name="KwaiSeekBarPaddingTop"/>
+        <attr format="dimension" name="KwaiSeekBarPaddingBottom"/>
+        <attr format="reference" name="KwaiSeekBarThumb"/>
+        <attr format="reference" name="KwaiSeekBarDefaultIndicator"/>
+        <attr format="reference" name="KwaiSeekBarDefaultIndicatorPass"/>
+    </declare-styleable>
+
+    <declare-styleable name="DeclareStyleableDefault">
+        <attr format="color" name="exampleTextColor"/>
+        <attr name="KwaiSeekBarProgressTextColor"/>
+        <attr format="color" name="exampleBackground"/>
+    </declare-styleable>
+
+    <declare-styleable name="DeclareStyleableNew">
+        <attr name="exampleTextColor"/>
+        <attr name="KwaiSeekBarProgressTextColor"/>
+        <attr format="color" name="exampleTintTitle"/>
+    </declare-styleable>
+</resources>
