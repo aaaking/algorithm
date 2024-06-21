@@ -29,7 +29,7 @@ public class XmlReader {
 
     public void formatRepeatAttr(String filepath) {
         try {
-            File file = new File("/Users/aaaking/codebase/gitProjects/algorithm/src/xmlreader/attrs.xml");
+            File file = new File(filepath);
             File dst = new File(file.getParent(), "new-" + file.getName());
             System.out.println("start format repeat attr file=" + file + " dstexist=" + dst.exists());
             if (dst.exists() && dst.length() > 0) {

@@ -42,6 +42,9 @@ public class Main {
     }
 
     public static void main(String[] args) {
+        String projectPath = System.getProperty("user.dir");
+        File file = new File("");
+        System.out.println("projectPath=======" + projectPath + " file absolutepath=" + file.getAbsolutePath());
 
         Main main = new Main();
         int[][] datas = new int[][]{
@@ -74,7 +77,7 @@ public class Main {
         Person p = new Person();
         p.test();
 
-        XmlReader.get().formatRepeatAttr("");
+        XmlReader.get().formatRepeatAttr(projectPath + "/src/xmlreader/attrs.xml");
         RxjavaDemo.get().executeText();
 
         try {
