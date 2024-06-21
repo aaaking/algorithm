@@ -30,7 +30,12 @@ public class XmlReader {
     public void formatRepeatAttr(String filepath) {
         try {
             File file = new File("/Users/aaaking/codebase/gitProjects/algorithm/src/xmlreader/attrs.xml");
-            System.out.println("start format repeat attr file=" + file);
+            File dst = new File(file.getParent(), "new-" + file.getName());
+            System.out.println("start format repeat attr file=" + file + " dstexist=" + dst.exists());
+            if (dst.exists() && dst.length() > 0) {
+                System.out.println("dst file exist no need parse");
+                return;
+            }
             SAXReader xmlReader = new SAXReader();
 
             Document doc = xmlReader.read(file);
@@ -82,7 +87,6 @@ public class XmlReader {
                 }
             }
 
-            File dst = new File(file.getParent(), "new-" + file.getName());
             XMLWriter writer = new XMLWriter(new FileOutputStream(dst));
             writer.write(doc);
             writer.close();
