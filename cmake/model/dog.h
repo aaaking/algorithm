@@ -3,8 +3,9 @@ class Dog {
 private:
     /* data */
 public:
-    int age = 0;
-    bool dead = false;
-    Dog(/* args */);
+    int age;
+    int height;
+    bool dead;
+    Dog(int a = 0, int b = 0);
     ~Dog();
 };

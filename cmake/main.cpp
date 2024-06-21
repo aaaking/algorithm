@@ -27,7 +27,10 @@ enum class Color : char {
 
 int fs;
 
+static Dog cDog;
+
 int main() {
+    cDog.age = 200;
     std::vector<std::string> b = {"str"};
     for (int i = 0; i < b.size(); i++) {
         string a = b[i];
@@ -47,10 +50,14 @@ int main() {
     printf("fs=%d\n", fs);
 
     Dog aDog = Dog();
-    printf("a dog age=%d dead=%d\n", aDog.age, aDog.dead);
+    printf("a dog age=%d height=%d\n", aDog.age, aDog.height);
+    Dog bDog{1, 2};
+    printf("b dog age=%d height=%d\n", bDog.age, bDog.height);
+    Dog cDog(1, 2);
+    printf("c dog age=%d height=%d\n", cDog.age, cDog.height);
+    Dog dDog; // 不推荐
+    printf("d dog age=%d height=%d\n", dDog.age, dDog.height);
 
-    Dog bDog{};
-    printf("b dog age=%d dead=%d\n", bDog.age, bDog.dead);
 
     return 0;
 }
