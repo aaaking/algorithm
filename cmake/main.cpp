@@ -58,6 +58,11 @@ int main() {
     Dog dDog; // 不推荐
     printf("d dog age=%d height=%d\n", dDog.age, dDog.height);
 
+    shared_ptr<Dog> aShareDog = make_shared<Dog>(2, 3);
+    printf("e shared dog age=%d height=%d ptr=%p isnull=%d \n", aShareDog->age, aShareDog->height, &aShareDog, aShareDog == nullptr);
+    aShareDog.reset(); // 后面可以接续调用reset接口，但是不能调用age等接口，会报错: Segmentation fault
+    printf("e shared dog after reset ptr=%p isnull=%d \n", &aShareDog, aShareDog == nullptr);
+
 
     return 0;
 }
