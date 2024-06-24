@@ -4,9 +4,8 @@ import java.io.File
 
 class Person {
     fun test() {
-        println("test kotlintest of person")
         val projectPath = System.getProperty("user.dir")
         val file = File("")
-        println("projectPath in kotlin=======" + projectPath + " file absolutepath=" + file.absolutePath)
+        println("test kotlintest of person projectPath in kotlin=======" + projectPath + " file absolutepath=" + file.absolutePath)
     }
 }
