@@ -17,7 +17,7 @@ class Person {
         return "age=${age} height=${height} dead=${dead}"
     }
 
-    fun test() {
+    fun test(vararg arg: String?) {
         val p = Person(deadP = true, ageP = 3)
         val projectPath = System.getProperty("user.dir")
         val file = File("")
