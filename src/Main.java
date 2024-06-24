@@ -74,7 +74,7 @@ public class Main {
         System.out.println(main.diameterOfBinaryTree(root));
         System.out.println( 1 > 2 ? 0 : 1+9);
 
-        Person p = new Person();
+        Person p = new Person(3, 2, false);
         p.test();
 
         XmlReader.get().formatRepeatAttr(projectPath + "/src/xmlreader/attrs.xml");
