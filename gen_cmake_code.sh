@@ -50,6 +50,10 @@ task_cmake() {
 task_make() {
     pushd cmake/build
     make
+    if [ 0 -ne $? ];then
+        echo "Failed to make"
+        exit 1
+    fi
     ./hello
     popd
 }

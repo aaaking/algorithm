@@ -2,6 +2,7 @@
 #include <vector>
 #include "model/person.hpp"
 #include "model/dog.h"
+#include "model/Cat.h"
 #include "util/util.hpp"
 
 using namespace std;
@@ -62,6 +63,27 @@ int main() {
     printf("e shared dog age=%d height=%d ptr=%p isnull=%d \n", aShareDog->age, aShareDog->height, &aShareDog, aShareDog == nullptr);
     aShareDog.reset(); // 后面可以接续调用reset接口，但是不能调用age等接口，会报错: Segmentation fault
     printf("e shared dog after reset ptr=%p isnull=%d \n", &aShareDog, aShareDog == nullptr);
+
+
+    string str = "hello world";
+    size_t pos = str.rfind('o'); // 搜索最后一个‘o’
+    if (pos != string::npos) {
+        cout << "最后一个'o'的位置是：" << pos << endl; // 输出7
+    }
+
+    str = "hello world";
+    pos = str.rfind('o', 5); // 搜索5号位置前（含5号）最后一个'o'
+    if (pos != string::npos) {
+        cout << "5号位置前最后一个'o'的位置是: " << pos << endl; // 输出4
+    }
+
+    str = "hello world world";
+    pos = str.find("wor", 16, 3); // 从10号位置前（含10号位置） 查找3个字符"wor"
+
+    if (pos != string::npos) {
+        cout << "10号位置前 查找3个字符\"wor\"的位置是: " << pos << endl; // 输出6
+    }
+    
 
 
     return 0;
