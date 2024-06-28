@@ -93,5 +93,5 @@ int main() {
 
 void test() {
     std::shared_ptr<Dog> aDog = std::make_shared<Dog>(101);
-    aDog.reset();
+    // aDog.reset(); // no necessary
 }
