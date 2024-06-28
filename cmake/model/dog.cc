@@ -8,4 +8,5 @@ Dog::Dog(int a, int b) {
 
 Dog::~Dog()
 {
+    printf("dog destruct age=%d\n", age);
 }

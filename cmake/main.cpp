@@ -30,6 +30,8 @@ int fs;
 
 static Dog cDog;
 
+void test();
+
 int main() {
     cDog.age = 200;
     std::vector<std::string> b = {"str"};
@@ -50,16 +52,16 @@ int main() {
 
     printf("fs=%d\n", fs);
 
-    Dog aDog = Dog();
+    Dog aDog = Dog(11);
     printf("a dog age=%d height=%d\n", aDog.age, aDog.height);
-    Dog bDog{1, 2};
+    Dog bDog{22, 2};
     printf("b dog age=%d height=%d\n", bDog.age, bDog.height);
-    Dog cDog(1, 2);
+    Dog cDog(33, 2);
     printf("c dog age=%d height=%d\n", cDog.age, cDog.height);
     Dog dDog; // 不推荐
     printf("d dog age=%d height=%d\n", dDog.age, dDog.height);
 
-    shared_ptr<Dog> aShareDog = make_shared<Dog>(2, 3);
+    shared_ptr<Dog> aShareDog = make_shared<Dog>(55, 3);
     printf("e shared dog age=%d height=%d ptr=%p isnull=%d \n", aShareDog->age, aShareDog->height, &aShareDog, aShareDog == nullptr);
     aShareDog.reset(); // 后面可以接续调用reset接口，但是不能调用age等接口，会报错: Segmentation fault
     printf("e shared dog after reset ptr=%p isnull=%d \n", &aShareDog, aShareDog == nullptr);
@@ -84,8 +86,12 @@ int main() {
         cout << "10号位置前 查找3个字符\"wor\"的位置是: " << pos << endl; // 输出6
     }
     
-
+    test();
 
     return 0;
 }
 
+void test() {
+    std::shared_ptr<Dog> aDog = std::make_shared<Dog>(101);
+    aDog.reset();
+}
