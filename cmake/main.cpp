@@ -13,12 +13,11 @@ enum class Color : char {
     Blue = 'b',
 };
 
-static Dog cStaticDog(9999);
-
 void test();
 
 int main() {
     printf("\n----------------in main-------------------\n");
+
     string path = string("/data/data/").append("a"); // path=/data/data/a
     string path2 = string("/data/data/") + ("b"); // path2=/data/data/b
 
