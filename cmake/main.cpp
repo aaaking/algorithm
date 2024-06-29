@@ -44,6 +44,19 @@ int main() {
     return 0;
 }
 
+
+
+
+
+class A {
+public:
+    A() { std::cout << "A::A()" << std::endl; }
+    ~A() { std::cout << "A::~A()" << std::endl; }
+    void doSomething() { std::cout << "A::doSomething()" << std::endl; }
+};
+
+
+
 void test() {
     std::shared_ptr<Dog> aDog = std::make_shared<Dog>(101);
     std::shared_ptr<Dog> bDog = aDog;
@@ -52,4 +65,31 @@ void test() {
     std::shared_ptr<Dog> dDog = std::move(cDog);
     printf("test  11 ===  use1=%ld use2=%ld use3=%ld\n", aDog.use_count(), bDog.use_count(), cDog.use_count());
     // aDog.reset(); // no necessary
+
+
+
+
+    printf("\n\n");
+    std::weak_ptr<A> wp;
+    {
+        std::shared_ptr<A> sp(new A);
+        cout << "*sp==" << (sp) << endl;
+        printf("usecnt=====s=%d w=%d\n", sp.use_count(), wp.use_count());
+        wp = sp;
+        printf("usecnt=====s=%d w=%d\n", sp.use_count(), wp.use_count());
+        cout << "sp======" << sp << endl;
+        std::shared_ptr<A> af1 = wp.lock();
+        std::shared_ptr<A> af2 = wp.lock();
+        std::shared_ptr<A> af3 = wp.lock();
+        std::cout << "wp.lock() = " << wp.lock() << " usecnt=" << wp.use_count() << " " << sp.use_count() << std::endl;
+    }
+    std::cout << "wp.lock() = " << wp.lock() << std::endl;
+    if (!wp.expired()) {
+        std::cout << "A still exists." << std::endl;
+        std::shared_ptr<A> sp = wp.lock();
+        sp->doSomething();
+    } else {
+        std::cout << "A has been destroyed." << std::endl;
+    }
+    printf("\n\n");
 }
