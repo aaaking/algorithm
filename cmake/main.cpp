@@ -88,10 +88,16 @@ int main() {
     
     test();
 
+
     return 0;
 }
 
 void test() {
     std::shared_ptr<Dog> aDog = std::make_shared<Dog>(101);
+    std::shared_ptr<Dog> bDog = aDog;
+    std::shared_ptr<Dog> cDog = bDog;
+    printf("test  00 ===  use1=%ld use2=%ld use3=%ld\n", aDog.use_count(), bDog.use_count(), cDog.use_count());
+    std::shared_ptr<Dog> dDog = std::move(cDog);
+    printf("test  11 ===  use1=%ld use2=%ld use3=%ld\n", aDog.use_count(), bDog.use_count(), cDog.use_count());
     // aDog.reset(); // no necessary
 }
