@@ -21,7 +21,7 @@ int main() {
     string path = string("/data/data/").append("a"); // path=/data/data/a
     string path2 = string("/data/data/") + ("b"); // path2=/data/data/b
 
-    Dog aDog = Dog(11);
+    Dog aDog = Dog(11, 11);
     Dog bDog{22, 2};
     Dog cDog(33, 2);
     Dog dDog; // 不推荐
@@ -36,8 +36,22 @@ int main() {
     pos = str.rfind('o', 5); // 搜索5号位置前（含5号）最后一个'o'   输出4
     str = "hello world world";
     pos = str.find("wor", 16, 3); // 从10号位置前（含10号位置） 查找3个字符"wor"  输出6
+
+    Dog cpDog = Dog(aDog);
+    printf("copy dog=%d %d\n", cpDog.age, cpDog.height);
     
     test();
+
+    std::unique_ptr<Dog> uDog(new Dog(256));
+    if (uDog) {
+        printf("111111\n");
+    } else {
+        printf("0000\n");
+    }
+    std::optional<std::unique_ptr<Dog>> optDog = ((std::move(uDog)));
+    optDog->get()->feifei();
+    
+
 
 
     printf("\n----------------out main-------------------\n");

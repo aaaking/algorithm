@@ -6,3 +6,4 @@ typedef struct Cat_ {
     int height;
     Cat_ *pre;
 } Cat;
+

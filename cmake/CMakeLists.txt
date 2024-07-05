@@ -1,7 +1,7 @@
 cmake_minimum_required (VERSION 3.10)
 
 # 指定 c++ 标准
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 
 # set the project name
 project (helloworldproject VERSION 1.0)
