@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Control Panel</title>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>App Control Panel</h1>
+        <input type="text" id="mobileNumber" placeholder="Enter mobile number">
+        <input type="text" id="extPwd" placeholder="Enter password">
+        <div class="button-group">
+            <button id="login" class="btn-custom">Login</button>
+            <button id="logout" class="btn-custom">Logout</button>
+        </div>
+        <ul id="suggestions" class="suggestions"></ul>
+        <div id="message" class="message"></div>
+        <div class="bottom-buttons">
+            <button id="clearAll" class="clear-all-button">Clear Suggestions</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load recent numbers from cookies and display as suggestions
+            const recentNumbers = getRecentNumbers();
+            displaySuggestions(recentNumbers);
+
+            document.getElementById('login').addEventListener('click', function() {
+                const mobileNumber = document.getElementById('mobileNumber').value;
+                const pwd = document.getElementById('extPwd').value;
+                if (mobileNumber && pwd) {
+                    performLogin(mobileNumber, pwd);
+                }
+            });
+
+            document.getElementById('logout').addEventListener('click', function() {
+                fetch('http://127.0.0.1:5000/clear-app-data')
+                    .then(response => response.text())
+                    .then(data => document.getElementById('message').innerText = data)
+                    .catch(error => console.error('Error:', error));
+            });
+
+            document.getElementById('clearAll').addEventListener('click', function() {
+                setRecentNumbers([]);
+                displaySuggestions([]);
+            });
+        });
+
+        function getRecentNumbers() {
+            const cookies = document.cookie.split(';');
+            const recentNumbers = cookies.find(cookie => cookie.trim().startsWith('recentNumbers='));
+            return recentNumbers ? JSON.parse(decodeURIComponent(recentNumbers.split('=')[1])) : [];
+        }
+
+        function setRecentNumbers(numbers) {
+            document.cookie = `recentNumbers=${encodeURIComponent(JSON.stringify(numbers))}; path=/`;
+        }
+
+        function addRecentNumber(number) {
+            let recentNumbers = getRecentNumbers();
+            if (!recentNumbers.includes(number)) {
+                recentNumbers.push(number);
+                if (recentNumbers.length > 5) { // Limit to 5 recent numbers
+                    recentNumbers.shift();
+                }
+                setRecentNumbers(recentNumbers);
+                displaySuggestions(recentNumbers);
+            }
+        }
+
+        function displaySuggestions(numbers) {
+            const suggestionsList = document.getElementById('suggestions');
+            suggestionsList.innerHTML = '';
+            numbers.forEach(number => {
+                const listItem = document.createElement('li');
+                listItem.textContent = number;
+                listItem.dataset.number = number; // Store number in data attribute
+                const removeIcon = document.createElement('span');
+                removeIcon.className = 'remove-icon';
+                removeIcon.innerHTML = '&#10005;'; // Cross icon (✗)
+                removeIcon.onclick = function() {
+                    let recentNumbers = getRecentNumbers();
+                    recentNumbers = recentNumbers.filter(num => num !== number);
+                    setRecentNumbers(recentNumbers);
+                    displaySuggestions(recentNumbers);
+                };
+                listItem.appendChild(removeIcon);
+                listItem.addEventListener('click', function() {
+                    document.getElementById('mobileNumber').value = number; // Update text field
+                    const pwd = document.getElementById('extPwd').value;
+                    performLogin(number, pwd); // Perform login when suggestion is clicked
+                });
+                suggestionsList.appendChild(listItem);
+            });
+        }
+
+        function performLogin(mobileNumber, pwd) {
+            addRecentNumber(mobileNumber);
+            fetch(`http://127.0.0.1:5000/trigger-adb?mobileNumber=${encodeURIComponent(mobileNumber)}&pwd=${encodeURIComponent(pwd)}`)
+                .then(response => response.text())
+                .then(data => document.getElementById('message').innerText = data)
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
