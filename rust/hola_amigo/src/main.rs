@@ -1,16 +1,20 @@
 fn main() {
     println!("Hello, world!");
-}
-
-fn bigger(a: i32, b: i32) -> i32 {
-    if a >= b {
-        a
-    } else {
-        b
+    for number in (1..4).rev() {
+        println!("{number}!");
     }
+    let a = [1, 2, 3, 4, 5];
+
+    let nice_slice = &a[1..4];
+    println!(
+        "equals 1={} 2={}",
+        nice_slice == [2, 3, 4],
+        *nice_slice == [2, 3, 4]
+    );
+    // panic!("Array not big enough, more elements needed");
 }
 
-// cargo test --package hola_amigo --bin hola_amigo -- tests --show-output 
+// cargo test --package hola_amigo --bin hola_amigo -- tests --show-output
 // cargo test --package hola_amigo --bin hola_amigo -- tests::fortytwo_is_bigger_than_thirtytwo --exact --show-output
 #[cfg(test)]
 mod tests {
