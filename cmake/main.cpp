@@ -52,7 +52,10 @@ int main() {
     optDog->get()->feifei();
     
 
-
+    size_t strSize = 2;
+    char strBuf[256] = "12345";
+    std::string tempString(strBuf, strSize);
+    printf("tempString===%s", tempString.c_str());
 
     printf("\n----------------out main-------------------\n");
     return 0;
