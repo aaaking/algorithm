@@ -1,5 +1,6 @@
 fn main() {
     let mut index = String::new();
+    index.push_str("hola");
     /*
     1. r#" 和 "# 用于创建原始字符串字面量。
     2. 原始字符串字面量中的内容不会进行转义处理。
@@ -13,12 +14,6 @@ fn main() {
     println!(r#" |_|   \__,_|___/\__|_|_|_| |_|\__, |___/ "#);
     println!(r#"                               |___/      "#);
     println!();
-    println!(r###"This is a #quote# inside a raw string."###);
-    println!("This exercise compiles successfully. The remaining exercises contain a compiler");
-    println!("or logic error. The central concept behind Rustlings is to fix these errors and");
-    println!("solve the exercises. Good luck!={}", index);
+    println!(r###"This is a #quote# inside a raw string.={}"###, index);
     println!();
-    println!("The file of this exercise is `exercises/00_intro/intro1.rs`. Have a look!");
-    println!("The current exercise path will be always shown under the progress bar.");
-    println!("You can click on the path to open the exercise file in your editor.");
 }
