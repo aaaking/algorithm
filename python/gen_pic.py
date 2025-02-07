@@ -2,6 +2,7 @@
 from  PIL import Image
 import os
 import time
+import shutil
 
 cmd_dir = os.getcwd() # 执行python命令的目录
 script_dir = os.path.abspath(os.path.dirname(__file__)) # or os.path.dirname(os.path.abspath(__file__)) # 脚本所在的目录。
@@ -11,6 +12,7 @@ print(f"cmd dir={cmd_dir} \n script dir={script_dir} \n pic dir={DIR_PIC}")
 
 
 def checkPicDir():
+    shutil.rmtree(DIR_PIC) #清空目录后再重新创建
     if not os.path.exists(DIR_PIC):
         print(f"pic dir not exist and create ret={os.makedirs(DIR_PIC)}")
     
