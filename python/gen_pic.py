@@ -22,10 +22,11 @@ def genAndSaveImage():
     width, height = 800, 600
     color = (255, 0, 0)
     image = Image.new("RGB", (width, height), color)
-    image.save(f"{DIR_PIC}/pure_color_image_{timestamp}.png")
+    imgName = f"{DIR_PIC}/pure_color_image_{timestamp}.png"
+    image.save(imgName)
     # 打开一个图像文件
-    # image = Image.open('example.jpg')
-    # image.show()
+    image = Image.open(imgName)
+    image.show()
 
 if __name__ == '__main__':
     checkPicDir()
