@@ -24,8 +24,11 @@ def genAndSaveImage():
     image = Image.new("RGB", (width, height), color)
     imgName = f"{DIR_PIC}/pure_color_image_{timestamp}.png"
     image.save(imgName)
+    # showImageByFilePath(imgName)
+
+def showImageByFilePath(path):
     # 打开一个图像文件
-    image = Image.open(imgName)
+    image = Image.open(path)
     image.show()
 
 if __name__ == '__main__':
