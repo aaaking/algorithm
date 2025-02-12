@@ -3,6 +3,7 @@ from  PIL import Image
 import os
 import time
 import shutil
+import datetime
 
 cmd_dir = os.getcwd() # 执行python命令的目录
 script_dir = os.path.abspath(os.path.dirname(__file__)) # or os.path.dirname(os.path.abspath(__file__)) # 脚本所在的目录。
@@ -18,11 +19,13 @@ def checkPicDir():
     
 
 def genAndSaveImage():
-    timestamp = int(time.time() * 1000)
+    timestamp = (time.time() * 1000)
+    dt = datetime.datetime.fromtimestamp(timestamp / 1000)
+    line_with_time = dt.strftime('%Y-%m-%d %H:%M:%S.%f')
     width, height = 800, 600
     color = (255, 0, 0)
     image = Image.new("RGB", (width, height), color)
-    imgName = f"{DIR_PIC}/pure_color_image_{timestamp}.png"
+    imgName = f"{DIR_PIC}/pure_color_image_{line_with_time}.png"
     image.save(imgName)
     # showImageByFilePath(imgName)
 
