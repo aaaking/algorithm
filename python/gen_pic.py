@@ -4,7 +4,7 @@ import os
 import time
 import shutil
 import datetime
-# import logg
+# import util.logg
 from util.logg import *
 
 cmd_dir = os.getcwd() # 执行python命令的目录
