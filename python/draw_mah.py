@@ -30,7 +30,7 @@ def checkMathDir():
     if not os.path.exists(DIR_MATH_PIC):
         print(f"math pic dir not exist and create ret={os.makedirs(DIR_MATH_PIC)}")
 
-def draw_bar():
+def draw_barv():
     categories = ['A', 'B', 'C', 'D']
     values = [3, 7, 2, 5]
     plt.bar(categories, values, color=['blue', 'green', 'red', 'purple'], width=0.5) # also see barh
@@ -76,5 +76,5 @@ def draw_bar():
 checkMathDir()
 if __name__ == '__main__':
     logg.log_cyan("draw math start thread=" + str(threading.currentThread()) + " is daemon=" + str(threading.currentThread().isDaemon()))
-    draw_bar()
+    draw_barv()
     logg.log_green("draw math end")
