@@ -40,10 +40,10 @@ def draw_bar():
     for i in range(len(categories)):
         plt.text(i, values[i], str(values[i]), ha='center', va='bottom')
 
-    plt.show(block = False)
+    # plt.show(block = False) # 这个方法，其他代码必须放在pause之前 才不会被阻塞，draw方法也有这个问题
+    plt.draw()
     imgName = f"{DIR_MATH_PIC}/basic_bar_savefig_{timeformat()}.png"
     plt.savefig(imgName, dpi=300, bbox_inches='tight')
-
     plt.pause(-1)  # 保持图形窗口打开10秒, -1 infinite
 
 checkMathDir()
