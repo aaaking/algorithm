@@ -11,8 +11,7 @@
 # )
 #
 
-import os
-import shutil
+import threading
 from math import sqrt, pi, ceil, floor
 import matplotlib
 import matplotlib.patches
@@ -46,8 +45,15 @@ def draw_bar():
     plt.savefig(imgName, dpi=300, bbox_inches='tight')
     plt.pause(-1)  # 保持图形窗口打开10秒, -1 infinite
 
+    def show_plot_subthread():
+        # plt.show() # Terminating app due to uncaught exception 'NSInternalInconsistencyException', reason: 'NSWindow drag regions should only be invalidated on the Main Thread!'
+        logg.log_red("cannot show image in thread which is not main thread=" + str(threading.currentThread()) + " is daemon=" + str(threading.currentThread().isDaemon()))
+    plot_thread = threading.Thread(target=show_plot_subthread)
+    plot_thread.start()
+    plot_thread.join()
+
 checkMathDir()
 if __name__ == '__main__':
-    logg.log_cyan("draw math start")
+    logg.log_cyan("draw math start thread=" + str(threading.currentThread()) + " is daemon=" + str(threading.currentThread().isDaemon()))
     draw_bar()
     logg.log_green("draw math end")
