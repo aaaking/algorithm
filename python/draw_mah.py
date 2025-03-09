@@ -37,9 +37,11 @@ def draw_bar():
     plt.title("BasicBar")
     plt.xlabel("Category")
     plt.ylabel("value")
+
     # plt.show()
+
     imgName = f"{DIR_MATH_PIC}/basic_bar_savefig_{timeformat()}.png"
-    plt.savefig(imgName)
+    plt.savefig(imgName, dpi=300, bbox_inches='tight')
 
 checkMathDir()
 if __name__ == '__main__':
