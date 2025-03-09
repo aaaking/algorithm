@@ -33,7 +33,7 @@ def checkMathDir():
 def draw_bar():
     categories = ['A', 'B', 'C', 'D']
     values = [3, 7, 2, 5]
-    plt.bar(categories, values, color=['blue', 'green', 'red', 'purple'], width=0.5)
+    plt.bar(categories, values, color=['blue', 'green', 'red', 'purple'], width=0.5) # also see barh
     plt.title("BasicBar")
     plt.xlabel("Category")
     plt.ylabel("value")
