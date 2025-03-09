@@ -31,6 +31,21 @@ def checkMathDir():
     if not os.path.exists(DIR_MATH_PIC):
         print(f"math pic dir not exist and create ret={os.makedirs(DIR_MATH_PIC)}")
 
+def draw_line_chart(x = [1, 2, 3, 4, 5], y = [1, 4, 9, 16, 25]):
+    y2 = [1, 2, 3, 4, 5]  # 第二条折线的数据
+    plt.figure(figsize=(10, 6))  # 设置图形大小
+    plt.plot(x, y, label='y = x^2', marker='o', linestyle='-', color='b')
+    plt.plot(x, y2, label='y = x', marker='s', linestyle='--', color='r')
+    plt.title('LineChart')
+    plt.xlabel('X-axis')
+    plt.ylabel('Y-axis')
+    # 显示图例
+    plt.legend()
+    # 显示网格
+    plt.grid(True)
+    # 显示图形
+    plt.show()
+
 def draw_barv(categories = ['A', 'B', 'C', 'D'], values = [3, 7, 2, 5]):
     print("categories=" + str(categories) + " values=" + str(values))
     values1 = [3, 7, 2, 5]
@@ -64,6 +79,7 @@ def draw_barv(categories = ['A', 'B', 'C', 'D'], values = [3, 7, 2, 5]):
     add_labels(rects2)
     add_labels(rects3)
 
+    # plt.grid(True)
     # plt.bar(categories, values, color=['blue', 'green', 'red', 'purple'], width=0.5) # also see barh
     # plt.title("中文乱码", fontproperties="SimSun")
     # plt.xlabel("Category")
@@ -107,5 +123,6 @@ def draw_barv(categories = ['A', 'B', 'C', 'D'], values = [3, 7, 2, 5]):
 checkMathDir()
 if __name__ == '__main__':
     logg.log_cyan("draw math start thread=" + str(threading.currentThread()) + " is daemon=" + str(threading.currentThread().isDaemon()))
-    draw_barv()
+    # draw_barv()
+    draw_line_chart()
     logg.log_green("draw math end")
