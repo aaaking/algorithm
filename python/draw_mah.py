@@ -36,12 +36,14 @@ def draw_barv():
     values = [3, 7, 2, 5]
     values1 = [3, 7, 2, 5]
     values2 = [4, 6, 3, 4]
+    values3 = [6, 8, 9, 9]
     x = np.arange(len(categories))
     width = 0.35
     # 创建分组柱状图
     fig, ax = plt.subplots()
     rects1 = ax.bar(x - width / 2, values1, width, label='Group 1')
     rects2 = ax.bar(x + width / 2, values2, width, label='Group 2')
+    rects3 = ax.bar(x + width / 2, values3, bottom=values2, width = width, label='Group 3')
     ax.set_title("GroupBar", fontproperties="SimSun")
     ax.set_xlabel('Category')
     ax.set_ylabel('Value')
@@ -51,14 +53,17 @@ def draw_barv():
     # 显示数值
     def add_labels(rects):
         for rect in rects:
+            # logg.log_red(str(rect))
             height = rect.get_height()
+            posY = rect.get_y() + height
             ax.annotate('{}'.format(height),
-                        xy=(rect.get_x() + rect.get_width() / 2, height),
+                        xy=(rect.get_x() + rect.get_width() / 2, posY),
                         xytext=(0, 0.5),  # 0.5 points vertical offset
                         textcoords="offset points",
                         ha='center', va='bottom')
     add_labels(rects1)
     add_labels(rects2)
+    add_labels(rects3)
 
     # plt.bar(categories, values, color=['blue', 'green', 'red', 'purple'], width=0.5) # also see barh
     # plt.title("BasicBar")
@@ -86,7 +91,7 @@ def draw_barv():
     # plt.show(block = False) # 这个方法，其他代码必须放在pause之前 才不会被阻塞，draw方法也有这个问题
     plt.draw()
     logg.log_pink("save fig start")
-    imgName = f"{DIR_MATH_PIC}/basic_bar_savefigw=0.5_{timeformat()}.png"
+    imgName = f"{DIR_MATH_PIC}/basic_bargroup_savefigw=0.35_{timeformat()}.png"
     # plt.savefig(imgName, dpi=300, bbox_inches='tight')
     logg.log_pink("save fig end")
     plt.pause(-1)  # 保持图形窗口打开10秒, -1 infinite
