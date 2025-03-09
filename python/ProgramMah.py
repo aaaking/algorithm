@@ -11,4 +11,13 @@
 # )
 #
 
-# import matpotlib
+from math import sqrt, pi, ceil, floor
+# import matplotlib
+# import matplotlib.patches
+# import matplotlib.pyplot as plt
+# from matplotlib.collections import PatchCollection
+# from matplotlib.pyplot import xlim, ylim
+# import numpy as np
+from util.logg import *
+
+log_green("program math start")
