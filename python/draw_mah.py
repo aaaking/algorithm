@@ -45,8 +45,10 @@ def draw_line_chart(x = [1, 2, 3, 4, 5], y = [1, 4, 9, 16, 25]):
     plt.grid(True)
     # 显示图形
     plt.draw()
+    logg.log_pink("save line chart start")
     imgName = f"{DIR_MATH_PIC}/linechart_{timeformat()}.png"
     # plt.savefig(imgName, dpi=300, bbox_inches='tight')
+    logg.log_pink("save line chart end")
     plt.pause(-1)
 
 def draw_barv(categories = ['A', 'B', 'C', 'D'], values = [3, 7, 2, 5]):
@@ -108,10 +110,10 @@ def draw_barv(categories = ['A', 'B', 'C', 'D'], values = [3, 7, 2, 5]):
 
     # plt.show(block = False) # 这个方法，其他代码必须放在pause之前 才不会被阻塞，draw方法也有这个问题
     plt.draw()
-    logg.log_pink("save fig start")
+    logg.log_pink("save bar start")
     imgName = f"{DIR_MATH_PIC}/basic_bargroup_savefigw=0.35_{timeformat()}.png"
     # plt.savefig(imgName, dpi=300, bbox_inches='tight')
-    logg.log_pink("save fig end")
+    logg.log_pink("save bar end")
     plt.pause(-1)  # 保持图形窗口打开10秒, -1 infinite
 
     def show_plot_subthread():
@@ -126,6 +128,6 @@ def draw_barv(categories = ['A', 'B', 'C', 'D'], values = [3, 7, 2, 5]):
 checkMathDir()
 if __name__ == '__main__':
     logg.log_cyan("draw math start thread=" + str(threading.currentThread()) + " is daemon=" + str(threading.currentThread().isDaemon()))
-    # draw_barv()
+    draw_barv()
     draw_line_chart()
     logg.log_green("draw math end")
