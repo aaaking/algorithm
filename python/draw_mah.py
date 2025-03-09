@@ -11,6 +11,8 @@
 # )
 #
 
+import os
+import shutil
 from math import sqrt, pi, ceil, floor
 import matplotlib
 import matplotlib.patches
@@ -19,6 +21,14 @@ from matplotlib.collections import PatchCollection
 from matplotlib.pyplot import xlim, ylim
 import numpy as np
 import util.logg as logg
+from util.dir import *
+from util.time import *
+
+DIR_MATH_PIC = os.path.join(getMostRoot(), "build/pic_math/")
+
+def checkMathDir():
+    if not os.path.exists(DIR_MATH_PIC):
+        print(f"math pic dir not exist and create ret={os.makedirs(DIR_MATH_PIC)}")
 
 def draw_bar():
     categories = ['A', 'B', 'C', 'D']
@@ -27,8 +37,11 @@ def draw_bar():
     plt.title("BasicBar")
     plt.xlabel("Category")
     plt.ylabel("value")
-    plt.show()
+    # plt.show()
+    imgName = f"{DIR_MATH_PIC}/basic_bar_{timeformat()}.png"
+    plt.savefig(imgName)
 
+checkMathDir()
 if __name__ == '__main__':
     logg.log_cyan("draw math start")
     draw_bar()
