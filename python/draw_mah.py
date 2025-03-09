@@ -53,9 +53,9 @@ def draw_line_chart(x = [1, 2, 3, 4, 5], y = [1, 4, 9, 16, 25]):
 
 def draw_barv(categories = ['A', 'B', 'C', 'D'], values = [3, 7, 2, 5]):
     print("categories=" + str(categories) + " values=" + str(values))
-    # fig, ax = plt.subplots() # 这一行代码跟下面两行代码的恶效果一样
-    fig = plt.figure(9825234)
-    ax = fig.add_subplot()  # 111表示1x1网格的第1个子图
+    fig, ax = plt.subplots() # 这一行代码跟下面两行代码的效果一样
+    # fig = plt.figure(9825234)
+    # ax = fig.add_subplot()  # 111表示1x1网格的第1个子图
     values1 = [3, 7, 2, 5]
     values2 = [4, 6, 3, 4]
     values3 = [6, 8, 9, 9]
@@ -126,6 +126,19 @@ def draw_barv(categories = ['A', 'B', 'C', 'D'], values = [3, 7, 2, 5]):
     plot_thread.join()
     plot_process.join()
 
+def draw_scatter():
+    plt.figure(345610983)
+    x = np.random.rand(50)
+    y = np.random.rand(50)
+    colors = np.random.rand(50)
+    sizes = 1000 * np.random.rand(50)
+
+    plt.scatter(x, y, c=colors, s=sizes, alpha=0.5)
+    plt.xlabel('x')
+    plt.ylabel('y')
+    plt.title('Scatter Plot')
+    plt.show()
+
 checkMathDir()
 if __name__ == '__main__':
     logg.log_cyan("draw math start thread=" + str(threading.currentThread()) + " is daemon=" + str(threading.currentThread().isDaemon()))
@@ -135,6 +148,7 @@ if __name__ == '__main__':
 
     draw_line_chart()
     draw_barv()
+    draw_scatter()
 
     # 关闭交互模式（可选）
     plt.ioff()
