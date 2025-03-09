@@ -5,11 +5,10 @@ import time
 import shutil
 import datetime
 from util.logg import *
+from util.dir import *
 
-cmd_dir = os.getcwd() # 执行python命令的目录
-script_dir = os.path.abspath(os.path.dirname(__file__)) # or os.path.dirname(os.path.abspath(__file__)) # 脚本所在的目录。
-DIR_PIC = os.path.join(script_dir, "build/pic/")
-print(f"cmd dir={cmd_dir} \n script dir={script_dir} \n pic dir={DIR_PIC}")
+DIR_PIC = os.path.join(getMostRoot(), "build/pic/")
+print(f"pic dir={DIR_PIC}")
 
 
 
