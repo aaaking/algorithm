@@ -2,4 +2,5 @@
 out/
 cppProjects/.idea/
 build
+venv
 .vscode
