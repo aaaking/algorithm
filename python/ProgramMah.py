@@ -12,12 +12,12 @@
 #
 
 from math import sqrt, pi, ceil, floor
-# import matplotlib
-# import matplotlib.patches
-# import matplotlib.pyplot as plt
-# from matplotlib.collections import PatchCollection
-# from matplotlib.pyplot import xlim, ylim
-# import numpy as np
+import matplotlib
+import matplotlib.patches
+import matplotlib.pyplot as plt
+from matplotlib.collections import PatchCollection
+from matplotlib.pyplot import xlim, ylim
+import numpy as np
 import util.logg as logg
 
 logg.log_green("program math start")
