@@ -26,4 +26,4 @@ def log_white(msg):
     print('\033[1;37;40m%s\033[0m' % msg)
 
 if __name__ == '__main__':
-    log_red("----test me----")
+    log_red("----test logg----")
