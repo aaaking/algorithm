@@ -5,7 +5,7 @@ import time
 import shutil
 import datetime
 # import logg
-from logg import *
+from util.logg import *
 
 cmd_dir = os.getcwd() # 执行python命令的目录
 script_dir = os.path.abspath(os.path.dirname(__file__)) # or os.path.dirname(os.path.abspath(__file__)) # 脚本所在的目录。
