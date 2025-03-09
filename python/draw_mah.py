@@ -53,14 +53,14 @@ def draw_line_chart(x = [1, 2, 3, 4, 5], y = [1, 4, 9, 16, 25]):
 
 def draw_barv(categories = ['A', 'B', 'C', 'D'], values = [3, 7, 2, 5]):
     print("categories=" + str(categories) + " values=" + str(values))
-    # fig = plt.figure(9825234)
+    # fig, ax = plt.subplots() # 这一行代码跟下面两行代码的恶效果一样
+    fig = plt.figure(9825234)
+    ax = fig.add_subplot()  # 111表示1x1网格的第1个子图
     values1 = [3, 7, 2, 5]
     values2 = [4, 6, 3, 4]
     values3 = [6, 8, 9, 9]
     x = np.arange(len(categories)) + 1 # x = [1, 2, 3, 4]
     width = 0.35
-    fig, ax = plt.subplots()
-    # ax = fig.add_subplot()  # 111表示1x1网格的第1个子图
     logg.log_red("fig="+str(fig))
     rects1 = ax.bar(x - width / 2, values1, width, label='Group 1')
     rects2 = ax.bar(x + width / 2, values2, width, label='Group 2')
