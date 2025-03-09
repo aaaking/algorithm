@@ -44,7 +44,10 @@ def draw_line_chart(x = [1, 2, 3, 4, 5], y = [1, 4, 9, 16, 25]):
     # 显示网格
     plt.grid(True)
     # 显示图形
-    plt.show()
+    plt.draw()
+    imgName = f"{DIR_MATH_PIC}/linechart_{timeformat()}.png"
+    # plt.savefig(imgName, dpi=300, bbox_inches='tight')
+    plt.pause(-1)
 
 def draw_barv(categories = ['A', 'B', 'C', 'D'], values = [3, 7, 2, 5]):
     print("categories=" + str(categories) + " values=" + str(values))
