@@ -33,7 +33,7 @@ def checkMathDir():
 def draw_bar():
     categories = ['A', 'B', 'C', 'D']
     values = [3, 7, 2, 5]
-    plt.bar(categories, values)
+    plt.bar(categories, values, color=['blue', 'green', 'red', 'purple'], width=0.5)
     plt.title("BasicBar")
     plt.xlabel("Category")
     plt.ylabel("value")
@@ -59,8 +59,8 @@ def draw_bar():
     # plt.show(block = False) # 这个方法，其他代码必须放在pause之前 才不会被阻塞，draw方法也有这个问题
     plt.draw()
     logg.log_pink("save fig start")
-    imgName = f"{DIR_MATH_PIC}/basic_bar_savefig_{timeformat()}.png"
-    # plt.savefig(imgName, dpi=300, bbox_inches='tight')
+    imgName = f"{DIR_MATH_PIC}/basic_bar_savefigw=0.5_{timeformat()}.png"
+    plt.savefig(imgName, dpi=300, bbox_inches='tight')
     logg.log_pink("save fig end")
     plt.pause(-1)  # 保持图形窗口打开10秒, -1 infinite
 
