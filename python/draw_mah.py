@@ -20,4 +20,5 @@ from matplotlib.pyplot import xlim, ylim
 import numpy as np
 import util.logg as logg
 
-logg.log_green("program math start")
+if __name__ == '__main__':
+    logg.log_green("program math start")
