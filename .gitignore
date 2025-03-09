@@ -3,4 +3,5 @@ out/
 cppProjects/.idea/
 build
 venv
+__pycache__
 .vscode

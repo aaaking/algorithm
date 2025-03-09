@@ -4,6 +4,8 @@ import os
 import time
 import shutil
 import datetime
+# import logg
+from logg import *
 
 cmd_dir = os.getcwd() # 执行python命令的目录
 script_dir = os.path.abspath(os.path.dirname(__file__)) # or os.path.dirname(os.path.abspath(__file__)) # 脚本所在的目录。
@@ -38,4 +40,4 @@ def showImageByFilePath(path):
 if __name__ == '__main__':
     checkPicDir()
     genAndSaveImage()
-    
+    log_green("succ")
