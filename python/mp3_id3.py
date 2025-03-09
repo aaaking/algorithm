@@ -92,11 +92,11 @@ if __name__ == '__main__':
     # afg_str = afg.decode('utf-8')
     # print(afg_str)
     # print(afg_str == aff)
-    parser = argparse.ArgumentParser(description='命令参数信息')
-    parser.add_argument('-u', type=str, help='path')
-    args = parser.parse_args()
+    # parser = argparse.ArgumentParser(description='命令参数信息')
+    # parser.add_argument('-u', type=str, help='path')
+    # args = parser.parse_args()
     print(f"sys.argv={(sys.argv)}")
-    print(f"args={args}")
+    # print(f"args={args}")
     # if args.u is None:
     #     help = """
     #     请输入正确参数：.py-u <url>
@@ -111,7 +111,8 @@ if __name__ == '__main__':
         print(f"start<>file_path{file_path}")
         os.chmod(file_path, 0o777)
         print(f"end<>file_path{file_path}")
-        read_id3v2_header(file_path)
+        id3v2 = read_id3v2_header(file_path)
+        print(id3v2)
     else:
         print("./*.py <文件路径>")
 
