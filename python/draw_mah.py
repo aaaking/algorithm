@@ -37,11 +37,13 @@ def draw_bar():
     plt.title("BasicBar")
     plt.xlabel("Category")
     plt.ylabel("value")
-
-    # plt.show()
+    for i in range(len(categories)):
+        plt.text(i, values[i], str(values[i]), ha='center', va='bottom')
 
     imgName = f"{DIR_MATH_PIC}/basic_bar_savefig_{timeformat()}.png"
     plt.savefig(imgName, dpi=300, bbox_inches='tight')
+
+    # plt.show()
 
 checkMathDir()
 if __name__ == '__main__':
