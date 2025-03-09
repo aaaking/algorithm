@@ -31,9 +31,8 @@ def checkMathDir():
     if not os.path.exists(DIR_MATH_PIC):
         print(f"math pic dir not exist and create ret={os.makedirs(DIR_MATH_PIC)}")
 
-def draw_barv():
-    categories = ['A', 'B', 'C', 'D']
-    values = [3, 7, 2, 5]
+def draw_barv(categories = ['A', 'B', 'C', 'D'], values = [3, 7, 2, 5]):
+    print("categories=" + str(categories) + " values=" + str(values))
     values1 = [3, 7, 2, 5]
     values2 = [4, 6, 3, 4]
     values3 = [6, 8, 9, 9]
