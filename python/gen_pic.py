@@ -13,7 +13,8 @@ print(f"cmd dir={cmd_dir} \n script dir={script_dir} \n pic dir={DIR_PIC}")
 
 
 def checkPicDir():
-    shutil.rmtree(DIR_PIC) #清空目录后再重新创建
+    if os.path.exists(DIR_PIC):
+        shutil.rmtree(DIR_PIC) #清空目录后再重新创建
     if not os.path.exists(DIR_PIC):
         print(f"pic dir not exist and create ret={os.makedirs(DIR_PIC)}")
     
