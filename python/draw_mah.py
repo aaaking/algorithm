@@ -40,10 +40,11 @@ def draw_bar():
     for i in range(len(categories)):
         plt.text(i, values[i], str(values[i]), ha='center', va='bottom')
 
+    plt.show(block = False)
     imgName = f"{DIR_MATH_PIC}/basic_bar_savefig_{timeformat()}.png"
     plt.savefig(imgName, dpi=300, bbox_inches='tight')
 
-    # plt.show()
+    plt.pause(-1)  # 保持图形窗口打开10秒, -1 infinite
 
 checkMathDir()
 if __name__ == '__main__':
