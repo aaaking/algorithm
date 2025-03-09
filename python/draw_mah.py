@@ -56,7 +56,8 @@ def draw_barv(categories = ['A', 'B', 'C', 'D'], values = [3, 7, 2, 5]):
     values1 = [3, 7, 2, 5]
     values2 = [4, 6, 3, 4]
     values3 = [6, 8, 9, 9]
-    x = np.arange(len(categories))
+    x = np.arange(len(categories)) + 1 # x = [1, 2, 3, 4]
+    print("x=" + str(x))
     width = 0.35
     # 创建分组柱状图
     fig, ax = plt.subplots()
