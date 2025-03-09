@@ -66,7 +66,7 @@ def draw_barv():
     add_labels(rects3)
 
     # plt.bar(categories, values, color=['blue', 'green', 'red', 'purple'], width=0.5) # also see barh
-    # plt.title("BasicBar")
+    # plt.title("中文乱码", fontproperties="SimSun")
     # plt.xlabel("Category")
     # plt.ylabel("Value")
     # for i in range(len(categories)):
