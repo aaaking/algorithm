@@ -33,7 +33,7 @@ def checkMathDir():
 
 def draw_line_chart(x = [1, 2, 3, 4, 5], y = [1, 4, 9, 16, 25]):
     y2 = [1, 2, 3, 4, 5]  # 第二条折线的数据
-    plt.figure(figsize=(10, 6))  # 设置图形大小
+    plt.figure(2345436, figsize=(10, 6))  # 设置图形大小
     plt.plot(x, y, label='y = x^2', marker='o', linestyle='-', color='b')
     plt.plot(x, y2, label='y = x', marker='s', linestyle='--', color='r')
     plt.title('LineChart')
@@ -44,23 +44,24 @@ def draw_line_chart(x = [1, 2, 3, 4, 5], y = [1, 4, 9, 16, 25]):
     # 显示网格
     plt.grid(True)
     # 显示图形
-    plt.draw()
+    plt.show()
     logg.log_pink("save line chart start")
     imgName = f"{DIR_MATH_PIC}/linechart_{timeformat()}.png"
     # plt.savefig(imgName, dpi=300, bbox_inches='tight')
     logg.log_pink("save line chart end")
-    plt.pause(-1)
+    # plt.pause(-1)
 
 def draw_barv(categories = ['A', 'B', 'C', 'D'], values = [3, 7, 2, 5]):
     print("categories=" + str(categories) + " values=" + str(values))
+    # fig = plt.figure(9825234)
     values1 = [3, 7, 2, 5]
     values2 = [4, 6, 3, 4]
     values3 = [6, 8, 9, 9]
     x = np.arange(len(categories)) + 1 # x = [1, 2, 3, 4]
-    print("x=" + str(x))
     width = 0.35
-    # 创建分组柱状图
     fig, ax = plt.subplots()
+    # ax = fig.add_subplot()  # 111表示1x1网格的第1个子图
+    logg.log_red("fig="+str(fig))
     rects1 = ax.bar(x - width / 2, values1, width, label='Group 1')
     rects2 = ax.bar(x + width / 2, values2, width, label='Group 2')
     rects3 = ax.bar(x + width / 2, values3, bottom=values2, width = width, label='Group 3')
@@ -110,12 +111,12 @@ def draw_barv(categories = ['A', 'B', 'C', 'D'], values = [3, 7, 2, 5]):
     plot_process.start()
 
     # plt.show(block = False) # 这个方法，其他代码必须放在pause之前 才不会被阻塞，draw方法也有这个问题
-    plt.draw()
+    plt.show()
     logg.log_pink("save bar start")
     imgName = f"{DIR_MATH_PIC}/basic_bargroup_savefigw=0.35_{timeformat()}.png"
     # plt.savefig(imgName, dpi=300, bbox_inches='tight')
     logg.log_pink("save bar end")
-    plt.pause(-1)  # 保持图形窗口打开10秒, -1 infinite
+    # plt.pause(-1)  # 保持图形窗口打开10秒, -1 infinite
 
     def show_plot_subthread():
         # plt.show() # Terminating app due to uncaught exception 'NSInternalInconsistencyException', reason: 'NSWindow drag regions should only be invalidated on the Main Thread!'
@@ -124,11 +125,21 @@ def draw_barv(categories = ['A', 'B', 'C', 'D'], values = [3, 7, 2, 5]):
     plot_thread.start()
     plot_thread.join()
     plot_process.join()
-    plt.close()
 
 checkMathDir()
 if __name__ == '__main__':
     logg.log_cyan("draw math start thread=" + str(threading.currentThread()) + " is daemon=" + str(threading.currentThread().isDaemon()))
-    draw_barv()
+
+    # 开启交互模式
+    plt.ion()
+
     draw_line_chart()
+    draw_barv()
+
+    # 关闭交互模式（可选）
+    plt.ioff()
+    # 阻塞程序，等待用户关闭所有图形窗口
+    plt.show()
+    plt.close()
+
     logg.log_green("draw math end")
