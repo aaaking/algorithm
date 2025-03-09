@@ -18,6 +18,6 @@ from math import sqrt, pi, ceil, floor
 # from matplotlib.collections import PatchCollection
 # from matplotlib.pyplot import xlim, ylim
 # import numpy as np
-from util.logg import *
+import util.logg as logg
 
-log_green("program math start")
+logg.log_green("program math start")
