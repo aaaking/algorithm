@@ -20,5 +20,16 @@ from matplotlib.pyplot import xlim, ylim
 import numpy as np
 import util.logg as logg
 
+def draw_bar():
+    categories = ['A', 'B', 'C', 'D']
+    values = [3, 7, 2, 5]
+    plt.bar(categories, values)
+    plt.title("BasicBar")
+    plt.xlabel("Category")
+    plt.ylabel("value")
+    plt.show()
+
 if __name__ == '__main__':
-    logg.log_green("program math start")
+    logg.log_cyan("draw math start")
+    draw_bar()
+    logg.log_green("draw math end")
