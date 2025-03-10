@@ -138,6 +138,10 @@ def draw_scatter():
     plt.ylabel('y')
     plt.title('Scatter Plot')
     plt.show()
+    logg.log_pink("save scatter start")
+    imgName = f"{DIR_MATH_PIC}/scatter=0.35_{timeformat()}.png"
+    # plt.savefig(imgName, dpi=300, bbox_inches='tight')
+    logg.log_pink("save scatter end")
 
 checkMathDir()
 if __name__ == '__main__':
