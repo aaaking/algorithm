@@ -72,6 +72,7 @@ def extract_vectors(objects):
 
 def draw(*objects, origin=True, axes=True, grid=(1,1), nice_aspect_ratio=True, width=6, save_as=None):
     plt.figure()
+    plt.grid(True)
     all_vectors = list(extract_vectors(objects))
     xs, ys = zip(*all_vectors)
     max_x, max_y, min_x, min_y = max(0, *xs), max(0, *ys), min(0, *xs), min(0, *ys)
@@ -82,9 +83,12 @@ def draw(*objects, origin=True, axes=True, grid=(1,1), nice_aspect_ratio=True, w
             return floor((val + size) / size) * size
         def round_down_to_multiple(val, size):
             return -floor((-val - size) / size) * size
-
         plt.xlim(floor((min_x - x_padding) / grid[0]) * grid[0], ceil((max_x + x_padding) / grid[0]) * grid[0])
         plt.ylim(floor((min_y - y_padding) / grid[1]) * grid[1], ceil((max_y + y_padding) / grid[1]) * grid[1])
+
+    x = np.linspace(0, 10, 100) # [0,`10]区间的线性增长的100个数字
+    y = np.sin(x)
+    plt.plot(x, y)
 
     plt.show()
 
