@@ -158,6 +158,18 @@ def draw_histogram():
     # plt.savefig(imgName, dpi=300, bbox_inches='tight')
     logg.log_pink("save histogram end")
 
+def draw_pie(labels = ['A', 'B', 'C', 'D'], sizes = [15, 30, 45, 10]):
+    plt.figure()
+    explode = (0, 0.04, 0, 0)  # 突出显示'B'
+    plt.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%', startangle=140)
+    plt.axis('equal')  # 使饼图呈圆形
+    plt.title('Pie Chart')
+    plt.show()
+    logg.log_pink("save pie start")
+    imgName = f"{DIR_MATH_PIC}/pie_{timeformat()}.png"
+    # plt.savefig(imgName, dpi=300, bbox_inches='tight')
+    logg.log_pink("save pie end")
+
 checkMathDir()
 if __name__ == '__main__':
     logg.log_cyan("draw math start thread=" + str(threading.currentThread()) + " is daemon=" + str(threading.currentThread().isDaemon()))
@@ -169,6 +181,7 @@ if __name__ == '__main__':
     draw_barv()
     draw_scatter()
     draw_histogram()
+    draw_pie()
 
     # 关闭交互模式（可选）
     plt.ioff()
