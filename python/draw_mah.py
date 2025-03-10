@@ -170,7 +170,7 @@ def draw_pie(labels = ['A', 'B', 'C', 'D'], sizes = [15, 30, 45, 10]):
     # plt.savefig(imgName, dpi=300, bbox_inches='tight')
     logg.log_pink("save pie end")
 
-def draw_boxplot(labels = ['A', 'B', 'C', 'D'], sizes = [15, 30, 45, 10]):
+def draw_boxplot():
     plt.figure()
     """
     使用了列表推导式（list comprehension）来生成一个列表，这个列表包含了三个数组，每个数组都是从正态分布（高斯分布）中随机抽取的100个样本
@@ -184,10 +184,23 @@ def draw_boxplot(labels = ['A', 'B', 'C', 'D'], sizes = [15, 30, 45, 10]):
     plt.ylabel('Value')
     plt.title('Box Plot')
     plt.show()
-    logg.log_pink("save pie start")
+    logg.log_pink("save box start")
     imgName = f"{DIR_MATH_PIC}/box_{timeformat()}.png"
     # plt.savefig(imgName, dpi=300, bbox_inches='tight')
     logg.log_pink("save box end")
+
+def draw_heatmap():
+    plt.figure()
+    # 热力图(Heatmap), 用于显示二维数据矩阵的值。
+    data = np.random.rand(10, 10)
+    plt.imshow(data, cmap='hot', interpolation='nearest')
+    plt.colorbar()
+    plt.title('Heatmap')
+    plt.show()
+    logg.log_pink("save heatmap start")
+    imgName = f"{DIR_MATH_PIC}/heatmap_{timeformat()}.png"
+    # plt.savefig(imgName, dpi=300, bbox_inches='tight')
+    logg.log_pink("save heatmap end")
 
 checkMathDir()
 if __name__ == '__main__':
@@ -202,6 +215,7 @@ if __name__ == '__main__':
     draw_histogram()
     draw_pie()
     draw_boxplot()
+    draw_heatmap()
 
     # 关闭交互模式（可选）
     plt.ioff()
