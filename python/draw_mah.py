@@ -61,7 +61,6 @@ def draw_barv(categories = ['A', 'B', 'C', 'D'], values = [3, 7, 2, 5]):
     values3 = [6, 8, 9, 9]
     x = np.arange(len(categories)) + 1 # x = [1, 2, 3, 4]
     width = 0.35
-    logg.log_red("fig="+str(fig))
     rects1 = ax.bar(x - width / 2, values1, width, label='Group 1')
     rects2 = ax.bar(x + width / 2, values2, width, label='Group 2')
     rects3 = ax.bar(x + width / 2, values3, bottom=values2, width = width, label='Group 3')
@@ -132,16 +131,28 @@ def draw_scatter():
     y = np.random.rand(50)
     colors = np.random.rand(50)
     sizes = 1000 * np.random.rand(50)
-
     plt.scatter(x, y, c=colors, s=sizes, alpha=0.5)
     plt.xlabel('x')
     plt.ylabel('y')
     plt.title('Scatter Plot')
     plt.show()
     logg.log_pink("save scatter start")
-    imgName = f"{DIR_MATH_PIC}/scatter=0.35_{timeformat()}.png"
+    imgName = f"{DIR_MATH_PIC}/scatter_{timeformat()}.png"
     # plt.savefig(imgName, dpi=300, bbox_inches='tight')
     logg.log_pink("save scatter end")
+
+def draw_histogram():
+    plt.figure()
+    data = np.random.randn(1000)
+    plt.hist(data, bins=30, edgecolor='black')
+    plt.xlabel('Value')
+    plt.ylabel('Frequency')
+    plt.title('Histogram')
+    plt.show()
+    logg.log_pink("save histogram start")
+    imgName = f"{DIR_MATH_PIC}/histogram_{timeformat()}.png"
+    # plt.savefig(imgName, dpi=300, bbox_inches='tight')
+    logg.log_pink("save histogram end")
 
 checkMathDir()
 if __name__ == '__main__':
@@ -153,6 +164,7 @@ if __name__ == '__main__':
     draw_line_chart()
     draw_barv()
     draw_scatter()
+    draw_histogram()
 
     # 关闭交互模式（可选）
     plt.ioff()
