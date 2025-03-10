@@ -33,7 +33,7 @@ def checkMathDir():
 
 def draw_line_chart(x = [1, 2, 3, 4, 5], y = [1, 4, 9, 16, 25]):
     y2 = [1, 2, 3, 4, 5]  # 第二条折线的数据
-    plt.figure(2345436, figsize=(10, 6))  # 设置图形大小
+    plt.figure(1005436, figsize=(10, 6))  # 设置图形大小
     plt.plot(x, y, label='y = x^2', marker='o', linestyle='-', color='b')
     plt.plot(x, y2, label='y = x', marker='s', linestyle='--', color='r')
     plt.title('LineChart')
@@ -127,7 +127,7 @@ def draw_barv(categories = ['A', 'B', 'C', 'D'], values = [3, 7, 2, 5]):
     plot_process.join()
 
 def draw_scatter():
-    plt.figure(345610983)
+    plt.figure()
     x = np.random.rand(50)
     y = np.random.rand(50)
     colors = np.random.rand(50)
