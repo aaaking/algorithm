@@ -1,9 +1,9 @@
 from math import sqrt, pi, ceil, floor
+import numpy as np
 import matplotlib
 import matplotlib.patches
 from matplotlib.collections import PatchCollection
 import matplotlib.pyplot as plt
-import numpy as np
 
 blue = 'C0'
 black = 'k'
