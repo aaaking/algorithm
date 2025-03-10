@@ -143,11 +143,15 @@ def draw_scatter():
 
 def draw_histogram():
     plt.figure()
-    data = np.random.randn(1000)
-    plt.hist(data, bins=30, edgecolor='black')
-    plt.xlabel('Value')
-    plt.ylabel('Frequency')
-    plt.title('Histogram')
+    np.random.seed(0)
+    mu, sigma = 100, 15
+    x = mu + sigma * np.random.randn(10000)
+    # bins: (int or sequence or str, optional) 直方图的柱子数量或者边界值数组。默认情况下，bins=10，即自动将数据分为10个区间。也可以指定具体的区间边界，例如bins=[0, 1, 2, 3]
+    n, bins, patches = plt.hist(x, bins=50, range=(50, 150), density=True, facecolor='g', alpha=0.75)
+    plt.xlabel('Smarts')
+    plt.ylabel('Probability')
+    plt.title('Histogram of IQ')
+    plt.grid(True)
     plt.show()
     logg.log_pink("save histogram start")
     imgName = f"{DIR_MATH_PIC}/histogram_{timeformat()}.png"
