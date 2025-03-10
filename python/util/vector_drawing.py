@@ -139,5 +139,5 @@ if __name__ == "__main__":
     all_vectors = list(extract_vectors([Points((1, 2), (3, 4)), Segment((5,6), (7,8))]))
     print(str((all_vectors)))
     print("draw start")
-    draw(Points((1, 2), (3, 4)))
+    draw(Points((1, 2), (3, 4)), Segment((5,6), (7,8)))
     print("draw end")
