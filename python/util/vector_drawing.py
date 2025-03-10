@@ -87,7 +87,8 @@ def draw(*objects, origin=True, axes=True, grid=(1,1), nice_aspect_ratio=True, w
             return -floor((-val - size) / size) * size
         plt.xlim(floor((min_x - x_padding) / grid[0]) * grid[0], ceil((max_x + x_padding) / grid[0]) * grid[0])
         plt.ylim(floor((min_y - y_padding) / grid[1]) * grid[1], ceil((max_y + y_padding) / grid[1]) * grid[1])
-
+    if origin:
+        plt.scatter([0], [0], color='k', marker='x')
     x = np.linspace(0, 10, 100) # [0,`10]区间的线性增长的100个数字
     y = np.sin(x)
     plt.plot(x, y)
