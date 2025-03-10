@@ -71,13 +71,18 @@ def extract_vectors(objects):
         else:
             raise TypeError("Unrecognized object: {}".format(object))
 
+def draw(*objects, origin=True, axes=True, grid=(1,1), nice_aspect_ratio=True, width=6, save_as=None):
+    all_vectors = list(extract_vectors(objects))
+
 if __name__ == "__main__":
     points = Points([1, 2], [3, 4])
     points2 = Points((1, 2), (3, 4))
     print("points=" + str(points) + " id=" + hex(id(points)) + " vector=" + str(points.vectors))
     print("points2=" + str(points2) + " id=" + hex(id(points2)) + " vector=" + str(points2.vectors))
-    gen = extract_vectors([Points((1, 2), (3, 4)), Segment((1,2), (3,4))])
-    print(str(next(gen)))
-    print(str(next(gen)))
-    print(str(next(gen)))
-    print(str(next(gen)))
+    # gen = list(extract_vectors([Points((1, 2), (3, 4)), Segment((1,2), (3,4))]))
+    # print(str(next(gen)))
+    # print(str(next(gen)))
+    # print(str(next(gen)))
+    # print(str(next(gen)))
+    all_vectors = list(extract_vectors([Points((1, 2), (3, 4)), Segment((1,2), (3,4))]))
+    print(str((all_vectors)))
