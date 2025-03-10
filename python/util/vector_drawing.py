@@ -3,7 +3,6 @@ import matplotlib
 import matplotlib.patches
 from matplotlib.collections import PatchCollection
 import matplotlib.pyplot as plt
-from matplotlib.pyplot import xlim, ylim
 import numpy as np
 
 blue = 'C0'
@@ -74,6 +73,18 @@ def extract_vectors(objects):
 def draw(*objects, origin=True, axes=True, grid=(1,1), nice_aspect_ratio=True, width=6, save_as=None):
     all_vectors = list(extract_vectors(objects))
     xs, ys = zip(*all_vectors)
+    max_x, max_y, min_x, min_y = max(0, *xs), max(0, *ys), min(0, *xs), min(0, *ys)
+    if grid:
+        print("grid is true")
+        x_padding = max(ceil(0.05 * (max_x - min_x)), grid[0])
+        y_padding = max(ceil(0.05 * (max_y - min_y)), grid[1])
+        def round_up_to_multiple(val, size):
+            return floor((val + size) / size) * size
+        def round_down_to_multiple(val, size):
+            return -floor((-val - size) / size) * size
+
+        plt.xlim(floor((min_x - x_padding) / grid[0]) * grid[0], ceil((max_x + x_padding) / grid[0]) * grid[0])
+        plt.ylim(floor((min_y - y_padding) / grid[1]) * grid[1], ceil((max_y + y_padding) / grid[1]) * grid[1])
 
 if __name__ == "__main__":
     points = Points([1, 2], [3, 4])
@@ -89,4 +100,5 @@ if __name__ == "__main__":
     print(str((all_vectors)))
     print("draw start")
     draw(Points((1, 2), (3, 4)))
-    print("draw eend")
+    plt.show()
+    print("draw end")
