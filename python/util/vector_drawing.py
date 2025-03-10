@@ -51,6 +51,11 @@ class Segment():
         self.end_point = end_point
         self.color = color
 
+class Sin():
+    def __init__(self, xs):
+        self.xs = xs
+        self.ys = [np.sin(x) for x in self.xs]
+
 class Cos():
     def __init__(self, xs):
         self.xs = xs
@@ -72,7 +77,7 @@ def extract_vectors(objects):
         elif typeObj == Segment:
             yield object.start_point
             yield object.end_point
-        elif typeObj == Cos:
+        elif typeObj == Cos or typeObj == Sin:
             for v in zip(object.xs, object.ys):
                 yield v
         else:
@@ -83,7 +88,6 @@ def draw(*objects, origin=True, axes=True, grid=(1,1), nice_aspect_ratio=True, w
     plt.grid(True)
     all_vectors = list(extract_vectors(objects))
     xs, ys = zip(*all_vectors) # 使用 zip 函数将两个数组合并成元组. xs是元组()不是数组[]
-    xs_origin, ys_origin = xs, ys
     max_x, max_y, min_x, min_y = max(0, *xs), max(0, *ys), min(0, *xs), min(0, *ys)
     if grid:
         x_padding = max(ceil(0.05 * (max_x - min_x)), grid[0])
@@ -128,13 +132,10 @@ def draw(*objects, origin=True, axes=True, grid=(1,1), nice_aspect_ratio=True, w
             x1, y1 = object.start_point
             x2, y2 = object.end_point
             plt.plot([x1, x2], [y1, y2], color=object.color)
-        elif type(object) == Cos:
+        elif type(object) == Cos or type(object) == Sin:
             plt.plot(object.xs, object.ys)
         else:
             raise TypeError("Unrecognized object: {}".format(object))
-    xsin = np.linspace(0, 10, 100) # [0,`10]区间的线性增长的100个数字,  # xsin是数组[]不是元组()
-    ysin = np.sin(xsin)
-    plt.plot(xsin, ysin)
     # fig = plt.gcf() # “get current figure”（获取当前图形）. and plt.gca()=“get current axes”（获取当前坐标轴）。
     """
     AxesSubplot(0.125,0.11;0.775x0.77) 表示当前图形中的坐标轴（Axes）的位置和大小。
@@ -149,9 +150,10 @@ def draw(*objects, origin=True, axes=True, grid=(1,1), nice_aspect_ratio=True, w
     plt.show()
 
 def test_draw():
-    datax = np.linspace(0, 10, 100)
+    datax = np.linspace(0, 10, 100) # [0,`10]区间的线性增长的100个数字,  # xsin是数组[]不是元组()
     cos = Cos(datax)
-    draw(Points((1, 2), (3, 4)), Segment((5, 6), (7, 8)), Polygon((-1, 0), (-2, -2), (0, -2)), Arrow((2, -3), tail=(4,-5)), cos)
+    sin = Sin(datax)
+    draw(Points((1, 2), (3, 4)), Segment((5, 6), (7, 8)), Polygon((-1, 0), (-2, -2), (0, -2)), Arrow((2, -3), tail=(4,-5)), cos, sin)
 
 if __name__ == "__main__":
     datax = np.linspace(0, 10, 100)
