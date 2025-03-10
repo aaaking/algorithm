@@ -73,16 +73,20 @@ def extract_vectors(objects):
 
 def draw(*objects, origin=True, axes=True, grid=(1,1), nice_aspect_ratio=True, width=6, save_as=None):
     all_vectors = list(extract_vectors(objects))
+    xs, ys = zip(*all_vectors)
 
 if __name__ == "__main__":
     points = Points([1, 2], [3, 4])
     points2 = Points((1, 2), (3, 4))
     print("points=" + str(points) + " id=" + hex(id(points)) + " vector=" + str(points.vectors))
     print("points2=" + str(points2) + " id=" + hex(id(points2)) + " vector=" + str(points2.vectors))
-    # gen = list(extract_vectors([Points((1, 2), (3, 4)), Segment((1,2), (3,4))]))
+    # gen = list(extract_vectors([Points((1, 2), (3, 4)), Segment((5,6), (7,8))]))
     # print(str(next(gen)))
     # print(str(next(gen)))
     # print(str(next(gen)))
     # print(str(next(gen)))
-    all_vectors = list(extract_vectors([Points((1, 2), (3, 4)), Segment((1,2), (3,4))]))
+    all_vectors = list(extract_vectors([Points((1, 2), (3, 4)), Segment((5,6), (7,8))]))
     print(str((all_vectors)))
+    print("draw start")
+    draw(Points((1, 2), (3, 4)))
+    print("draw eend")
