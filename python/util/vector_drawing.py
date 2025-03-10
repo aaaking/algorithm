@@ -93,6 +93,34 @@ def draw(*objects, origin=True, axes=True, grid=(1,1), nice_aspect_ratio=True, w
     if axes:
         plt.gca().axhline(linewidth=2, color='k') # 这两个是坐标轴
         plt.gca().axvline(linewidth=2, color='k')
+    for object in objects:
+        if type(object) == Polygon:
+            for i in range(0, len(object.vertices)):
+                x1, y1 = object.vertices[i]
+                x2, y2 = object.vertices[(i + 1) % len(object.vertices)]
+                plt.plot([x1, x2], [y1, y2], color=object.color)
+            if object.fill:
+                xs = [v[0] for v in object.vertices]
+                ys = [v[1] for v in object.vertices]
+                plt.gca().fill(xs, ys, object.fill, alpha=object.alpha)
+        elif type(object) == Points:
+            xs = [v[0] for v in object.vectors]
+            ys = [v[1] for v in object.vectors]
+            plt.scatter(xs, ys, color=object.color)
+        elif type(object) == Arrow:
+            tip, tail = object.tip, object.tail
+            tip_length = (plt.xlim()[1] - plt.xlim()[0]) / 20.
+            length = sqrt((tip[1] - tail[1]) ** 2 + (tip[0] - tail[0]) ** 2)
+            new_length = length - tip_length
+            new_y = (tip[1] - tail[1]) * (new_length / length)
+            new_x = (tip[0] - tail[0]) * (new_length / length)
+            plt.gca().arrow(tail[0], tail[1], new_x, new_y, head_width=tip_length / 1.5, head_length=tip_length, fc=object.color, ec=object.color)
+        elif type(object) == Segment:
+            x1, y1 = object.start_point
+            x2, y2 = object.end_point
+            plt.plot([x1, x2], [y1, y2], color=object.color)
+        else:
+            raise TypeError("Unrecognized object: {}".format(object))
     x = np.linspace(0, 10, 100) # [0,`10]区间的线性增长的100个数字
     y = np.sin(x)
     plt.plot(x, y)
