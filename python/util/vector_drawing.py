@@ -73,8 +73,8 @@ def extract_vectors(objects):
             yield object.start_point
             yield object.end_point
         elif typeObj == Cos:
-            for v in object.xs:
-                yield (v, 0)
+            for v in zip(object.xs, object.ys):
+                yield v
         else:
             raise TypeError("Unrecognized object: {}".format(object))
 
@@ -82,7 +82,7 @@ def draw(*objects, origin=True, axes=True, grid=(1,1), nice_aspect_ratio=True, w
     fig = plt.figure()
     plt.grid(True)
     all_vectors = list(extract_vectors(objects))
-    xs, ys = zip(*all_vectors) # xs是元组()不是数组[]
+    xs, ys = zip(*all_vectors) # 使用 zip 函数将两个数组合并成元组. xs是元组()不是数组[]
     xs_origin, ys_origin = xs, ys
     max_x, max_y, min_x, min_y = max(0, *xs), max(0, *ys), min(0, *xs), min(0, *ys)
     if grid:
