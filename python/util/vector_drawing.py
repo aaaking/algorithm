@@ -126,6 +126,9 @@ def draw(*objects, origin=True, axes=True, grid=(1,1), nice_aspect_ratio=True, w
     plt.plot(x, y)
     plt.show()
 
+def test_draw():
+    draw(Points((1, 2), (3, 4)), Segment((5, 6), (7, 8)), Polygon((-1, 0), (-2, -2), (0, -2)), Arrow((2, -3)))
+
 if __name__ == "__main__":
     points = Points([1, 2], [3, 4])
     points2 = Points((1, 2), (3, 4))
@@ -136,8 +139,8 @@ if __name__ == "__main__":
     # print(str(next(gen)))
     # print(str(next(gen)))
     # print(str(next(gen)))
-    all_vectors = list(extract_vectors([Points((1, 2), (3, 4)), Segment((5,6), (7,8)), Polygon((-1, 0), (-2, -2), (0, -2))]))
+    all_vectors = list(extract_vectors([Points((1, 2), (3, 4)), Segment((5,6), (7,8)), Polygon((-1, 0), (-2, -2), (0, -2)), Arrow((2, -3))]))
     print(str((all_vectors)))
     print("draw start")
-    draw(Points((1, 2), (3, 4)), Segment((5,6), (7,8)), Polygon((-1, 0), (-2, -2), (0, -2)))
+    test_draw()
     print("draw end")

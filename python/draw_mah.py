@@ -222,7 +222,7 @@ if __name__ == '__main__':
     draw_boxplot()
     draw_heatmap()
     draw_contour()
-    draw(Points((1, 2), (3, 4)), Segment((5, 6), (7, 8)), Polygon((-1, 0), (-2, -2), (0, -2)))
+    test_draw()
 
     # 关闭交互模式（可选）
     plt.ioff()
