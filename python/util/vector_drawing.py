@@ -71,7 +71,7 @@ def extract_vectors(objects):
             raise TypeError("Unrecognized object: {}".format(object))
 
 def draw(*objects, origin=True, axes=True, grid=(1,1), nice_aspect_ratio=True, width=6, save_as=None):
-    plt.figure()
+    fig = plt.figure()
     plt.grid(True)
     all_vectors = list(extract_vectors(objects))
     xs, ys = zip(*all_vectors)
@@ -124,6 +124,17 @@ def draw(*objects, origin=True, axes=True, grid=(1,1), nice_aspect_ratio=True, w
     x = np.linspace(0, 10, 100) # [0,`10]区间的线性增长的100个数字
     y = np.sin(x)
     plt.plot(x, y)
+    # fig = plt.gcf() # “get current figure”（获取当前图形）. and plt.gca()=“get current axes”（获取当前坐标轴）。
+    """
+    AxesSubplot(0.125,0.11;0.775x0.77) 表示当前图形中的坐标轴（Axes）的位置和大小。
+    0.125,0.11：这两个数字表示坐标轴左下角在图像中的相对位置。0.125 是从左边边缘开始计算的宽度比例，0.11 是从底部边缘开始计算的高度比例。这意味着坐标轴的左下角位于整个图像区域的 12.5% 宽度和 11% 高度处。
+    0.775x0.77：这部分表示坐标轴的宽度和高度，也是相对于整个图像区域的比例。0.775 表示坐标轴的宽度占整个图像宽度的 77.5%，0.77 表示坐标轴的高度占整个图像高度的 77%。
+    """
+    print("fig="+str(fig) + " fig2=" + str(plt.gcf()) + " gca=" + str(plt.gca()))
+    if nice_aspect_ratio:
+        coords_height = (plt.ylim()[1] - plt.ylim()[0])
+        coords_width = (plt.xlim()[1] - plt.xlim()[0])
+        fig.set_size_inches(width, width * coords_height / coords_width)
     plt.show()
 
 def test_draw():
