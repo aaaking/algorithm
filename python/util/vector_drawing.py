@@ -72,8 +72,10 @@ def extract_vectors(objects):
             raise TypeError("Unrecognized object: {}".format(object))
 
 if __name__ == "__main__":
-    points = Points((1, 2), (3, 4))
-    print("points=" + str(points) + " id=" + hex(id(points)))
+    points = Points([1, 2], [3, 4])
+    points2 = Points((1, 2), (3, 4))
+    print("points=" + str(points) + " id=" + hex(id(points)) + " vector=" + str(points.vectors))
+    print("points2=" + str(points2) + " id=" + hex(id(points2)) + " vector=" + str(points2.vectors))
     gen = extract_vectors([Points((1, 2), (3, 4)), Segment((1,2), (3,4))])
     print(str(next(gen)))
     print(str(next(gen)))
