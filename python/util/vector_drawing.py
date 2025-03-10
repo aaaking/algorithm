@@ -153,7 +153,7 @@ def draw(*objects, origin=True, axes=True, grid=(1,1), nice_aspect_ratio=True, w
         print("save matplotlib end")
     plt.show()
 
-def test_draw(save_as=None):
+def test_draw_easy_math(save_as=None):
     datax = np.linspace(0, 30, 200) # [0,`10]区间的线性增长的100个数字,  # xsin是数组[]不是元组()
     cos = Cos(datax)
     sin = Sin(datax)
