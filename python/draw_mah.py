@@ -186,7 +186,7 @@ def draw_boxplot(labels = ['A', 'B', 'C', 'D'], sizes = [15, 30, 45, 10]):
     plt.show()
     logg.log_pink("save pie start")
     imgName = f"{DIR_MATH_PIC}/box_{timeformat()}.png"
-    plt.savefig(imgName, dpi=300, bbox_inches='tight')
+    # plt.savefig(imgName, dpi=300, bbox_inches='tight')
     logg.log_pink("save box end")
 
 checkMathDir()
