@@ -73,8 +73,8 @@ def extract_vectors(objects):
 def draw(*objects, origin=True, axes=True, grid=(1,1), nice_aspect_ratio=True, width=6, save_as=None):
     plt.figure()
     plt.grid(True)
-    plt.plot([-1000, 1000], [0, 0], red) # 这两个是坐标轴
-    plt.plot([0, 0], [-1000, 1000], red)
+    plt.plot([-99999999, 99999999], [0, 0], red) # 这两个是坐标轴
+    plt.plot([0, 0], [-99999999, 99999999], red)
     all_vectors = list(extract_vectors(objects))
     xs, ys = zip(*all_vectors)
     max_x, max_y, min_x, min_y = max(0, *xs), max(0, *ys), min(0, *xs), min(0, *ys)
