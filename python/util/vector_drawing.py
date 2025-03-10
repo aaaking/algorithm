@@ -83,7 +83,7 @@ def extract_vectors(objects):
         else:
             raise TypeError("Unrecognized object: {}".format(object))
 
-def draw(*objects, origin=True, axes=True, grid=(1,1), nice_aspect_ratio=True, width=6, save_as=None):
+def draw(*objects, origin=True, axes=True, grid=(1,1), nice_aspect_ratio=True, width=12, save_as=None):
     fig = plt.figure()
     plt.grid(True)
     all_vectors = list(extract_vectors(objects))
@@ -154,7 +154,7 @@ def draw(*objects, origin=True, axes=True, grid=(1,1), nice_aspect_ratio=True, w
     plt.show()
 
 def test_draw(save_as=None):
-    datax = np.linspace(0, 10, 100) # [0,`10]区间的线性增长的100个数字,  # xsin是数组[]不是元组()
+    datax = np.linspace(0, 30, 200) # [0,`10]区间的线性增长的100个数字,  # xsin是数组[]不是元组()
     cos = Cos(datax)
     sin = Sin(datax)
     draw(Points((1, 2), (3, 4)), Segment((5, 6), (7, 8)), Polygon((-1, 0), (-2, -2), (0, -2)), Arrow((2, -3), tail=(4,-5)), cos, sin, save_as = save_as)
