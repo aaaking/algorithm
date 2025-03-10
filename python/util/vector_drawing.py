@@ -32,7 +32,7 @@ class Polygon():
         self.alpha = alpha
     def __str__(self):
         base_str = super().__str__()
-        return base_str
+        return base_str + "\n" + str(self.vertices)
 
 class Points():
     def __init__(self, *vectors, color=black):
@@ -51,6 +51,11 @@ class Segment():
         self.end_point = end_point
         self.color = color
 
+class Cos():
+    def __init__(self, xs):
+        self.xs = xs
+        self.ys = [np.cos(x) for x in self.xs]
+
 # helper function to extract all the vectors from a list of objects
 def extract_vectors(objects):
     for object in objects:
@@ -67,6 +72,9 @@ def extract_vectors(objects):
         elif typeObj == Segment:
             yield object.start_point
             yield object.end_point
+        elif typeObj == Cos:
+            for v in object.xs:
+                yield (v, 0)
         else:
             raise TypeError("Unrecognized object: {}".format(object))
 
@@ -74,7 +82,8 @@ def draw(*objects, origin=True, axes=True, grid=(1,1), nice_aspect_ratio=True, w
     fig = plt.figure()
     plt.grid(True)
     all_vectors = list(extract_vectors(objects))
-    xs, ys = zip(*all_vectors)
+    xs, ys = zip(*all_vectors) # xs是元组()不是数组[]
+    xs_origin, ys_origin = xs, ys
     max_x, max_y, min_x, min_y = max(0, *xs), max(0, *ys), min(0, *xs), min(0, *ys)
     if grid:
         x_padding = max(ceil(0.05 * (max_x - min_x)), grid[0])
@@ -119,11 +128,13 @@ def draw(*objects, origin=True, axes=True, grid=(1,1), nice_aspect_ratio=True, w
             x1, y1 = object.start_point
             x2, y2 = object.end_point
             plt.plot([x1, x2], [y1, y2], color=object.color)
+        elif type(object) == Cos:
+            plt.plot(object.xs, object.ys)
         else:
             raise TypeError("Unrecognized object: {}".format(object))
-    x = np.linspace(0, 10, 100) # [0,`10]区间的线性增长的100个数字
-    y = np.sin(x)
-    plt.plot(x, y)
+    xsin = np.linspace(0, 10, 100) # [0,`10]区间的线性增长的100个数字,  # xsin是数组[]不是元组()
+    ysin = np.sin(xsin)
+    plt.plot(xsin, ysin)
     # fig = plt.gcf() # “get current figure”（获取当前图形）. and plt.gca()=“get current axes”（获取当前坐标轴）。
     """
     AxesSubplot(0.125,0.11;0.775x0.77) 表示当前图形中的坐标轴（Axes）的位置和大小。
@@ -138,9 +149,13 @@ def draw(*objects, origin=True, axes=True, grid=(1,1), nice_aspect_ratio=True, w
     plt.show()
 
 def test_draw():
-    draw(Points((1, 2), (3, 4)), Segment((5, 6), (7, 8)), Polygon((-1, 0), (-2, -2), (0, -2)), Arrow((2, -3), tail=(4,-5)))
+    datax = np.linspace(0, 10, 100)
+    cos = Cos(datax)
+    draw(Points((1, 2), (3, 4)), Segment((5, 6), (7, 8)), Polygon((-1, 0), (-2, -2), (0, -2)), Arrow((2, -3), tail=(4,-5)), cos)
 
 if __name__ == "__main__":
+    datax = np.linspace(0, 10, 100)
+    cos = Cos(datax)
     points = Points([1, 2], [3, 4])
     points2 = Points((1, 2), (3, 4))
     print("points=" + str(points) + " id=" + hex(id(points)) + " vector=" + str(points.vectors))
@@ -150,7 +165,7 @@ if __name__ == "__main__":
     # print(str(next(gen)))
     # print(str(next(gen)))
     # print(str(next(gen)))
-    all_vectors = list(extract_vectors([Points((1, 2), (3, 4)), Segment((5,6), (7,8)), Polygon((-1, 0), (-2, -2), (0, -2)), Arrow((2, -3), tail=(4,-5))]))
+    all_vectors = list(extract_vectors([Points((1, 2), (3, 4)), Segment((5,6), (7,8)), Polygon((-1, 0), (-2, -2), (0, -2)), Arrow((2, -3), tail=(4,-5)), cos]))
     print(str((all_vectors)))
     print("draw start")
     test_draw()
