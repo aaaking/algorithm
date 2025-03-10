@@ -147,13 +147,17 @@ def draw(*objects, origin=True, axes=True, grid=(1,1), nice_aspect_ratio=True, w
         coords_height = (plt.ylim()[1] - plt.ylim()[0])
         coords_width = (plt.xlim()[1] - plt.xlim()[0])
         fig.set_size_inches(width, width * coords_height / coords_width)
+    if save_as:
+        print("save matplotlib start")
+        plt.savefig(save_as, dpi=300, bbox_inches='tight')
+        print("save matplotlib end")
     plt.show()
 
-def test_draw():
+def test_draw(save_as=None):
     datax = np.linspace(0, 10, 100) # [0,`10]区间的线性增长的100个数字,  # xsin是数组[]不是元组()
     cos = Cos(datax)
     sin = Sin(datax)
-    draw(Points((1, 2), (3, 4)), Segment((5, 6), (7, 8)), Polygon((-1, 0), (-2, -2), (0, -2)), Arrow((2, -3), tail=(4,-5)), cos, sin)
+    draw(Points((1, 2), (3, 4)), Segment((5, 6), (7, 8)), Polygon((-1, 0), (-2, -2), (0, -2)), Arrow((2, -3), tail=(4,-5)), cos, sin, save_as = save_as)
 
 if __name__ == "__main__":
     datax = np.linspace(0, 10, 100)

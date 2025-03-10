@@ -222,11 +222,7 @@ if __name__ == '__main__':
     draw_boxplot()
     draw_heatmap()
     draw_contour()
-    test_draw()
-    logg.log_pink("save matplotlib start")
-    imgName = f"{DIR_MATH_PIC}/matplotlib_{timeformat()}.png"
-    # plt.savefig(imgName, dpi=300, bbox_inches='tight')
-    logg.log_pink("save matplotlib end")
+    test_draw() # f"{DIR_MATH_PIC}/matplotlib_{timeformat()}.png"
 
     # 关闭交互模式（可选）
     plt.ioff()
