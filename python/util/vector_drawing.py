@@ -4,6 +4,7 @@ import matplotlib
 import matplotlib.patches
 from matplotlib.collections import PatchCollection
 import matplotlib.pyplot as plt
+from vectors import *
 
 blue = 'C0'
 black = 'k'
@@ -159,7 +160,17 @@ def test_draw_easy_math(save_as=None):
     sin = Sin(datax)
     draw(Points((1, 2), (3, 4)), Segment((5, 6), (7, 8)), Polygon((-1, 0), (-2, -2), (0, -2)), Arrow((2, -3), tail=(4,-5)), cos, sin, save_as = save_as)
 
+def test_draw_many_dinosaur(save_as=None):
+    dino_vectors = [(6, 4), (3, 1), (1, 2), (-1, 5), (-2, 5), (-3, 4), (-4, 4),
+        (-5, 3), (-5, 2), (-2, 2), (-5, 1), (-4, 0), (-2, 1), (-1, 0), (0, -3),
+        (-1, -4), (1, -4), (2, -3), (1, -2), (3, -1), (5, 1)
+    ]
+    translations = [(12*x, 12*y) for x in range(-5, 5) for y in range(-5, 5)]
+    dinos = [Polygon(*translate(t, dino_vectors), color = blue) for t in translations]
+    draw(*dinos, grid=None, axes=None, width=8, save_as = save_as)
+
 if __name__ == "__main__":
+    plt.ion()
     datax = np.linspace(0, 10, 100)
     cos = Cos(datax)
     points = Points([1, 2], [3, 4])
@@ -174,5 +185,12 @@ if __name__ == "__main__":
     all_vectors = list(extract_vectors([Points((1, 2), (3, 4)), Segment((5,6), (7,8)), Polygon((-1, 0), (-2, -2), (0, -2)), Arrow((2, -3), tail=(4,-5)), cos]))
     print(str((all_vectors)))
     print("draw start")
-    test_draw()
+    test_draw_easy_math()
+    test_draw_many_dinosaur()
+
+    # 关闭交互模式（可选）
+    plt.ioff()
+    # 阻塞程序，等待用户关闭所有图形窗口
+    plt.show()
+    plt.close()
     print("draw end")
