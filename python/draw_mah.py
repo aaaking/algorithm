@@ -222,6 +222,7 @@ if __name__ == '__main__':
     draw_boxplot()
     draw_heatmap()
     draw_contour()
+    draw(Points((1, 2), (3, 4)))
 
     # 关闭交互模式（可选）
     plt.ioff()
