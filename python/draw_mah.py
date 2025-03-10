@@ -11,6 +11,7 @@ import numpy as np
 import util.logg as logg
 from util.dir import *
 from util.time import *
+from util.vector_drawing import *
 
 # matplotlib.rcParams['font.sans-serif'] = ['SimHei'] # 设置全局字体为 SimHei（黑体）。
 DIR_MATH_PIC = os.path.join(getMostRoot(), "build/pic_math/")
