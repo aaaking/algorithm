@@ -170,6 +170,25 @@ def draw_pie(labels = ['A', 'B', 'C', 'D'], sizes = [15, 30, 45, 10]):
     # plt.savefig(imgName, dpi=300, bbox_inches='tight')
     logg.log_pink("save pie end")
 
+def draw_boxplot(labels = ['A', 'B', 'C', 'D'], sizes = [15, 30, 45, 10]):
+    plt.figure()
+    """
+    使用了列表推导式（list comprehension）来生成一个列表，这个列表包含了三个数组，每个数组都是从正态分布（高斯分布）中随机抽取的100个样本
+    第一个参数 0 是均值（mean），表示分布的中心位置。
+    第二个参数 std 是标准差，控制数据点的离散程度。
+    第三个参数 100 是生成的随机数的数量。
+    """
+    data = [np.random.normal(0, std, 100) for std in range(1, 4)]
+    plt.boxplot(data)
+    plt.xlabel('Data Set')
+    plt.ylabel('Value')
+    plt.title('Box Plot')
+    plt.show()
+    logg.log_pink("save pie start")
+    imgName = f"{DIR_MATH_PIC}/box_{timeformat()}.png"
+    plt.savefig(imgName, dpi=300, bbox_inches='tight')
+    logg.log_pink("save box end")
+
 checkMathDir()
 if __name__ == '__main__':
     logg.log_cyan("draw math start thread=" + str(threading.currentThread()) + " is daemon=" + str(threading.currentThread().isDaemon()))
@@ -182,6 +201,7 @@ if __name__ == '__main__':
     draw_scatter()
     draw_histogram()
     draw_pie()
+    draw_boxplot()
 
     # 关闭交互模式（可选）
     plt.ioff()
