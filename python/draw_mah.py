@@ -202,6 +202,22 @@ def draw_heatmap():
     # plt.savefig(imgName, dpi=300, bbox_inches='tight')
     logg.log_pink("save heatmap end")
 
+def draw_contour():
+    plt.figure()
+    # 等高线图 (Contour Plot), # 用于显示三维数据在二维平面上的等高线。
+    x = np.linspace(-3.0, 3.0, 100)
+    y = np.linspace(-3.0, 3.0, 100)
+    X, Y = np.meshgrid(x, y)
+    Z = np.sqrt(X ** 2 + Y ** 2)
+    plt.contourf(X, Y, Z, 20, cmap='RdGy')
+    plt.colorbar()
+    plt.title('Contour Plot')
+    plt.show()
+    logg.log_pink("save contour start")
+    imgName = f"{DIR_MATH_PIC}/contour_{timeformat()}.png"
+    # plt.savefig(imgName, dpi=300, bbox_inches='tight')
+    logg.log_pink("save contour end")
+
 checkMathDir()
 if __name__ == '__main__':
     logg.log_cyan("draw math start thread=" + str(threading.currentThread()) + " is daemon=" + str(threading.currentThread().isDaemon()))
@@ -216,6 +232,7 @@ if __name__ == '__main__':
     draw_pie()
     draw_boxplot()
     draw_heatmap()
+    draw_contour()
 
     # 关闭交互模式（可选）
     plt.ioff()
