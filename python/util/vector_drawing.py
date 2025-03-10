@@ -122,7 +122,7 @@ def draw(*objects, origin=True, axes=True, grid=(1,1), nice_aspect_ratio=True, w
             plt.scatter(xs, ys, color=object.color)
         elif type(object) == Arrow:
             tip, tail = object.tip, object.tail
-            tip_length = (plt.xlim()[1] - plt.xlim()[0]) / 20.
+            tip_length = (plt.xlim()[1] - plt.xlim()[0]) / 150.
             length = sqrt((tip[1] - tail[1]) ** 2 + (tip[0] - tail[0]) ** 2)
             new_length = length - tip_length
             new_y = (tip[1] - tail[1]) * (new_length / length)
