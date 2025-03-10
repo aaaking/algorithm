@@ -73,8 +73,8 @@ def extract_vectors(objects):
 def draw(*objects, origin=True, axes=True, grid=(1,1), nice_aspect_ratio=True, width=6, save_as=None):
     plt.figure()
     plt.grid(True)
-    plt.plot([-99999999, 99999999], [0, 0], red) # 这两个是坐标轴
-    plt.plot([0, 0], [-99999999, 99999999], red)
+    # plt.plot([-99999999, 99999999], [0, 0], red) # 这两个是坐标轴
+    # plt.plot([0, 0], [-99999999, 99999999], red)
     all_vectors = list(extract_vectors(objects))
     xs, ys = zip(*all_vectors)
     max_x, max_y, min_x, min_y = max(0, *xs), max(0, *ys), min(0, *xs), min(0, *ys)
@@ -87,12 +87,17 @@ def draw(*objects, origin=True, axes=True, grid=(1,1), nice_aspect_ratio=True, w
             return -floor((-val - size) / size) * size
         plt.xlim(floor((min_x - x_padding) / grid[0]) * grid[0], ceil((max_x + x_padding) / grid[0]) * grid[0])
         plt.ylim(floor((min_y - y_padding) / grid[1]) * grid[1], ceil((max_y + y_padding) / grid[1]) * grid[1])
+        plt.gca().set_xticks(np.arange(plt.xlim()[0], plt.xlim()[1], grid[0]))
+        plt.gca().set_yticks(np.arange(plt.ylim()[0], plt.ylim()[1], grid[1]))
+        plt.gca().set_axisbelow(True)
     if origin:
         plt.scatter([0], [0], color='k', marker='x')
+    if axes:
+        plt.gca().axhline(linewidth=2, color='k') # 这两个是坐标轴
+        plt.gca().axvline(linewidth=2, color='k')
     x = np.linspace(0, 10, 100) # [0,`10]区间的线性增长的100个数字
     y = np.sin(x)
     plt.plot(x, y)
-
     plt.show()
 
 if __name__ == "__main__":
