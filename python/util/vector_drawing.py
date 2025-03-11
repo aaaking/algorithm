@@ -192,7 +192,8 @@ def draw_anim_test():
     y2 = np.cos(x)
     fig, ax = plt.subplots()
     plt.grid(True) # must below fig, otherwise grid will not show
-    fig.set_size_inches(8, 8)
+    fig.set_size_inches(12, 8)
+    ax.set_aspect('equal', 'box') # 保持纵横比一致，使圆形看起来更圆。
     ax.set_xlim(-10, 10)
     ax.set_ylim(-10, 10)
     line, = ax.plot(x, y, lw=1)  # 初始线宽为 1
@@ -221,11 +222,14 @@ def draw_anim_test():
             [np.cos(angle), -np.sin(angle)],
             [np.sin(angle), np.cos(angle)]
         ])
-        rotated_x = rotation_matrix[0, 0] * x4 + rotation_matrix[0, 1] * y4
-        rotated_y = rotation_matrix[1, 0] * x4 + rotation_matrix[1, 1] * y4
-        # line4.set_data(rotated_x, rotated_y)
+        rotated_x = rotation_matrix[0, 0] * x3 + rotation_matrix[0, 1] * y3
+        rotated_y = rotation_matrix[1, 0] * x3 + rotation_matrix[1, 1] * y3
+        line3.set_data(rotated_x, rotated_y) # 这个啥用？写不写都是绘制一个圆
+        rotated_x4 = rotation_matrix[0, 0] * x4[0] + rotation_matrix[0, 1] * y4[0]
+        rotated_y4 = rotation_matrix[1, 0] * x4[0] + rotation_matrix[1, 1] * y4[0]
+        line4.set_data([0, rotated_x4], [0, rotated_y4])
 
-        return line, line2
+        return line, line2, line3, line4
     ani = FuncAnimation(fig, update, frames=np.arange(0, 360), interval=50, blit=True)
     # ani.save(f"{os.path.join(getMostRoot(), 'build/pic_math/')}/anim_{timeformat()}.mp4", writer='ffmpeg', fps=10)
     # ani.save(f"{os.path.join(getMostRoot(), 'build/pic_math/')}/anim_{timeformat()}.gif", writer='pillow', fps=10)
