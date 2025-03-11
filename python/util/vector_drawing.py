@@ -1,5 +1,3 @@
-
-
 from math import sqrt, pi, ceil, floor
 import numpy as np
 import matplotlib
