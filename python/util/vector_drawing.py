@@ -187,11 +187,11 @@ def test_draw_many_dinosaur(save_as=None):
             locali = 0
 
 def draw_anim_test():
-    plt.grid(True)
     x = np.linspace(0, 10, 100)
     y = np.sin(x)
     y2 = np.cos(x)
     fig, ax = plt.subplots()
+    plt.grid(True) # must below fig, otherwise grid will not show
     ax.set_xlim(-10, 10)
     ax.set_ylim(-10, 10)
     line, = ax.plot(x, y, lw=1)  # 初始线宽为 1
@@ -201,7 +201,7 @@ def draw_anim_test():
     r = 5  # 半径
     x = r * np.cos(theta)
     y = r * np.sin(theta)
-    # line3, = ax.plot(x, y, lw=1)  # 初始曲线
+    line3, = ax.plot(x, y, lw=1)  # 初始曲线
 
     def update(frame):
         if frame < 180:
