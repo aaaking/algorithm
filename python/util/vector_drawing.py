@@ -186,20 +186,23 @@ def test_draw_many_dinosaur(save_as=None):
         if locali >= 3.14:
             locali = 0
 
-def testfwefaef():
+def draw_anim_test():
     x = np.linspace(0, 10, 100)
     y = np.sin(x)
+    y2 = np.cos(x)
     fig, ax = plt.subplots()
-    line, = ax.plot(x, y, lw=1)  # 初始线宽为 1
     ax.set_xlim(0, 10)
     ax.set_ylim(-1.5, 1.5)
+    line, = ax.plot(x, y, lw=1)  # 初始线宽为 1
+    line2, = ax.plot(x, y2, lw=1)  # 初始线宽为 1
     def update(frame):
         if frame < 50:
             linewidth = 1 + (10 - 1) * (frame / 50)
         else:
             linewidth = 10 - (10 - 1) * ((frame - 50) / 50)
         line.set_linewidth(linewidth)
-        return line,
+        line2.set_linewidth(linewidth)
+        return line, line2
     ani = FuncAnimation(fig, update, frames=np.arange(0, 100), interval=100, blit=True)
     # ani.save(f"{os.path.join(getMostRoot(), 'build/pic_math/')}/anim_{timeformat()}.mp4", writer='ffmpeg', fps=10)
     # ani.save(f"{os.path.join(getMostRoot(), 'build/pic_math/')}/anim_{timeformat()}.gif", writer='pillow', fps=10)
@@ -224,7 +227,7 @@ if __name__ == "__main__":
     print("draw start")
     test_draw_easy_math()
     ani_dinosaur = test_draw_many_dinosaur()
-    ani = testfwefaef()
+    ani = draw_anim_test()
 
     # 关闭交互模式（可选）
     plt.ioff()
