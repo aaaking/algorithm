@@ -177,7 +177,6 @@ def test_draw_many_dinosaur(save_as=None):
     dinos = [Polygon(*v, color = blue) for v in dinos_vectors_all]
     locali = 0
     while(locali == 0):
-        niaho = [vectorsss for vectorsss in dinos_vectors_all]
         dinos_polar = [[to_polar(v) for v in vectorsss] for vectorsss in dinos_vectors_all]
         dinos_rotated_polar = [[(l, angle + locali) for (l, angle) in mmm] for mmm in dinos_polar]
         dinos_ratated = [[to_cartesian(p) for p in fff] for fff in dinos_rotated_polar]
@@ -190,30 +189,20 @@ def test_draw_many_dinosaur(save_as=None):
 def testfwefaef():
     x = np.linspace(0, 10, 100)
     y = np.sin(x)
-    # 创建图形和轴
     fig, ax = plt.subplots()
-    line, = ax.plot(x, y, lw=1)  # 初始线宽为5
-
-    # 设置轴的范围
+    line, = ax.plot(x, y, lw=1)  # 初始线宽为 1
     ax.set_xlim(0, 10)
     ax.set_ylim(-1.5, 1.5)
-
-    # 更新函数
     def update(frame):
-        # 计算当前线宽
         if frame < 50:
             linewidth = 1 + (10 - 1) * (frame / 50)
         else:
             linewidth = 10 - (10 - 1) * ((frame - 50) / 50)
-        # 更新线宽
         line.set_linewidth(linewidth)
-        # 返回更新后的线条
         return line,
-    # 创建动画
     ani = FuncAnimation(fig, update, frames=np.arange(0, 100), interval=100, blit=True)
     # ani.save(f"{os.path.join(getMostRoot(), 'build/pic_math/')}/anim_{timeformat()}.mp4", writer='ffmpeg', fps=10)
     # ani.save(f"{os.path.join(getMostRoot(), 'build/pic_math/')}/anim_{timeformat()}.gif", writer='pillow', fps=10)
-    # 显示图形
     plt.show()
     return ani
 
