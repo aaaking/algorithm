@@ -5,7 +5,9 @@ import matplotlib.patches
 from matplotlib.collections import PatchCollection
 from matplotlib.animation import FuncAnimation
 import matplotlib.pyplot as plt
-from vectors import *
+from vectors_z import *
+from time_z import *
+from dir_z import *
 
 blue = 'C0'
 black = 'k'
@@ -209,6 +211,8 @@ def testfwefaef():
         return line,
     # 创建动画
     ani = FuncAnimation(fig, update, frames=np.arange(0, 100), interval=100, blit=True)
+    # ani.save(f"{os.path.join(getMostRoot(), 'build/pic_math/')}/anim_{timeformat()}.mp4", writer='ffmpeg', fps=10)
+    # ani.save(f"{os.path.join(getMostRoot(), 'build/pic_math/')}/anim_{timeformat()}.gif", writer='pillow', fps=10)
     # 显示图形
     plt.show()
     return ani

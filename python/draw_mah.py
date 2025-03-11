@@ -9,8 +9,8 @@ from matplotlib.pyplot import xlim, ylim
 from matplotlib.collections import PatchCollection
 import numpy as np
 import util.logg as logg
-from util.dir import *
-from util.time import *
+from util.dir_z import *
+from util.time_z import *
 from util.vector_drawing import *
 
 # matplotlib.rcParams['font.sans-serif'] = ['SimHei'] # 设置全局字体为 SimHei（黑体）。
