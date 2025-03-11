@@ -189,7 +189,6 @@ def test_draw_many_dinosaur(save_as=None):
 def draw_anim_test():
     x = np.linspace(0, 10, 100)
     y = np.sin(x)
-    y2 = np.cos(x)
     fig, ax = plt.subplots()
     plt.grid(True) # must below fig, otherwise grid will not show
     fig.set_size_inches(12, 8)
@@ -197,7 +196,6 @@ def draw_anim_test():
     ax.set_xlim(-10, 10)
     ax.set_ylim(-10, 10)
     line, = ax.plot(x, y, lw=1)  # 初始线宽为 1
-    line2, = ax.plot(x, y2, lw=1)  # 初始线宽为 1
 
     theta = np.linspace(0, 2 * np.pi, 100)  # 角度从 0 到 2π
     r = 5  # 半径
@@ -215,7 +213,6 @@ def draw_anim_test():
         else:
             linewidth = 10 - (10 - 1) * ((frame - 180) / 180)
         line.set_linewidth(linewidth)
-        line2.set_linewidth(linewidth)
 
         angle = frame * np.pi / 180  # 每帧旋转 1 度
         rotation_matrix = np.array([
@@ -229,7 +226,7 @@ def draw_anim_test():
         rotated_y4 = rotation_matrix[1, 0] * x4[0] + rotation_matrix[1, 1] * y4[0]
         line4.set_data([0, rotated_x4], [0, rotated_y4])
 
-        return line, line2, line3, line4
+        return line, line3, line4
     ani = FuncAnimation(fig, update, frames=np.arange(0, 360), interval=50, blit=True)
     # ani.save(f"{os.path.join(getMostRoot(), 'build/pic_math/')}/anim_{timeformat()}.mp4", writer='ffmpeg', fps=10)
     # ani.save(f"{os.path.join(getMostRoot(), 'build/pic_math/')}/anim_{timeformat()}.gif", writer='pillow', fps=10)
