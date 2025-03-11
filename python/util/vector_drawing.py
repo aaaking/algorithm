@@ -200,9 +200,13 @@ def draw_anim_test():
 
     theta = np.linspace(0, 2 * np.pi, 100)  # 角度从 0 到 2π
     r = 5  # 半径
-    x = r * np.cos(theta)
-    y = r * np.sin(theta)
-    line3, = ax.plot(x, y, lw=1)  # 初始曲线
+    x3 = r * np.cos(theta)
+    y3 = r * np.sin(theta)
+    line3, = ax.plot(x3, y3, lw=1)  # 初始曲线
+
+    x4 = [1, 0]  # 初始线段的 x 坐标
+    y4 = [0, 0]  # 初始线段的 y
+    line4, = ax.plot(x4, y4, lw=1)  # 初始曲线
 
     def update(frame):
         if frame < 180:
@@ -217,9 +221,9 @@ def draw_anim_test():
             [np.cos(angle), -np.sin(angle)],
             [np.sin(angle), np.cos(angle)]
         ])
-        rotated_x = rotation_matrix[0, 0] * x + rotation_matrix[0, 1] * y
-        rotated_y = rotation_matrix[1, 0] * x + rotation_matrix[1, 1] * y
-        # line3.set_data(rotated_x, rotated_y)
+        rotated_x = rotation_matrix[0, 0] * x4 + rotation_matrix[0, 1] * y4
+        rotated_y = rotation_matrix[1, 0] * x4 + rotation_matrix[1, 1] * y4
+        # line4.set_data(rotated_x, rotated_y)
 
         return line, line2
     ani = FuncAnimation(fig, update, frames=np.arange(0, 360), interval=50, blit=True)
