@@ -6,8 +6,8 @@ from matplotlib.collections import PatchCollection
 from matplotlib.animation import FuncAnimation
 import matplotlib.pyplot as plt
 from vectors_z import *
-from time_z import *
-from dir_z import *
+# from time_z import *
+# from dir_z import *
 
 blue = 'C0'
 black = 'k'
@@ -187,23 +187,41 @@ def test_draw_many_dinosaur(save_as=None):
             locali = 0
 
 def draw_anim_test():
+    plt.grid(True)
     x = np.linspace(0, 10, 100)
     y = np.sin(x)
     y2 = np.cos(x)
     fig, ax = plt.subplots()
-    ax.set_xlim(0, 10)
-    ax.set_ylim(-1.5, 1.5)
+    ax.set_xlim(-10, 10)
+    ax.set_ylim(-10, 10)
     line, = ax.plot(x, y, lw=1)  # 初始线宽为 1
     line2, = ax.plot(x, y2, lw=1)  # 初始线宽为 1
+
+    theta = np.linspace(0, 2 * np.pi, 100)  # 角度从 0 到 2π
+    r = 5  # 半径
+    x = r * np.cos(theta)
+    y = r * np.sin(theta)
+    # line3, = ax.plot(x, y, lw=1)  # 初始曲线
+
     def update(frame):
-        if frame < 50:
-            linewidth = 1 + (10 - 1) * (frame / 50)
+        if frame < 180:
+            linewidth = 1 + (10 - 1) * (frame / 180)
         else:
-            linewidth = 10 - (10 - 1) * ((frame - 50) / 50)
+            linewidth = 10 - (10 - 1) * ((frame - 180) / 180)
         line.set_linewidth(linewidth)
         line2.set_linewidth(linewidth)
+
+        angle = frame * np.pi / 180  # 每帧旋转 1 度
+        rotation_matrix = np.array([
+            [np.cos(angle), -np.sin(angle)],
+            [np.sin(angle), np.cos(angle)]
+        ])
+        rotated_x = rotation_matrix[0, 0] * x + rotation_matrix[0, 1] * y
+        rotated_y = rotation_matrix[1, 0] * x + rotation_matrix[1, 1] * y
+        # line3.set_data(rotated_x, rotated_y)
+
         return line, line2
-    ani = FuncAnimation(fig, update, frames=np.arange(0, 100), interval=100, blit=True)
+    ani = FuncAnimation(fig, update, frames=np.arange(0, 360), interval=50, blit=True)
     # ani.save(f"{os.path.join(getMostRoot(), 'build/pic_math/')}/anim_{timeformat()}.mp4", writer='ffmpeg', fps=10)
     # ani.save(f"{os.path.join(getMostRoot(), 'build/pic_math/')}/anim_{timeformat()}.gif", writer='pillow', fps=10)
     plt.show()

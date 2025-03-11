@@ -42,6 +42,7 @@ def draw_line_chart(x = [1, 2, 3, 4, 5], y = [1, 4, 9, 16, 25]):
 
 def draw_barv(categories = ['A', 'B', 'C', 'D'], values = [3, 7, 2, 5]):
     print("categories=" + str(categories) + " values=" + str(values))
+    plt.grid(True)
     fig, ax = plt.subplots() # 这一行代码跟下面两行代码的效果一样
     # fig = plt.figure(9825234)
     # ax = fig.add_subplot()  # 111表示1x1网格的第1个子图
