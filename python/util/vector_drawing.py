@@ -1,3 +1,5 @@
+
+
 from math import sqrt, pi, ceil, floor
 import numpy as np
 import matplotlib
@@ -5,9 +7,9 @@ import matplotlib.patches
 from matplotlib.collections import PatchCollection
 from matplotlib.animation import FuncAnimation
 import matplotlib.pyplot as plt
-from vectors_z import *
-# from time_z import *
-# from dir_z import *
+import vectors_z
+from time_z import *
+from dir_z import *
 
 blue = 'C0'
 black = 'k'
@@ -169,7 +171,7 @@ def test_draw_many_dinosaur(save_as=None):
         (-1, -4), (1, -4), (2, -3), (1, -2), (3, -1), (5, 1)
     ]
     translations = [(12*x, 12*y) for x in range(-5, 5) for y in range(-5, 5)] # [(-60, -60), (-60, -48),..., (48,48)]
-    dinos_vectors_all = [translate(t, dino_vectors) for t in translations]
+    dinos_vectors_all = [vectors_z.translate(t, dino_vectors) for t in translations]
     # [
     # [(), ()],一行代表一个dinosaur
     # [(), ()]
@@ -177,9 +179,9 @@ def test_draw_many_dinosaur(save_as=None):
     dinos = [Polygon(*v, color = blue) for v in dinos_vectors_all]
     locali = 0
     while(locali == 0):
-        dinos_polar = [[to_polar(v) for v in vectorsss] for vectorsss in dinos_vectors_all]
+        dinos_polar = [[vectors_z.to_polar(v) for v in vectorsss] for vectorsss in dinos_vectors_all]
         dinos_rotated_polar = [[(l, angle + locali) for (l, angle) in mmm] for mmm in dinos_polar]
-        dinos_ratated = [[to_cartesian(p) for p in fff] for fff in dinos_rotated_polar]
+        dinos_ratated = [[vectors_z.to_cartesian(p) for p in fff] for fff in dinos_rotated_polar]
         dinos = [Polygon(*v, color=blue) for v in dinos_ratated]
         draw(*dinos, grid=None, axes=None, width=8, save_as = save_as)
         locali = locali + 0.01

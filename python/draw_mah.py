@@ -224,7 +224,7 @@ if __name__ == '__main__':
     draw_heatmap()
     draw_contour()
     test_draw_easy_math() # f"{DIR_MATH_PIC}/easy_math_{timeformat()}.png"
-    test_draw_many_dinosaur()() # f"{DIR_MATH_PIC}/many_dinosaur_{timeformat()}.png"
+    test_draw_many_dinosaur() # f"{DIR_MATH_PIC}/many_dinosaur_{timeformat()}.png"
 
     # 关闭交互模式（可选）
     plt.ioff()
