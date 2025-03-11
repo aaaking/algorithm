@@ -192,6 +192,7 @@ def draw_anim_test():
     y2 = np.cos(x)
     fig, ax = plt.subplots()
     plt.grid(True) # must below fig, otherwise grid will not show
+    fig.set_size_inches(8, 8)
     ax.set_xlim(-10, 10)
     ax.set_ylim(-10, 10)
     line, = ax.plot(x, y, lw=1)  # 初始线宽为 1
