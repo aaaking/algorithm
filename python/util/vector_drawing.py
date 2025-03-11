@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib
 import matplotlib.patches
 from matplotlib.collections import PatchCollection
+from matplotlib.animation import FuncAnimation
 import matplotlib.pyplot as plt
 from vectors import *
 
@@ -184,6 +185,34 @@ def test_draw_many_dinosaur(save_as=None):
         if locali >= 3.14:
             locali = 0
 
+def testfwefaef():
+    x = np.linspace(0, 10, 100)
+    y = np.sin(x)
+    # 创建图形和轴
+    fig, ax = plt.subplots()
+    line, = ax.plot(x, y, lw=1)  # 初始线宽为5
+
+    # 设置轴的范围
+    ax.set_xlim(0, 10)
+    ax.set_ylim(-1.5, 1.5)
+
+    # 更新函数
+    def update(frame):
+        # 计算当前线宽
+        if frame < 50:
+            linewidth = 1 + (10 - 1) * (frame / 50)
+        else:
+            linewidth = 10 - (10 - 1) * ((frame - 50) / 50)
+        # 更新线宽
+        line.set_linewidth(linewidth)
+        # 返回更新后的线条
+        return line,
+    # 创建动画
+    ani = FuncAnimation(fig, update, frames=np.arange(0, 100), interval=100, blit=True)
+    # 显示图形
+    plt.show()
+    return ani
+
 if __name__ == "__main__":
     plt.ion()
     datax = np.linspace(0, 10, 100)
@@ -201,7 +230,8 @@ if __name__ == "__main__":
     # print(str((all_vectors)))
     print("draw start")
     test_draw_easy_math()
-    test_draw_many_dinosaur()
+    ani_dinosaur = test_draw_many_dinosaur()
+    ani = testfwefaef()
 
     # 关闭交互模式（可选）
     plt.ioff()
