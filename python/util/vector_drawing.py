@@ -224,7 +224,7 @@ def draw_anim_test():
         line3.set_data(rotated_x, rotated_y) # 这个啥用？写不写都是绘制一个圆
         rotated_x4 = rotation_matrix[0, 0] * x4[0] + rotation_matrix[0, 1] * y4[0]
         rotated_y4 = rotation_matrix[1, 0] * x4[0] + rotation_matrix[1, 1] * y4[0]
-        line4.set_data([0, rotated_x4], [0, rotated_y4])
+        line4.set_data([0, rotated_x4], [0, rotated_y4]) # 线段的一个端点固定在原点 (0, 0)，另一个端点在 (rotated_x, rotated_y)
 
         return line, line3, line4
     ani = FuncAnimation(fig, update, frames=np.arange(0, 360), interval=50, blit=True)
