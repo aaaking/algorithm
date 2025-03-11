@@ -36,7 +36,7 @@ class Polygon():
         return base_str + "\n" + str(self.vertices)
 
 class Points():
-    def __init__(self, *vectors, color=black):
+    def __init__(self, *vectors, color=black): # 不带星号呢？
         self.vectors = list(vectors)
         self.color = color
 
@@ -165,9 +165,24 @@ def test_draw_many_dinosaur(save_as=None):
         (-5, 3), (-5, 2), (-2, 2), (-5, 1), (-4, 0), (-2, 1), (-1, 0), (0, -3),
         (-1, -4), (1, -4), (2, -3), (1, -2), (3, -1), (5, 1)
     ]
-    translations = [(12*x, 12*y) for x in range(-5, 5) for y in range(-5, 5)]
-    dinos = [Polygon(*translate(t, dino_vectors), color = blue) for t in translations]
-    draw(*dinos, grid=None, axes=None, width=8, save_as = save_as)
+    translations = [(12*x, 12*y) for x in range(-5, 5) for y in range(-5, 5)] # [(-60, -60), (-60, -48),..., (48,48)]
+    dinos_vectors_all = [translate(t, dino_vectors) for t in translations]
+    # [
+    # [(), ()],一行代表一个dinosaur
+    # [(), ()]
+    # ]
+    dinos = [Polygon(*v, color = blue) for v in dinos_vectors_all]
+    locali = 0
+    while(locali == 0):
+        niaho = [vectorsss for vectorsss in dinos_vectors_all]
+        dinos_polar = [[to_polar(v) for v in vectorsss] for vectorsss in dinos_vectors_all]
+        dinos_rotated_polar = [[(l, angle + locali) for (l, angle) in mmm] for mmm in dinos_polar]
+        dinos_ratated = [[to_cartesian(p) for p in fff] for fff in dinos_rotated_polar]
+        dinos = [Polygon(*v, color=blue) for v in dinos_ratated]
+        draw(*dinos, grid=None, axes=None, width=8, save_as = save_as)
+        locali = locali + 0.01
+        if locali >= 3.14:
+            locali = 0
 
 if __name__ == "__main__":
     plt.ion()
@@ -183,7 +198,7 @@ if __name__ == "__main__":
     # print(str(next(gen)))
     # print(str(next(gen)))
     all_vectors = list(extract_vectors([Points((1, 2), (3, 4)), Segment((5,6), (7,8)), Polygon((-1, 0), (-2, -2), (0, -2)), Arrow((2, -3), tail=(4,-5)), cos]))
-    print(str((all_vectors)))
+    # print(str((all_vectors)))
     print("draw start")
     test_draw_easy_math()
     test_draw_many_dinosaur()
