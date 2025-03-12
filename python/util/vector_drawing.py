@@ -11,7 +11,7 @@ from mathModelZ import *
 from time_z import *
 from dir_z import *
 
-def draw(*objects, origin=True, axes=True, grid=(1,1), nice_aspect_ratio=True, width=12, save_as=None):
+def draw2d(*objects, origin=True, axes=True, grid=(1, 1), nice_aspect_ratio=True, width=12, save_as=None):
     fig = plt.figure()
     plt.grid(True)
     plt.axis('equal')  # 设置横纵坐标比例一致
@@ -86,7 +86,7 @@ def test_draw_easy_math(save_as=None):
     datax = np.linspace(0, 30, 200) # [0,`10]区间的线性增长的100个数字,  # xsin是数组[]不是元组()
     cos = Cos(datax)
     sin = Sin(datax)
-    draw(Points2D((1, 2), (3, 4)), Segment2D((5, 6), (7, 8)), Polygon2D((-1, 0), (-2, -2), (0, -2)), Arrow2D((2, -3), tail=(4, -5)), cos, sin, save_as = save_as)
+    draw2d(Points2D((1, 2), (3, 4)), Segment2D((5, 6), (7, 8)), Polygon2D((-1, 0), (-2, -2), (0, -2)), Arrow2D((2, -3), tail=(4, -5)), cos, sin, save_as = save_as)
 
 def test_draw_many_dinosaur(save_as=None):
     dino_vectors = [(6, 4), (3, 1), (1, 2), (-1, 5), (-2, 5), (-3, 4), (-4, 4),
@@ -106,7 +106,7 @@ def test_draw_many_dinosaur(save_as=None):
         dinos_rotated_polar = [[(l, angle + locali) for (l, angle) in mmm] for mmm in dinos_polar]
         dinos_ratated = [[vectors_z.to_cartesian(p) for p in fff] for fff in dinos_rotated_polar]
         dinos = [Polygon2D(*v, color=blue) for v in dinos_ratated]
-        draw(*dinos, grid=None, axes=None, width=8, save_as = save_as)
+        draw2d(*dinos, grid=None, axes=None, width=8, save_as = save_as)
         locali = locali + 0.01
         if locali >= 3.14:
             locali = 0
