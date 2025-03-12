@@ -22,7 +22,7 @@ yield 的主要作用
 使用生成器可以使代码更加简洁和易读，因为你可以在一个函数中逐步生成值，而不是在一个函数中返回一个完整的列表。
 """
 # helper function to extract all the vectors from a list of objects
-def extract_vectors(objects):
+def extract_vectors_2d(objects):
     for object in objects:
         typeObj = type(object)
         if typeObj == Polygon:
@@ -46,7 +46,7 @@ def extract_vectors(objects):
 def draw(*objects, origin=True, axes=True, grid=(1,1), nice_aspect_ratio=True, width=12, save_as=None):
     fig = plt.figure()
     plt.grid(True)
-    all_vectors = list(extract_vectors(objects))
+    all_vectors = list(extract_vectors_2d(objects))
     xs, ys = zip(*all_vectors) # 使用 zip 函数将两个数组合并成元组. xs是元组()不是数组[]
     max_x, max_y, min_x, min_y = max(0, *xs), max(0, *ys), min(0, *xs), min(0, *ys)
     if grid:
@@ -202,7 +202,7 @@ if __name__ == "__main__":
     # print(str(next(gen)))
     # print(str(next(gen)))
     # print(str(next(gen)))
-    all_vectors = list(extract_vectors([Points((1, 2), (3, 4)), Segment((5,6), (7,8)), Polygon((-1, 0), (-2, -2), (0, -2)), Arrow((2, -3), tail=(4,-5)), cos]))
+    all_vectors = list(extract_vectors_2d([Points((1, 2), (3, 4)), Segment((5, 6), (7, 8)), Polygon((-1, 0), (-2, -2), (0, -2)), Arrow((2, -3), tail=(4, -5)), cos]))
     # print(str((all_vectors)))
     print("draw start")
     test_draw_easy_math()
