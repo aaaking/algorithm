@@ -46,6 +46,7 @@ def extract_vectors_2d(objects):
 def draw(*objects, origin=True, axes=True, grid=(1,1), nice_aspect_ratio=True, width=12, save_as=None):
     fig = plt.figure()
     plt.grid(True)
+    plt.axis('equal')  # 设置横纵坐标比例一致
     all_vectors = list(extract_vectors_2d(objects))
     xs, ys = zip(*all_vectors) # 使用 zip 函数将两个数组合并成元组. xs是元组()不是数组[]
     max_x, max_y, min_x, min_y = max(0, *xs), max(0, *ys), min(0, *xs), min(0, *ys)
@@ -189,6 +190,22 @@ def draw_anim_test():
     plt.show()
     return ani
 
+def draw_math_func(x, y):
+    fig = plt.figure()
+    plt.grid(True)
+    plt.axis('equal') # 设置横纵坐标比例一致
+    max_x, max_y, min_x, min_y = max(0, *x), max(0, *y), min(-0, *x), min(-0, *y)
+    print("x=(" + str(min_x) + ", " + str(max_x) + ") y=(" + str(min_y) + ", " + str(max_y) + ")")
+    plt.scatter([0], [0], color='k', marker='x')
+    plt.xlim(min_x - 10, max_x + 10)
+    plt.ylim(min_y - 10, max_y + 10)
+    plt.gca().set_xticks(np.arange(plt.xlim()[0], plt.xlim()[1], 1)) # np.arange 生成了一个从当前x轴的最小值到最大值之间，步长为1的数组
+    plt.gca().set_yticks(np.arange(plt.ylim()[0], plt.ylim()[1], 1))
+    plt.gca().axhline(linewidth=1, color='k')  # 这两个是坐标轴
+    plt.gca().axvline(linewidth=1, color='k')
+    line, = plt.plot(x, y, lw=1)
+    plt.show()
+
 if __name__ == "__main__":
     plt.ion()
     datax = np.linspace(0, 10, 100)
@@ -208,6 +225,9 @@ if __name__ == "__main__":
     test_draw_easy_math()
     ani_dinosaur = test_draw_many_dinosaur()
     ani = draw_anim_test()
+    x = np.linspace(-10, 10, 100)
+    draw_math_func(x, (4 - x**3) ** (1/4))
+    draw_math_func(x, (1 - x ** (-1)) ** (-1))
 
     # 关闭交互模式（可选）
     plt.ioff()
