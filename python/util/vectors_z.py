@@ -39,7 +39,7 @@ def to_cartesian(polar_vector):
 
 def rotate(angle, vectors):
     polars = [to_polar(v) for v in vectors]
-    return [to_cartesian((l, a+angle)) for l,a in polars]
+    return [to_cartesian((l, a + angle)) for l, a in polars]
 
 def translate(translation, vectors):
     return [add(translation, v) for v in vectors]
