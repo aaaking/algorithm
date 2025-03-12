@@ -226,8 +226,8 @@ if __name__ == "__main__":
     ani_dinosaur = test_draw_many_dinosaur()
     ani = draw_anim_test()
     x = np.linspace(-10, 10, 100)
-    draw_math_func(x, (4 - x**3) ** (1/4))
-    draw_math_func(x, (1 - x ** (-1)) ** (-1))
+    # draw_math_func(x, (4 - x**3) ** (1/4))
+    # draw_math_func(x, (1 - x ** (-1)) ** (-1))
 
     # 关闭交互模式（可选）
     plt.ioff()
