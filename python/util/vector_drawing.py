@@ -185,8 +185,8 @@ def test_draw_many_dinosaur(save_as=None):
     translations = [(12*x, 12*y) for x in range(-5, 5) for y in range(-5, 5)] # [(-60, -60), (-60, -48),..., (48,48)]
     dinos_vectors_all = [vectors_z.translate(t, dino_vectors) for t in translations]
     # [
-    # [(), ()],一行代表一个dinosaur
-    # [(), ()]
+        # [(), ()],一行代表一个dinosaur
+        # [(), ()]
     # ]
     dinos = [Polygon2D(*v, color = blue) for v in dinos_vectors_all]
     locali = 0
@@ -194,7 +194,11 @@ def test_draw_many_dinosaur(save_as=None):
         dinos_polar = [[vectors_z.to_polar(v) for v in vectorsss] for vectorsss in dinos_vectors_all]
         dinos_rotated_polar = [[(l, angle + locali) for (l, angle) in mmm] for mmm in dinos_polar]
         dinos_ratated = [[vectors_z.to_cartesian(p) for p in fff] for fff in dinos_rotated_polar]
-        dinos = [Polygon2D(*v, color=blue) for v in dinos_ratated]
+        # [
+        #     [(), ()],
+        #     [(), ()],
+        # ]
+        dinos = [Polygon2D(*v, color=blue) for v in dinos_ratated] # * 操作符用于解包（unpacking）
         draw2d(*dinos, grid=None, axes=None, width=8, save_as = save_as)
         locali = locali + 0.01
         if locali >= 3.14:
