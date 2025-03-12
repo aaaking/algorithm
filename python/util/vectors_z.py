@@ -21,6 +21,9 @@ def length(v):
 def distance(v1,v2):
     return length(subtract(v1,v2))
 
+def dot(u,v):
+    return sum([coord1 * coord2 for coord1,coord2 in zip(u,v)])
+
 # 周长
 def perimeter(vectors):
     distances = [distance(vectors[i], vectors[(i+1)%len(vectors)]) for i in range(0,len(vectors))]
