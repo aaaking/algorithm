@@ -35,7 +35,7 @@ def scale(scalar,v):
 
 def to_cartesian(polar_vector):
     length, angle = polar_vector[0], polar_vector[1]
-    return (length*cos(angle), length*sin(angle))
+    return (length * cos(angle), length * sin(angle))
 
 def rotate(angle, vectors):
     polars = [to_polar(v) for v in vectors]
