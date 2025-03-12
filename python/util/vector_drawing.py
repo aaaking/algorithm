@@ -11,38 +11,6 @@ from mathModelZ import *
 from time_z import *
 from dir_z import *
 
-"""
-yield 关键字在 Python 中用于定义生成器（generator）。生成器是一种特殊的迭代器，它允许你在函数内部逐步生成值，而不是一次性生成所有值并返回一个完整的列表。这使得生成器在处理大量数据时特别有用，因为它可以节省内存并提高性能。
-yield 的主要作用
-1. 延迟计算：
-生成器不会一次性计算所有的值，而是在每次调用 next() 方法时计算下一个值。这意味着你可以逐步处理数据，而不是一次性加载所有数据。
-2. 节省内存：
-由于生成器只在需要时生成值，因此它可以处理非常大的数据集，而不会因为一次性加载所有数据而导致内存不足。
-3. 简化代码：
-使用生成器可以使代码更加简洁和易读，因为你可以在一个函数中逐步生成值，而不是在一个函数中返回一个完整的列表。
-"""
-# helper function to extract all the vectors from a list of objects
-def extract_vectors_2d(objects):
-    for object in objects:
-        typeObj = type(object)
-        if typeObj == Polygon:
-            for v in object.vertices:
-                yield v
-        elif typeObj == Points:
-            for v in object.vectors:
-                yield v
-        elif typeObj == Arrow:
-            yield object.tip
-            yield object.tail
-        elif typeObj == Segment:
-            yield object.start_point
-            yield object.end_point
-        elif typeObj == Cos or typeObj == Sin:
-            for v in zip(object.xs, object.ys):
-                yield v
-        else:
-            raise TypeError("Unrecognized object: {}".format(object))
-
 def draw(*objects, origin=True, axes=True, grid=(1,1), nice_aspect_ratio=True, width=12, save_as=None):
     fig = plt.figure()
     plt.grid(True)
@@ -68,7 +36,7 @@ def draw(*objects, origin=True, axes=True, grid=(1,1), nice_aspect_ratio=True, w
         plt.gca().axhline(linewidth=2, color='k') # 这两个是坐标轴
         plt.gca().axvline(linewidth=2, color='k')
     for object in objects:
-        if type(object) == Polygon:
+        if type(object) == Polygon2D:
             for i in range(0, len(object.vertices)):
                 x1, y1 = object.vertices[i]
                 x2, y2 = object.vertices[(i + 1) % len(object.vertices)]
@@ -77,11 +45,11 @@ def draw(*objects, origin=True, axes=True, grid=(1,1), nice_aspect_ratio=True, w
                 xs = [v[0] for v in object.vertices]
                 ys = [v[1] for v in object.vertices]
                 plt.gca().fill(xs, ys, object.fill, alpha=object.alpha)
-        elif type(object) == Points:
+        elif type(object) == Points2D:
             xs = [v[0] for v in object.vectors]
             ys = [v[1] for v in object.vectors]
             plt.scatter(xs, ys, color=object.color)
-        elif type(object) == Arrow:
+        elif type(object) == Arrow2D:
             tip, tail = object.tip, object.tail
             tip_length = (plt.xlim()[1] - plt.xlim()[0]) / 150.
             length = sqrt((tip[1] - tail[1]) ** 2 + (tip[0] - tail[0]) ** 2)
@@ -89,7 +57,7 @@ def draw(*objects, origin=True, axes=True, grid=(1,1), nice_aspect_ratio=True, w
             new_y = (tip[1] - tail[1]) * (new_length / length)
             new_x = (tip[0] - tail[0]) * (new_length / length)
             plt.gca().arrow(tail[0], tail[1], new_x, new_y, head_width=tip_length / 1.5, head_length=tip_length, fc=object.color, ec=object.color)
-        elif type(object) == Segment:
+        elif type(object) == Segment2D:
             x1, y1 = object.start_point
             x2, y2 = object.end_point
             plt.plot([x1, x2], [y1, y2], color=object.color)
@@ -118,7 +86,7 @@ def test_draw_easy_math(save_as=None):
     datax = np.linspace(0, 30, 200) # [0,`10]区间的线性增长的100个数字,  # xsin是数组[]不是元组()
     cos = Cos(datax)
     sin = Sin(datax)
-    draw(Points((1, 2), (3, 4)), Segment((5, 6), (7, 8)), Polygon((-1, 0), (-2, -2), (0, -2)), Arrow((2, -3), tail=(4,-5)), cos, sin, save_as = save_as)
+    draw(Points2D((1, 2), (3, 4)), Segment2D((5, 6), (7, 8)), Polygon2D((-1, 0), (-2, -2), (0, -2)), Arrow2D((2, -3), tail=(4, -5)), cos, sin, save_as = save_as)
 
 def test_draw_many_dinosaur(save_as=None):
     dino_vectors = [(6, 4), (3, 1), (1, 2), (-1, 5), (-2, 5), (-3, 4), (-4, 4),
@@ -131,13 +99,13 @@ def test_draw_many_dinosaur(save_as=None):
     # [(), ()],一行代表一个dinosaur
     # [(), ()]
     # ]
-    dinos = [Polygon(*v, color = blue) for v in dinos_vectors_all]
+    dinos = [Polygon2D(*v, color = blue) for v in dinos_vectors_all]
     locali = 0
     while(locali == 0):
         dinos_polar = [[vectors_z.to_polar(v) for v in vectorsss] for vectorsss in dinos_vectors_all]
         dinos_rotated_polar = [[(l, angle + locali) for (l, angle) in mmm] for mmm in dinos_polar]
         dinos_ratated = [[vectors_z.to_cartesian(p) for p in fff] for fff in dinos_rotated_polar]
-        dinos = [Polygon(*v, color=blue) for v in dinos_ratated]
+        dinos = [Polygon2D(*v, color=blue) for v in dinos_ratated]
         draw(*dinos, grid=None, axes=None, width=8, save_as = save_as)
         locali = locali + 0.01
         if locali >= 3.14:
@@ -210,8 +178,8 @@ if __name__ == "__main__":
     plt.ion()
     datax = np.linspace(0, 10, 100)
     cos = Cos(datax)
-    points = Points([1, 2], [3, 4])
-    points2 = Points((1, 2), (3, 4))
+    points = Points2D([1, 2], [3, 4])
+    points2 = Points2D((1, 2), (3, 4))
     print("points=" + str(points) + " id=" + hex(id(points)) + " vector=" + str(points.vectors))
     print("points2=" + str(points2) + " id=" + hex(id(points2)) + " vector=" + str(points2.vectors))
     # gen = list(extract_vectors([Points((1, 2), (3, 4)), Segment((5,6), (7,8))]))
@@ -219,7 +187,7 @@ if __name__ == "__main__":
     # print(str(next(gen)))
     # print(str(next(gen)))
     # print(str(next(gen)))
-    all_vectors = list(extract_vectors_2d([Points((1, 2), (3, 4)), Segment((5, 6), (7, 8)), Polygon((-1, 0), (-2, -2), (0, -2)), Arrow((2, -3), tail=(4, -5)), cos]))
+    all_vectors = list(extract_vectors_2d([Points2D((1, 2), (3, 4)), Segment2D((5, 6), (7, 8)), Polygon2D((-1, 0), (-2, -2), (0, -2)), Arrow2D((2, -3), tail=(4, -5)), cos]))
     # print(str((all_vectors)))
     print("draw start")
     test_draw_easy_math()

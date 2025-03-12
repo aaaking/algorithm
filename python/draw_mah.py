@@ -211,7 +211,6 @@ def draw_contour():
 checkMathDir()
 if __name__ == '__main__':
     logg.log_cyan("draw math start thread=" + str(threading.currentThread()) + " is daemon=" + str(threading.currentThread().isDaemon()))
-
     # 开启交互模式
     plt.ion()
 
