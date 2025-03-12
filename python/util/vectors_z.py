@@ -1,19 +1,22 @@
 from math import sqrt, sin, cos, atan2
 
-def subtract(v1, v2):
-    return (v1[0] - v2[0], v1[1] - v2[1])
+# def subtract(v1, v2):
+#     return (v1[0] - v2[0], v1[1] - v2[1])
+def subtract(v1,v2):
+    return tuple(v1-v2 for (v1,v2) in zip(v1,v2))
 
-def add(*vectors):
-    return (sum([v[0] for v in vectors]), sum([v[1] for v in vectors]))
+# def add(*vectors):
+#     return (sum([v[0] for v in vectors]), sum([v[1] for v in vectors]))
 # def add(*vectors):
 #     by_coordinate = zip(*vectors)
 #     coordinate_sums = [sum(coords) for coords in by_coordinate]
 #     return tuple(coordinate_sums)
-def add2(*vectors):
+def add(*vectors):
     return tuple(map(sum,zip(*vectors)))
 
 def length(v):
-    return sqrt(v[0]**2 + v[1]**2)
+    # return sqrt(v[0]**2 + v[1]**2)
+    return sqrt(sum([coord ** 2 for coord in v]))
 
 def distance(v1,v2):
     return length(subtract(v1,v2))

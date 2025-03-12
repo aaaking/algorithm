@@ -37,3 +37,8 @@ class Cos():
     def __init__(self, xs):
         self.xs = xs
         self.ys = [np.cos(x) for x in self.xs]
+
+if __name__ == "__main__":
+    coordinate_sums = [1,2,3,4,45,5]
+    fff = tuple(coordinate_sums)
+    print("fff=" + str(fff))
