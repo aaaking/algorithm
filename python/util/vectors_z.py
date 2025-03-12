@@ -30,7 +30,8 @@ def perimeter(vectors):
     return sum(distances)
 
 def scale(scalar,v):
-    return (scalar * v[0], scalar * v[1])
+    # return (scalar * v[0], scalar * v[1])
+    return tuple(scalar * coord for coord in v)
 
 def to_cartesian(polar_vector):
     length, angle = polar_vector[0], polar_vector[1]
