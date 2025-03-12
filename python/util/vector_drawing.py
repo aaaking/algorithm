@@ -6,16 +6,9 @@ from matplotlib.collections import PatchCollection
 from matplotlib.animation import FuncAnimation
 import matplotlib.pyplot as plt
 import vectors_z
+from colorsZ import *
 from time_z import *
 from dir_z import *
-
-blue = 'C0'
-black = 'k'
-red = 'C3'
-green = 'C2'
-purple = 'C4'
-orange = 'C2'
-gray = 'gray'
 
 """
 yield 关键字在 Python 中用于定义生成器（generator）。生成器是一种特殊的迭代器，它允许你在函数内部逐步生成值，而不是一次性生成所有值并返回一个完整的列表。这使得生成器在处理大量数据时特别有用，因为它可以节省内存并提高性能。
