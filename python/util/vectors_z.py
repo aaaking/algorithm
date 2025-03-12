@@ -1,4 +1,5 @@
-from math import sqrt, sin, cos, atan2
+from math import sqrt, sin, cos, atan2, acos
+import numpy as np
 
 # def subtract(v1, v2):
 #     return (v1[0] - v2[0], v1[1] - v2[1])
@@ -49,6 +50,20 @@ def to_polar(vector):
     angle = atan2(y, x)
     return (length(vector), angle)
 
+def angle_between(v1,v2):
+    return acos(dot(v1,v2) /(length(v1) * length(v2)))
+
+def cross(u, v):
+    ux,uy,uz = u
+    vx,vy,vz = v
+    return (uy*vz - uz*vy, uz*vx - ux*vz, ux*vy - uy*vx)
+
+def component(v,direction):
+    return (dot(v,direction) / length(direction))
+
+def unit(v):
+    return scale(1./length(v), v)
+
 if __name__ == "__main__":
-    print(str(add((1,2), (3, 4))))
-    print(str(add2((1,2), (3, 4))))
+    uuuN = 180 / np.pi
+    print(str(angle_between((1,0), (0, 1)) * uuuN))
