@@ -43,38 +43,6 @@ class Cos():
         self.xs = xs
         self.ys = [np.cos(x) for x in self.xs]
 
-"""
-yield 关键字在 Python 中用于定义生成器（generator）。生成器是一种特殊的迭代器，它允许你在函数内部逐步生成值，而不是一次性生成所有值并返回一个完整的列表。这使得生成器在处理大量数据时特别有用，因为它可以节省内存并提高性能。
-yield 的主要作用
-1. 延迟计算：
-生成器不会一次性计算所有的值，而是在每次调用 next() 方法时计算下一个值。这意味着你可以逐步处理数据，而不是一次性加载所有数据。
-2. 节省内存：
-由于生成器只在需要时生成值，因此它可以处理非常大的数据集，而不会因为一次性加载所有数据而导致内存不足。
-3. 简化代码：
-使用生成器可以使代码更加简洁和易读，因为你可以在一个函数中逐步生成值，而不是在一个函数中返回一个完整的列表。
-"""
-# helper function to extract all the vectors from a list of objects
-def extract_vectors_2d(objects):
-    for object in objects:
-        typeObj = type(object)
-        if typeObj == Polygon2D:
-            for v in object.vertices:
-                yield v
-        elif typeObj == Points2D:
-            for v in object.vectors:
-                yield v
-        elif typeObj == Arrow2D:
-            yield object.tip
-            yield object.tail
-        elif typeObj == Segment2D:
-            yield object.start_point
-            yield object.end_point
-        elif typeObj == Cos or typeObj == Sin:
-            for v in zip(object.xs, object.ys):
-                yield v
-        else:
-            raise TypeError("Unrecognized object: {}".format(object))
-
 ## https://stackoverflow.com/a/22867877/1704140
 class FancyArrow3D(FancyArrowPatch):
     def __init__(self, xs, ys, zs, *args, **kwargs):
@@ -115,7 +83,38 @@ class Box3D():
     def __init__(self, *vector):
         self.vector = vector
 
+"""
+yield 关键字在 Python 中用于定义生成器（generator）。生成器是一种特殊的迭代器，它允许你在函数内部逐步生成值，而不是一次性生成所有值并返回一个完整的列表。这使得生成器在处理大量数据时特别有用，因为它可以节省内存并提高性能。
+yield 的主要作用
+1. 延迟计算：
+生成器不会一次性计算所有的值，而是在每次调用 next() 方法时计算下一个值。这意味着你可以逐步处理数据，而不是一次性加载所有数据。
+2. 节省内存：
+由于生成器只在需要时生成值，因此它可以处理非常大的数据集，而不会因为一次性加载所有数据而导致内存不足。
+3. 简化代码：
+使用生成器可以使代码更加简洁和易读，因为你可以在一个函数中逐步生成值，而不是在一个函数中返回一个完整的列表。
+"""
 # helper function to extract all the vectors from a list of objects
+def extract_vectors_2d(objects):
+    for object in objects:
+        typeObj = type(object)
+        if typeObj == Polygon2D:
+            for v in object.vertices:
+                yield v
+        elif typeObj == Points2D:
+            for v in object.vectors:
+                yield v
+        elif typeObj == Arrow2D:
+            yield object.tip
+            yield object.tail
+        elif typeObj == Segment2D:
+            yield object.start_point
+            yield object.end_point
+        elif typeObj == Cos or typeObj == Sin:
+            for v in zip(object.xs, object.ys):
+                yield v
+        else:
+            raise TypeError("Unrecognized object: {}".format(object))
+
 def extract_vectors_3D(objects):
     for object in objects:
         if type(object) == Polygon3D:
