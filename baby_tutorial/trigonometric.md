@@ -6,6 +6,60 @@
 80/Math.PI=57.29577951308232
 
 
+### 一些公式
+#### 诱导公式
+1、公式1：设α为任意角，终边相同的角的同一三角函数的值相等, $ k \in Z $,  </br>
+$ sin(2kπ+α) ＝ sinα $ </br>
+$ cos(2kπ+α) ＝ cosα $ </br>
+$ tan(2kπ+α) ＝ tanα $ </br>
+$ cot(2kπ+α) ＝ cotα $ </br>
+
+
+2、公式二：设α为任意角，π+α的三角函数值与α的三角函数值之间的关系  </br>
+sin(π+α) ＝ －sinα  </br>
+cos(π+α) ＝ －cosα </br>
+tan(π+α) ＝ tanα </br>
+cot(π+α) ＝cotα </br>
+
+3、公式三：任意角α与-α的三角函数值之间的关系  </br>
+sin(－α)=－sinα </br>
+cos(－α)=cosα </br>
+tan(－α)=－tanα </br>
+cot(－α)=－cotα </br>
+
+
+4、公式四：利用公式二和公式三可以得到π-α与α的三角函数值之间的关系  </br>
+sin(π－α)=sinα </br>
+cos(π－α)=－cosα </br>
+tan(π－α)=－tanα </br>
+cot(π－α)=－cotα </br>
+
+5、公式五：利用公式一和公式三可以得到2π-α与α的三角函数值之间的关系  </br>
+sin(2π－α)=－sinα </br>
+cos(2π－α)=cosα </br>
+tan(2π－α)=－tanα </br>
+cot(2π－α)=－cotα </br>
+
+6、公式六：π/2±α与α的三角函数值之间的关系  </br>
+sin(π/2+α)=cosα </br>
+sin(π/2－α)=cosα </br>
+cos(π/2+α)=－sinα </br>
+cos(π/2－α)=sinα </br>
+tan(π/2+α)=－cotα </br>
+tan(π/2－α)=cotα </br>
+cot(π/2+α)=－tanα </br>
+cot(π/2－α)=tanα </br>
+
+记背诀窍：奇变偶不变，符号看象限，即形如（2k+1）90°±α，则函数名称变为余名函 数，正弦变余弦，余弦变正弦，正切变余切，余切变正切。形如2k×90°±α，则函数名称不变。
+
+#### 二角和差公式
+$  \cos{(\alpha \pm \beta)} = \cos{\alpha}\cos{\beta} \pm \sin{\alpha}\sin{\beta} $ </br>
+$  \sin{(\alpha \pm \beta)} = \sin{\alpha}\cos{\beta} \pm \cos{\alpha}\sin{\beta} $ </br>
+$   \tan{\alpha \pm \beta}  = \frac{\tan\alpha \pm \tan\beta }{1\mp \tan\alpha \tan\beta }  $ </br>
+$   \cot{\alpha \pm \beta}  = \frac{\cot\alpha\cot\beta \mp 1 }{\cot\beta \pm \cot\alpha }  $ </br>
+
+
+
 ### 2
 余弦定理等价于向量的点积公式：
 $ \vec{a} \cdot \vec{b} = |\vec{a}| \cdot |\vec{b}| \cdot \cos{\theta} $
