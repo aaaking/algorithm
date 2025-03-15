@@ -58,6 +58,12 @@ $  \sin{(\alpha \pm \beta)} = \sin{\alpha}\cos{\beta} \pm \cos{\alpha}\sin{\beta
 $   \tan{\alpha \pm \beta}  = \frac{\tan\alpha \pm \tan\beta }{1\mp \tan\alpha \tan\beta }  $ </br>
 $   \cot{\alpha \pm \beta}  = \frac{\cot\alpha\cot\beta \mp 1 }{\cot\beta \pm \cot\alpha }  $ </br>
 
+#### 三角和公式
+$   \sin{(\alpha + \beta + \gamma)} = \sin\alpha\cos\beta\cos\gamma +\sin\beta\cos\alpha\cos\gamma + \sin\gamma\cos\alpha\cos\beta - \sin\alpha\sin\beta\sin\gamma $ </br>
+$   \cos{(\alpha + \beta + \gamma)} = \cos\alpha\cos\beta\cos\gamma - \cos\alpha\sin\beta\sin\gamma - \cos\beta\sin\alpha\sin\gamma - \cos\gamma\sin\alpha\sin\beta  $ </br>
+
+
+#### 二角积化和差公式，根据上面的和差公式，很简单能推导出积化和差公式，这里省略
 
 
 ### 2
