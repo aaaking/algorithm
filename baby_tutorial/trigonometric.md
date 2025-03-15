@@ -65,6 +65,10 @@ $   \cos{(\alpha + \beta + \gamma)} = \cos\alpha\cos\beta\cos\gamma - \cos\alpha
 
 #### 二角积化和差公式，根据上面的和差公式，很简单能推导出积化和差公式，这里省略
 
+#### 同理可以得出二倍角公式
+$ \sin{2\alpha} = 2\sin\alpha\cos\alpha $ </br>
+$ \cos{2\alpha} = \cos^2\alpha - \sin^2\alpha = 2\cos^2\alpha - 1 = 1 - 2\sin^2\alpha$
+
 
 ### 2
 余弦定理等价于向量的点积公式：
