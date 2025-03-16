@@ -1,9 +1,9 @@
 三角函数很难反解, 比如向量(-2, 3)的sin(θ)=3/√13，求出的θ可能是56.3˚，但是这个向量的角度是123.7˚，需要确定是在第几象限才行。
 
 
-### 1
-计算1弧度约等于多少角度：
-80/Math.PI=57.29577951308232
+### 1 计算1弧度约等于多少角度：180/Math.PI=57.29577951308232
+
+### 2 证明正弦定理和余弦定理
 
 
 ### 一些公式
@@ -69,6 +69,31 @@ $   \cos{(\alpha + \beta + \gamma)} = \cos\alpha\cos\beta\cos\gamma - \cos\alpha
 $ \sin{2\alpha} = 2\sin\alpha\cos\alpha $ </br>
 $ \cos{2\alpha} = \cos^2\alpha - \sin^2\alpha = 2\cos^2\alpha - 1 = 1 - 2\sin^2\alpha$
 
+#### 3倍角公式
+$ \sin{3\alpha} = 3\sin\alpha - 4\sin^3\alpha $ </br>
+$ \sin{3\alpha} = 4\sin\alpha\sin{(60^\circ-\alpha)}\sin{(60^\circ+\alpha)} $ </br>
+$ \cos{3\alpha} = 4\cos^3\alpha - 3\cos\alpha $ </br>
+$ \cos{3\alpha} = 4\cos\alpha\cos{(60^\circ-\alpha)}\cos{(60^\circ+\alpha)}  $ </br>
+$ \tan{3\alpha} = \frac{3\tan\alpha - \tan^3\alpha}{1 - 3\tan^2\alpha} $ </br>
+$ \tan{3\alpha} = \tan\alpha\tan{(60^\circ-\alpha)}\tan{(60^\circ+\alpha)}  $ </br>
+
+#### 4倍角公式 省略
+
+#### 5倍角公式 省略
+
+#### 辅助角公式 
+$    $ </br>
+$  a\sin\alpha + b\cos\beta = \sqrt[]{a^2 + b^2}\sin{(\alpha + \varphi)}, \tan\varphi = \frac{b}{a}  $ </br>
+
+#### 余弦定理 
+$  a^2 = b^2 + c^2 - 2bc\cos\alpha  $ </br>
+#### 正弦定理 
+$  a/sinA = b/sinB =c/sinC = 2r=D（r为外接圆半径，D为直径）  $ </br>
+
+#### 三角形面积
+$  S\Delta ABC = \frac{1}{2}bc\sin{A} = \frac{1}{2}ab\sin{C} = \frac{1}{2}ac\sin{B}  $ .面积公式1 </br>
+$  S\Delta ABC = \sqrt{s(s-a)(s-b)(s-c)}, s = \frac{a+b+c}{2}  $  .海伦公式： 用余弦定理 + 面积公式1 可以证明海伦公式  </br> 
+$    $ </br>
 
 ### 2
 余弦定理等价于向量的点积公式：
