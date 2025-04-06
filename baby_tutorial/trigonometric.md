@@ -58,8 +58,8 @@ cot(π/2－α)=tanα </br>
 #### 二角和差公式
 $  \cos{(\alpha \pm \beta)} = \cos{\alpha}\cos{\beta} \pm \sin{\alpha}\sin{\beta} $ </br>
 $  \sin{(\alpha \pm \beta)} = \sin{\alpha}\cos{\beta} \pm \cos{\alpha}\sin{\beta} $ </br>
-$   \tan{\alpha \pm \beta}  = \frac{\tan\alpha \pm \tan\beta }{1\mp \tan\alpha \tan\beta }  $ </br>
-$   \cot{\alpha \pm \beta}  = \frac{\cot\alpha\cot\beta \mp 1 }{\cot\beta \pm \cot\alpha }  $ </br>
+$   \tan{(\alpha \pm \beta)}  = \frac{\tan\alpha \pm \tan\beta }{1\mp \tan\alpha \tan\beta }  $ </br>
+$   \cot{(\alpha \pm \beta)}  = \frac{\cot\alpha\cot\beta \mp 1 }{\cot\beta \pm \cot\alpha }  $ </br>
 
 #### 三角和公式
 $   \sin{(\alpha + \beta + \gamma)} = \sin\alpha\cos\beta\cos\gamma +\sin\beta\cos\alpha\cos\gamma + \sin\gamma\cos\alpha\cos\beta - \sin\alpha\sin\beta\sin\gamma $ </br>
