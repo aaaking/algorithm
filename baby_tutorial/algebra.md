@@ -1,5 +1,5 @@
 
-[markwodn数学公式输入](https://cxy.cc/post/2024/06/12/markdown-math/#:~:text=(n%2B1)-,%E5%A6%82%E4%BD%95%E8%BE%93%E5%85%A5%E7%B4%AF%E5%8A%A0%E3%80%81%E7%B4%AF%E4%B9%98%E8%BF%90%E7%AE%97,%E5%BC%8F%7D%20%E6%9D%A5%E8%BE%93%E5%85%A5%E4%B8%80%E4%B8%AA%E7%B4%AF%E5%8A%A0%E3%80%82)]
+[markwodn数学公式输入](https://cxy.cc/post/2024/06/12/markdown-math/#:~:text=(n%2B1)-,%E5%A6%82%E4%BD%95%E8%BE%93%E5%85%A5%E7%B4%AF%E5%8A%A0%E3%80%81%E7%B4%AF%E4%B9%98%E8%BF%90%E7%AE%97,%E5%BC%8F%7D%20%E6%9D%A5%E8%BE%93%E5%85%A5%E4%B8%80%E4%B8%AA%E7%B4%AF%E5%8A%A0%E3%80%82)
 
 #### 0
 小学题：$   (a+b)*(a-b) = 73, \quad and \quad a \in N^+, b \in N^+   球a和b $.    </br>
@@ -36,9 +36,17 @@ anwser: $  a^{\frac{1}{2}}*a^{\frac{1}{4}}*a^{\frac{1}{8}} = 128 $  , $ a^{\frac
 化简 $   \sqrt[3]{2-\sqrt{5}}  $   </br>
 anwser: $ a^2 = a + 1 => a^3 = 2a + 1$, 因此上面的两个式子化简后就是a。
 
-#### 7
+#### 7 $ a = \frac{-1 \pm \sqrt{5}}{2} $ 相关的代数题
+##### 7.1
+化简 $   \sqrt[3]{-2+\sqrt{5}}  $   </br>
+化简 $   \sqrt[3]{-2-\sqrt{5}}  $   </br>
+anwser: $ a^2 = -a + 1 => a^3 = 2a - 1$, 因此上面的两个式子化简后就是a。
 
 #### 8
+$
+xy=1, 求 \frac{9999}{x^2+1} + \frac{9999}{y^2+1}
+$
+anwser: 将分母里的两个1都用xy替换，可得结果=9999
 
 #### 9
 
