@@ -12,11 +12,14 @@ $ \frac{1}{n} = \frac{1}{1+n} + \frac{1}{n*(n+1)}   $   </br>
 $\frac{5}{6} = \frac{1}{2}+\frac{1}{3}其中x=2, y=3, x+y=5，下面介绍通用的因式分解的解法 $ </br> 
 $ \frac{5}{6} =\frac{1}{a}+\frac{1}{b}, eq: 5ab-6a-6b=0, eq: 25ab-30a-30b=36, eq: (5a-6)(5b-6) =36,枚举所有的case可以得出a=2,b=3 $
 </br> </br> 
+两项和的可以使用待定系数法：</br> 
 $ \frac{2}{15} = \frac{1}{10} + \frac{1}{30}, eq: 4ab -30a -30b +225 =225, eq: (2a -15)(2b -15) =225 枚举所有的case可以得出: $ </br>
 1. 1/8 +1/120
 2. 1/9 +1/45
 3. 1/10 +1/30
 4. 1/12 +1/20
+
+$\frac{4}{25}=但是这里使用待定系数法，是无解的。而且分子改造成的25+1不是4的倍数，没法改造$
 
 也可以使用贪婪算法：
 $ a<b, let: b = a*p+r, then $   </br>
@@ -55,28 +58,15 @@ public class MathDemo {
         System.out.println(ret);
         return ret;
     }
-
-    public static int gcd(int a, int b) {
-        if (a < b) {
-            int temp = a;
-            a = b;
-            b = temp;
-        }
-        if (a < 0 || b < 0) {
-            return -1;
-        }
-        if (b == 0) {
-            return a;
-        }
-        while (a % b != 0) {
-            int temp = a % b;
-            a = b;
-            b = temp;
-        }
-        return b;
-    }
 }
 ```
+如果要拆解成三项的和，比如：</br>
+$ \frac{43}{75}=\frac{3}{75}+\frac{15}{75}+\frac{25}{75} $ </br></br>
+$ \frac{13}{47}=\frac{1}{47}+\frac{12}{47} $ </br>
+$ \frac{12}{47} =\frac{47+1}{47*4}=\frac{1}{4}+\frac{1}{188} $ </br></br>
+$ \frac{4}{83}=\frac{1}{83}+\frac{3}{83} $ </br>
+$ \frac{3}{83} =\frac{83+1}{83*28}=\frac{1}{28}+\frac{1}{2324} $ </br></br>
+
 
 
 #### 1
