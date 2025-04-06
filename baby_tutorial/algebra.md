@@ -19,7 +19,7 @@ $ \frac{2}{15} = \frac{1}{10} + \frac{1}{30}, eq: 4ab -30a -30b +225 =225, eq: (
 4. 1/12 +1/20
 
 也可以使用贪婪算法：
-$ a<b, let b = a*p+r, then $   </br>
+$ a<b, let: b = a*p+r, then $   </br>
 $ \frac{a}{b} = \frac{a}{a*p+r} = \frac{a*p+r-r+a}{(a*p+r)(p+1)} =\frac{1}{p+1} + \frac{a-r}{(a*p+r)(p+1)}$
 ```
 import java.util.ArrayList;
