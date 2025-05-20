@@ -2,8 +2,8 @@
 from  PIL import Image
 import shutil
 from util.logg import *
-from util.dir import *
-from util.time import *
+from util.dir_z import *
+from util.time_z import *
 
 DIR_PIC = os.path.join(getMostRoot(), "build/pic/")
 print(f"pic dir={DIR_PIC}")
