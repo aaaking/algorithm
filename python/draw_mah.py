@@ -20,6 +20,19 @@ def checkMathDir():
     if not os.path.exists(DIR_MATH_PIC):
         print(f"math pic dir not exist and create ret={os.makedirs(DIR_MATH_PIC)}")
 
+def show_plot_subprocess():
+    logg.log_red("subprocess show image thread=" + str(threading.currentThread()) + " is daemon=" + str(threading.currentThread().isDaemon()))
+    # 设置后端为 Agg, 必须在导入 matplotlib.pyplot 之前调用，以确保后端正确设置。Agg 后端是非交互式的，适用于在没有图形界面的环境中生成图像文件。
+    # matplotlib.use('Agg')
+    # 切换后端为 Agg, 可以在导入 matplotlib.pyplot 之后调用，动态切换后端。这种方法在某些情况下可能更灵活，但需要注意后端切换的时机。
+    # plt.switch_backend('Agg')
+    # plt.bar(["RR", "TT"], [1000, -10]) # 这个柱状图会和住进程的追加
+    # plt.show()  # not work, show nothing, but savefig works
+    import time
+    time.sleep(2)
+    logg.log_red("subprocess exit")
+    sys.exit()
+
 def draw_line_chart(x = [1, 2, 3, 4, 5], y = [1, 4, 9, 16, 25]):
     y2 = [1, 2, 3, 4, 5]  # 第二条折线的数据
     plt.figure(1005436, figsize=(10, 6))  # 设置图形大小
@@ -83,18 +96,6 @@ def draw_barv(categories = ['A', 'B', 'C', 'D'], values = [3, 7, 2, 5]):
     # for i in range(len(categories)):
     #     plt.text(i, values[i], str(values[i]), ha='center', va='bottom')
 
-    def show_plot_subprocess():
-        logg.log_red("subprocess show image thread=" + str(threading.currentThread()) + " is daemon=" + str(threading.currentThread().isDaemon()))
-        # 设置后端为 Agg, 必须在导入 matplotlib.pyplot 之前调用，以确保后端正确设置。Agg 后端是非交互式的，适用于在没有图形界面的环境中生成图像文件。
-        # matplotlib.use('Agg')
-        # 切换后端为 Agg, 可以在导入 matplotlib.pyplot 之后调用，动态切换后端。这种方法在某些情况下可能更灵活，但需要注意后端切换的时机。
-        # plt.switch_backend('Agg')
-        # plt.bar(["RR", "TT"], [1000, -10]) # 这个柱状图会和住进程的追加
-        # plt.show()  # not work, show nothing, but savefig works
-        import time
-        time.sleep(2)
-        logg.log_red("subprocess exit")
-        sys.exit()
     # 创建并启动进程
     plot_process = multiprocessing.Process(target=show_plot_subprocess)
     plot_process.start()
